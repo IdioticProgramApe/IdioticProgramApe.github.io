@@ -1,6 +1,14 @@
+---
+layout: default
+title: Home
+nav_order: 1
+description: "Just the Docs is a responsive Jekyll theme with built-in search that is easily customizable and hosted on GitHub Pages."
+permalink: /
+---
+
 ## Welcome to GitHub Pages
 
-[About me](./about.md)
+[About me](/about)
 
 You can use the [editor on GitHub](https://github.com/IdioticProgramApe/IdiotProgramApe.github.io/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
