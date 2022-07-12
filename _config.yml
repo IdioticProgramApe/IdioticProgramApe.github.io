@@ -27,7 +27,8 @@ url: "https://idioticprogramape.github.io"
 github_username:  IdioticProgramApe
 
 # Build settings
-theme: jekyll-theme-merlot
+theme: "just-the-docs"
+remote_theme: just-the-docs/just-the-docs
 
 permalink: pretty
 exclude: [
