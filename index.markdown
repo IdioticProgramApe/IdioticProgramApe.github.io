@@ -8,7 +8,7 @@ permalink: /
 
 ## Welcome to GitHub Pages
 
-[About me](/about)
+[About me](/IdiotProgramApe.github.io/about)
 
 You can use the [editor on GitHub](https://github.com/IdioticProgramApe/IdiotProgramApe.github.io/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
