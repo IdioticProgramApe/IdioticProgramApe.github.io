@@ -51,13 +51,13 @@ exclude: [
 ]
 
 # Regression tests
-# By default, the pages in /docs/tests are excluded when the ste is built.
+# By default, the pages in /docs/tests are excluded when the site is built.
 # To include them, comment-out the relevant line above.
 # Uncommenting the following line doesn't work - see https://github.com/jekyll/jekyll/issues/4791
 # include: ["docs/tests/"]
 
 # Set a path/url to a logo that will be displayed instead of the title
-#logo: "/assets/images/just-the-docs.png"
+logo: "/assets/images/signature.png"
 
 # Enable or disable the site search
 # Supports true (default) or false
