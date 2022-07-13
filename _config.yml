@@ -23,7 +23,7 @@ email: jiafeng_han@outlook.com
 description: >- # this means to ignore newlines until "baseurl:"
   This is a mumbo jumbo space, let's start to take notes.
 baseurl: "/"
-url: "https://idioticprogramape.github.io/IdiotProgramApe.github.io"
+url: "https://idioticprogramape.github.io"
 github_username:  IdioticProgramApe
 
 # Build settings
