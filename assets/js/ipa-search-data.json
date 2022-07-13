@@ -1,5 +1,5 @@
 ---
-permalink: /assets/js/search-data.json
+permalink: /assets/js/ipa-search-data.json
 ---
 {
 {%- assign i = 0 -%}
