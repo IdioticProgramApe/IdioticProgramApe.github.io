@@ -15,7 +15,7 @@ There are a few things that need to be done before setting it up.
 
 ### Github & git
 
-As a developer/programmer, Github should be no stranger, and [git](https://git-scm.com/), as a version control system to version control your site content and sync it with Github in order to publish your changes online.
+As a developer/programmer, Github should be no stranger, and [git](https://git-scm.com/), is a version control system to version control your site content and sync it with Github in order to publish the changes online.
 
 Besides git, other SCM(Source Control Management) tools are quite heavier than git, such Perforce (which can however handle large-file project).
 
@@ -50,7 +50,7 @@ There are 2 ways to clone the repo from github:
 
 ### Create Jekyll Project
 
-#### Install Jekyll 
+#### Install Jekyll
 
 I'll just copy paste from Jekyll's website here, this only works on **Windows**, for other OS, need to check these [Guides](https://jekyllrb.com/docs/installation/#guides):
 
@@ -104,4 +104,6 @@ It should be the same for other themes, if not, use _config.yaml from their Gith
 
 ### More...
 
-By doing so far I can already have the very first glimp of my page. Later on when need to add more sections and pages, here is a ref: [Navigation Structure](https://just-the-docs.github.io/just-the-docs/docs/navigation-structure/)
+So far, after doing the steps above I can already have the very first glimp of my page.
+
+Later on when need to add more sections and pages, here is a ref: [Navigation Structure](https://just-the-docs.github.io/just-the-docs/docs/navigation-structure/).
