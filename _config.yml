@@ -22,7 +22,7 @@ title: Some Mumbo-Jumbos...
 email: jiafeng_han@outlook.com
 description: >- # this means to ignore newlines until "baseurl:"
   This is a mumbo jumbo space, let's start to take notes.
-baseurl: "/"
+baseurl: ""
 url: "https://idioticprogramape.github.io"
 github_username:  IdioticProgramApe
 
