@@ -71,8 +71,6 @@ I'll just copy paste from Jekyll's website here, this only works on **Windows**,
 
 Since the framework of a Jekyll site has been built, now need to choose a theme and apply it.
 
-##### Install Theme
-
 The themes provided on Github settings are very limited, here are some links where can find more themes:
 
 * [GitHub.com #jekyll-theme repos](https://github.com/topics/jekyll-theme)
@@ -81,6 +79,12 @@ The themes provided on Github settings are very limited, here are some links whe
 * [jekyllthemes.io](https://jekyllthemes.io/)
 
 Finally I chose the simple theme called [just-the-docs](https://github.com/just-the-docs/just-the-docs) to start with. Normally the installation is well documented, just need to check the guide.
+
+#### Configure Theme
+
+For my theme, they provided some specific params described in [here](https://just-the-docs.github.io/just-the-docs/docs/configuration/).
+
+It should be the same for other themes, if not, use _config.yaml from their Github repo as a start is not a bad choice.
 
 > Remarks:
 >
@@ -95,12 +99,6 @@ Finally I chose the simple theme called [just-the-docs](https://github.com/just-
 >     - {**%- assign pages_array =  | split:  -%**}
 >     + {**%- assign pages_array =  split:  -%**}
 >     ```
-
-#### Configure Theme
-
-For my theme, they provided some specific params described in [here](https://just-the-docs.github.io/just-the-docs/docs/configuration/).
-
-It should be the same for other themes, if not, use _config.yaml from their Github repo as a start is not a bad choice.
 
 ### More...
 
