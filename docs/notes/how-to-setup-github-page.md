@@ -13,16 +13,14 @@ nav_order: 2
 {:toc}
 </details>
 
-## How to Setup Github Page
-
-### Prerequistes
+## Prerequistes
 
 There are a few things that need to be done before setting it up.
 
 * Github account & git
 * Ruby env (if use [jekyll](http://jekyllrb.com/))
 
-### Create Github Repo
+## Create Github Repo
 
 Here are some tips for this repo:
 
@@ -40,9 +38,9 @@ Here are some tips for this repo:
 > * If misspelled the username, the page url can be unexpected, such as:
 >   * ~~https://idioticprogramape.github.io/idiotprogramape.github.io/~~ 👀️
 
-### Create Jekyll Project
+## Create Jekyll Project
 
-#### Install Jekyll
+### Install Jekyll
 
 Just copy paste from Jekyll's website here, this only works on **Windows**, for other OS, need to check these [Guides](https://jekyllrb.com/docs/installation/#guides):
 
@@ -51,7 +49,7 @@ Just copy paste from Jekyll's website here, this only works on **Windows**, for 
 3. Open a new command prompt window from the start menu, so that changes to the `PATH` environment variable becomes effective. Install Jekyll and Bundler using `gem install jekyll bundler`
 4. Check if Jekyll has been installed properly: `jekyll -v`
 
-#### Initialize Jekyll site
+### Initialize Jekyll site
 
 1. open a terminal, and **cd** to the local repository
 2. set up a jekyll project by exec: `jekyll new .`
@@ -59,9 +57,9 @@ Just copy paste from Jekyll's website here, this only works on **Windows**, for 
 4. build the site: `bundle exec jekyll serve --incremental --livereload`
 5. check [http://localhost:4000](http://localhost:4000/)
 
-#### Apply Theme
+### Apply Theme
 
-##### Install Theme
+#### Install Theme
 
 Some links where can find more themes:
 
@@ -70,9 +68,9 @@ Some links where can find more themes:
 * [jekyllthemes.org](http://jekyllthemes.org/)
 * [jekyllthemes.io](https://jekyllthemes.io/)
 
-##### Some Fix
+#### Some Fix
 
-Use [just-the-docs](https://github.com/just-the-docs/just-the-docs) to start with. 
+Use [just-the-docs](https://github.com/just-the-docs/just-the-docs) to start with.
 
 * In the file **_config.yaml**, there are 2 keywords for theme:
   * **remote_theme**: this one is for github, so that the online site can be built with the correct theme
@@ -86,12 +84,12 @@ Use [just-the-docs](https://github.com/just-the-docs/just-the-docs) to start wit
     + {**%- assign pages_array =  split:  -%**}
     ```
 
-#### Configure Theme
+### Configure Theme
 
 Some specific params described in [here](https://just-the-docs.github.io/just-the-docs/docs/configuration/).
 
 Use **_config.yaml** from their Github repo as a start.
 
-### More Sections & Pages
+## More Sections & Pages
 
 Ref: [Navigation Structure](https://just-the-docs.github.io/just-the-docs/docs/navigation-structure/).
