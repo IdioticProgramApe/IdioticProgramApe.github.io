@@ -3,6 +3,7 @@ layout: default
 title: Physic
 parent: Game Engine
 nav_order: 2
+mathjax: true
 ---
 <details open markdown="block">
   <summary>
@@ -17,28 +18,27 @@ nav_order: 2
 
 A directional line segment which has a direction and a length, represented as (x, y) in 2d Cartesian coordinate system.
 
-A **zero vector** is $ (0, 0) $.
+A **zero vector** is (0, 0).
 
 ### Basic Ops
 
-* vector addtion: {% raw %} $ ( x_1, y_1 ) + ( x_2, y_2 ) = ( x_1 + x_2, y_1 + y_2 ) $ {% endraw %}
-* vector subtraction: {% raw %} $ ( x_1, y_1 ) - ( x_2, y_2 ) = ( x_1 - x_2, y_1 - y_2 ) $ {% endraw %}
-  * negation: {% raw %} $ -(x, y) = (-x, -y) $ {% endraw %}
-* vector multiplication: {% raw %} $ (x, y) * s = (s*x, s*y), \forall s \in \mathbb{R} $ {% endraw %}
-* vector division: {% raw %} $ (x, y) / s = (x/s, y/s), \forall s \in \mathbb{R} \backslash \{0\} $ {% endraw %}
-* check 2 vectors are identical: {% raw %} $ x_1 == x_2$ && $y_1 == y_2 $ {% endraw %}
+* vector addition: $ ( x_1, y_1 ) + ( x_2, y_2 ) = ( x_1 + x_2, y_1 + y_2 ) $
+* vector subtraction: $ ( x_1, y_1 ) - ( x_2, y_2 ) = ( x_1 - x_2, y_1 - y_2 ) $
+  * negation: $ -(x, y) = (-x, -y) $
+* vector multiplication: $ (x, y) * s = (s*x, s*y), \forall s \in \mathbb{R} $
+* vector division: $ (x, y) / s = (x/s, y/s), \forall s \in \mathbb{R} \backslash \{0\} $
+* check 2 vectors are identical: $ x_1 == x_2 $ && $ y_1 == y_2 $
 * vector hashcode: [Hashing in C++ using std::hash (opengenus.org)](https://iq.opengenus.org/std-hash-cpp/)
 * vector string representation: use formatted string
 
 ### More Advanced Ops
 
-* length (L2 norm): {% raw %} $ ||\vec{v}||_2 = \sqrt{v_x^2 + v_y^2} $ {% endraw %}
-* distance: {% raw %} $ distance(\vec{v}_1, \vec{v}_2) = ||\vec{v}_1 - \vec{v}_2|| = ||\vec{v}_2 - \vec{v}_1|| $ {% endraw %}
-* normalize: {% raw %} $ normalize(\vec{v}) = \frac{\vec{v}}{||\vec{v}||} $ {% endraw %}
-* dot product (scalar): {% raw %} $ \vec{v}_1 \cdot \vec{v}_2 = v_{1x} * v_{2x} + v_{1y} * v_{2y} $ {% endraw %}
-* cross product (vectorial): {% raw %} $ \vec{v}_1 \times \vec{v}_2 = v_{1x} * v_{2y} - v_{1y} * v_{2x} $ {% endraw %}
-
-> technically, cross product only exists in 3D space, if in 2D, the value itself is the component on the z direction.
+* length/L2-norm: $ \|\vec{v}\|_2 = \sqrt{v_x^2 + v_y^2} $
+* distance: $ distance(\vec{v}_1, \vec{v}_2) = \|\vec{v}_1 - \vec{v}_2\| = \|\vec{v}_2 - \vec{v}_1\| $
+* normalize: $ normalize(\vec{v}) = \frac{\vec{v}}{\|\vec{v}\|} $
+* dot product: $ \vec{v}\_1 \cdot \vec{v}\_2 = v_{1x} * v_{2x} + v_{1y} * v_{2y} $
+* cross product: $ \vec{v}\_1 \times \vec{v}\_2 = v_{1x} * v_{2y} - v_{1y} * v_{2x} $
+  * should only exist in 3D or higher dimensional space
 
 ## References
 
