@@ -33,9 +33,9 @@ A **zero vector** is (0, 0).
 
 ### More Advanced Ops
 
-* length/L2-norm: $ \|\vec{v}\|_2 = \sqrt{v_x^2 + v_y^2} $
-* distance: $ distance(\vec{v}_1, \vec{v}_2) = \|\vec{v}_1 - \vec{v}_2\| = \|\vec{v}_2 - \vec{v}_1\| $
-* normalize: $ normalize(\vec{v}) = \frac{\vec{v}}{\|\vec{v}\|} $
+* length/L2-norm: $ \|\|\vec{v}\|\|_2 = \sqrt{v_x^2 + v_y^2} $
+* distance: $ distance(\vec{v}_1, \vec{v}_2) = \|\|\vec{v}_1 - \vec{v}_2\|\| = \|\|\vec{v}_2 - \vec{v}_1\|\| $
+* normalize: $ normalize(\vec{v}) = \frac{\vec{v}}{\|\|\vec{v}\|\|} $
 * dot product: $ \vec{v}\_1 \cdot \vec{v}\_2 = v_{1x} * v_{2x} + v_{1y} * v_{2y} $
 * cross product: $ \vec{v}\_1 \times \vec{v}\_2 = v_{1x} * v_{2y} - v_{1y} * v_{2x} $
   * should only exist in 3D or higher dimensional space
