@@ -26,7 +26,7 @@ A **zero vector** is (0, 0).
 * vector subtraction: $ ( x_1, y_1 ) - ( x_2, y_2 ) = ( x_1 - x_2, y_1 - y_2 ) $
   * negation: $ -(x, y) = (-x, -y) $
 * vector multiplication: $ (x, y) \* s = (s\*x, s\*y), \forall s \in \mathbb{R} $
-* vector division: $ (x, y) / s = (x/s, y/s), \forall s \in \mathbb{R} \backslash \{0\} $
+* vector division: $ (x, y) / s = (x/s, y/s), \forall s \in \mathbb{R} \backslash \lbrace 0 \rbrace $
 * check 2 vectors are identical: $ x_1 == x_2 $ && $ y_1 == y_2 $
 * vector hashcode: [Hashing in C++ using std::hash (opengenus.org)](https://iq.opengenus.org/std-hash-cpp/)
 * vector string representation: use formatted string

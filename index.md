@@ -15,7 +15,10 @@ Though, in most cases it can be just some mumbo-jumbos coming out of my mouth ðŸ
 I am choosing Markdown to format my notes, because it's a light-weighted and powerful tool to use...
 *(nope, because I don't really know anything about html)*
 
-For more details see: [Markdown cheatsheet](https://www.markdownguide.org/cheat-sheet/).
+For more details see:
+
+* [Markdown cheatsheet](https://www.markdownguide.org/cheat-sheet/).
+* To add
 
 ### Jekyll
 
