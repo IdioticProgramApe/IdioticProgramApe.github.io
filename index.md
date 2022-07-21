@@ -18,7 +18,7 @@ I am choosing Markdown to format my notes, because it's a light-weighted and pow
 For more details see:
 
 * [Markdown cheatsheet](https://www.markdownguide.org/cheat-sheet/).
-* To add
+* [Some Math symbols (LaTex, Markdown)](http://mohu.org/info/symbols/symbols.htm)
 
 ### Jekyll
 
