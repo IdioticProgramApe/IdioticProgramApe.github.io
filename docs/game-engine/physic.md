@@ -17,13 +17,12 @@ mathjax: true
 ## Vector
 
 A directional line segment which has a direction and a length, represented as (x, y) in 2d Cartesian coordinate system.
-
 A **zero vector** is (0, 0).
 
 ### Basic Ops
 
 * vector addition: $ ( x_1, y_1 ) + ( x_2, y_2 ) = ( x_1 + x_2, y_1 + y_2 ) $
-* vector subtraction: $ ( x_1, y_1 ) - ( x_2, y_2 ) = ( x_1 - x_2, y_1 - y_2 ) $
+* vector substraction: $ ( x_1, y_1 ) - ( x_2, y_2 ) = ( x_1 - x_2, y_1 - y_2 ) $
   * negation: $ -(x, y) = (-x, -y) $
 * vector multiplication: $ (x, y) \* s = (s\*x, s\*y), \forall s \in \mathbb{R} $
 * vector division: $ (x, y) / s = (x/s, y/s), \forall s \in \mathbb{R} \backslash \lbrace 0 \rbrace $
@@ -40,9 +39,41 @@ A **zero vector** is (0, 0).
 * cross product: $ \vec{v}\_1 \times \vec{v}\_2 = v_{1x} \* v_{2y} - v_{1y} \* v_{2x} $
   * should only exist in 3D or higher dimensional space
 
+## Rigid Body
+
+* position: $(p_x, p_y)$
+* rotation: $\theta$ in 2D
+  * [Euler Angles](https://en.wikipedia.org/wiki/Euler_angles) in 3D (presentation of Gimbal Lock, see [Quaternion](https://en.wikipedia.org/wiki/Quaternion))
+* mass: $m$
+* density: $\sigma$ in 2D (la masse surfacique)
+  * $\rho$ in 3D (la masse volumique)
+* area: $S$ in 2D
+  * $V$ in 3D
+* coefficient of restitution: $e$, see [Coefficient of restitution](https://en.wikipedia.org/wiki/Coefficient_of_restitution)
+* static or movable?
+  * velocity: $(v_x, v_y)$
+  * rotational velocity: $\omega$ in 2D
+* shape and its descriptor(s)
+  * circle / sphere: radius
+  * box: width, height
+    * cuboid: +thickness
+  * polygon / polytope: ?
+
+## Collision
+
+### Circle Intersection
+
+Circle is an isotropic form, which means that the orientation doesn't need to be put into consideration when compute collision.
+Only the positions of 2 circle centers matter.
+
+![image.png](./assets/image.png)
+
 ## References
 
 1. [Two-Bit Coding (Let's Make a Physics Engine)](https://youtube.com/playlist?list=PLSlpr6o9vURwq3oxVZSimY8iC-cdd3kIs)
 2. [Math is Fun (mathsisfun.com)](https://www.mathsisfun.com/)
 3. [Classroom Resources – GeoGebra](https://www.geogebra.org/materials)
 4. [Paul Falstad](https://falstad.com/) (for the Math-and-Physics-Applets)
+5. [geometry - Euler angles and gimbal lock - Mathematics Stack Exchange](https://math.stackexchange.com/questions/8980/euler-angles-and-gimbal-lock)
+6. [Understanding Quaternions | 3D Game Engine Programming (3dgep.com)](https://www.3dgep.com/understanding-quaternions/)
+7. [The Engineering ToolBox](https://www.engineeringtoolbox.com/index.html) (all kinds of properties for different objects)
