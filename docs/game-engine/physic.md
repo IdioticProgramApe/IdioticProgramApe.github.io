@@ -32,9 +32,9 @@ A **zero vector** is (0, 0).
 
 ### More Advanced Ops
 
-* length/L2-norm: $ \|\|\vec{v}\|\|_2 = \sqrt{v_x^2 + v_y^2} $
-* distance: $ distance(\vec{v}_1, \vec{v}_2) = \|\|\vec{v}_1 - \vec{v}_2\|\| = \|\|\vec{v}_2 - \vec{v}_1\|\| $
-* normalize: $ normalize(\vec{v}) = \frac{\vec{v}}{\|\|\vec{v}\|\|} $
+* length/L2-norm: $ \Vert\vec{v}\Vert_2 = \sqrt{v_x^2 + v_y^2} $
+* distance: $ distance(\vec{v}_1, \vec{v}_2) = \Vert\vec{v}_1 - \vec{v}_2\Vert = \Vert\vec{v}_2 - \vec{v}_1\Vert $
+* normalize: $ normalize(\vec{v}) = \frac{\vec{v}}{\Vert\vec{v}\Vert} $
 * dot product: $ \vec{v}\_1 \cdot \vec{v}\_2 = v_{1x} \* v_{2x} + v_{1y} \* v_{2y} $
 * cross product: $ \vec{v}\_1 \times \vec{v}\_2 = v_{1x} \* v_{2y} - v_{1y} \* v_{2x} $
   * should only exist in 3D or higher dimensional space
@@ -67,6 +67,13 @@ Circle is an isotropic form, which means that the orientation doesn't need to be
 Only the positions of 2 circle centers matter.
 
 ![image.png](./assets/image.png)
+
+* intersection condition: $\Vert\overrightarrow{O_1O_2}\Vert < r_{O_1} + r_{O_2}$, where the radius is denoted as $r$.
+* postion update:
+  * for $\bigodot O_1$: move $x$ in the direction of $\overrightarrow{O_2O_1}$
+  * for $\bigodot O_2$: move $y$ in the direction of $\overrightarrow{O_1O_2}$
+  * where $x + y = r_{O_1} + r_{O_2} - \Vert\overrightarrow{O_1O_2}\Vert$
+  * there is one degree of freedom here of how to distribute $x$ and $y$, depends on different collision scenarios and the nature of the objects.
 
 ## References
 
