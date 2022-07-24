@@ -114,9 +114,7 @@ Transformation includes **rotation** on object's orientation and **translation**
   x_2=\cos\alpha x_1−\sin\alpha y_1 \\
   y_2=\sin\alpha x_1+\cos\alpha y_1
   \end{cases}
-  
   $$</div>
-
 * translation: to translate the vector $\vec{v}$ by a vector $\vec{d}$, to get the final transformed vector $\vec{v}_t = \vec{v}_2 + \vec{d}$
 
 > Notes:
