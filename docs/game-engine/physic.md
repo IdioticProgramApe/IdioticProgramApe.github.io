@@ -63,35 +63,13 @@ A **zero vector** is (0, 0).
   * box: width, height
     * cuboid: +thickness
   * polygon / polytope: ?
-* degree of freedom:
 
+## Transformation
 
   | space | degree of freedom | descriptors                                             |
   | ------- | ------------------- | --------------------------------------------------------- |
   | 2d    | 3                 | location:($x,y$), rotation:$\theta$                     |
   | 3d    | 6                 | location:($x, y, z$), rotation:($\theta, \phi, \psi$)  |
-
-## Collision
-
-### Circle
-
-Circle is an isotropic form, which means that the orientation doesn't need to be put into consideration when compute collision.
-Only the positions of 2 circle centers matter.
-
-![image.png](./assets/image.png)
-
-* intersection condition: $\Vert\overrightarrow{O_1O_2}\Vert < r_{O_1} + r_{O_2}$, where the radius is denoted as $r$.
-* postion update:
-  * for $\bigodot O_1$: move $x$ in the direction of $\overrightarrow{O_2O_1}$
-  * for $\bigodot O_2$: move $y$ in the direction of $\overrightarrow{O_1O_2}$
-  * where $x + y = r_{O_1} + r_{O_2} - \Vert\overrightarrow{O_1O_2}\Vert$
-  * there is one degree of freedom here of how to distribute $x$ and $y$, depends on different collision scenarios and the nature of the objects.
-
-### Boxes
-
-Since the box isn't isotropic form, it has 3 degrees of freedom in 2d space.
-
-#### Transformation
 
 Transformation includes **rotation** on object's orientation and **translation** on object's position/location.
 
@@ -122,7 +100,29 @@ Transformation includes **rotation** on object's orientation and **translation**
 > * do rotation first then translation second is not an accurate saying, should be do rotation locally, and do translatio in globally.
 > * parent-child system ? (local and global coordinates to think before doing transforms)
 
-#### Separation Axis Theorem (SAT)
+## Collision
+
+### Circle
+
+Circle is an isotropic form, which means that the orientation doesn't need to be put into consideration when compute collision.
+Only the positions of 2 circle centers matter.
+
+![image.png](./assets/image.png)
+
+* intersection condition: $\Vert\overrightarrow{O_1O_2}\Vert < r_{O_1} + r_{O_2}$, where the radius is denoted as $r$.
+* postion update:
+  * for $\bigodot O_1$: move $x$ in the direction of $\overrightarrow{O_2O_1}$
+  * for $\bigodot O_2$: move $y$ in the direction of $\overrightarrow{O_1O_2}$
+  * where $x + y = r_{O_1} + r_{O_2} - \Vert\overrightarrow{O_1O_2}\Vert$
+  * there is one degree of freedom here of how to distribute $x$ and $y$, depends on different collision scenarios and the nature of the objects.
+
+### Convex Polygon
+
+Since the box isn't isotropic form, it has 3 degrees of freedom in 2d space.
+
+> For more detail, check *Separating Axis Theorem (SAT)* (still in WIP)
+
+#### Box 
 
 TODO
 
