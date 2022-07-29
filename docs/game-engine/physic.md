@@ -123,7 +123,7 @@ Since the box isn't isotropic form, it has 3 degrees of freedom in 2d space.
 <details close>
 <summary>Separating Axis Theorem (SAT)</summary>
 
-The objective of this theorem is to help finding the normal and overlap depth of the collision: *normal* and *depth*
+The objective of this theorem is to help finding the normal and overlap depth of the collision: normal and depth
   
 * for each edge in polygon A:
   * find the normal vector (cross product)
