@@ -120,7 +120,24 @@ Only the positions of 2 circle centers matter.
 
 Since the box isn't isotropic form, it has 3 degrees of freedom in 2d space.
 
-> For more detail, check *Separating Axis Theorem (SAT)* (still in WIP)
+<details close>
+<summary>Separating Axis Theorem (SAT)</summary>
+
+The objective of this theorem is to help finding the normal and overlap depth of the collision: *normal* and *depth*
+  
+* for each edge in polygon A:
+  * find the normal vector (cross product)
+  * for each polygon:
+    * get the min value and max value of its vertex projections (dot product)
+  * compare the min value of polygon A and max value of polygon B, and vice versa to detect intersection
+    * if no intersection -> continue
+    * if found:
+      * depth: the min value of absolute value of min(A) - max(B) and max(A) - min(B)
+      * normal: normal of current edge (remember to normalize)
+* do the same for polygon B:
+* output normal and depth
+
+</details>
 
 #### Box 
 
