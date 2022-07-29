@@ -124,18 +124,28 @@ Since the box isn't isotropic form, it has 3 degrees of freedom in 2d space.
 <summary>Separating Axis Theorem (SAT)</summary>
 
 The objective of this theorem is to help finding the normal and overlap depth of the collision: normal and depth
-  
-* for each edge in polygon A:
-  * find the normal vector (cross product)
-  * for each polygon:
-    * get the min value and max value of its vertex projections (dot product)
-  * compare the min value of polygon A and max value of polygon B, and vice versa to detect intersection
-    * if no intersection -> continue
-    * if found:
-      * depth: the min value of absolute value of min(A) - max(B) and max(A) - min(B)
-      * normal: normal of current edge (remember to normalize)
-* do the same for polygon B:
-* output normal and depth
+
+<ul>
+<li>for each edge in polygon A</li>
+  <ul>
+  <li>find the normal vector (cross product)</li>
+  <li>for each polygon</li>
+    <ul>
+    <li>get the min value and max value of its vertex projections (dot product)</li>
+    </ul>
+  <li>compare the min value of polygon A and max value of polygon B, and vice versa to detect intersection</li>
+    <ul>
+    <li>if no intersection -> continue</li>
+    <li>if found</li>
+      <ul>
+      <li>depth: the min value of absolute value of min(A) - max(B) and max(A) - min(B)</li>
+      <li>normal: normal of current edge (remember to normalize)</li>
+      </ul>
+    </ul>
+  </ul>
+<li>do the same for polygon B</li>
+<li>output normal and depth</li>
+</ul>
 
 </details>
 
