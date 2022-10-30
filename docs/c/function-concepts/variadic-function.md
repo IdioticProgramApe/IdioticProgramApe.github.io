@@ -4,6 +4,7 @@ title: Variadic Function
 parent: Function Concepts
 grand_parent: C
 nav_order: 3
+permalink: /docs/c/function-concepts/variadic-function/
 ---
 
 <details open markdown="block">
