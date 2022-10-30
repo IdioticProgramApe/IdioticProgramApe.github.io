@@ -3,7 +3,7 @@ layout: default
 title: Noreturn Function (C11)
 parent: Function Concepts
 grand_parent: C
-permalink: /docs/c/function-concepts/
+nav_order: 2
 ---
 
 <details open markdown="block">

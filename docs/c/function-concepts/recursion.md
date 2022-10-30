@@ -3,7 +3,7 @@ layout: default
 title: Recursion
 parent: Function Concepts
 grand_parent: C
-permalink: /docs/c/function-concepts/
+nav_order: 2
 ---
 
 <details open markdown="block">
