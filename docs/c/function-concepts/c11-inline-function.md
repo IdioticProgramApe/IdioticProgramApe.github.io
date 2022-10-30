@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Noreturn Function (C11)
+title: Inline Function (C11)
 parent: Function Concepts
 grand_parent: C
 nav_order: 3
