@@ -2,7 +2,8 @@
 layout: default
 title: Variadic Function
 parent: Function Concepts
-nav_order: 3
+grand_parent: C
+permalink: /docs/c/function-concepts/
 ---
 
 <details open markdown="block">

@@ -1,4 +1,19 @@
-# Inline Function
+---
+layout: default
+title: Noreturn Function (C11)
+parent: Function Concepts
+grand_parent: C
+permalink: /docs/c/function-concepts/
+---
+
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
 
 ## Declarations
 

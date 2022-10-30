@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Function Concepts
-nav_order: 3
+parent: C
+nav_order: 2
 has_children: true
 ---
