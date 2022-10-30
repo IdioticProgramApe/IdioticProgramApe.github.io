@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Recursion
-parent: Function Concepts
-grand_parent: C
+title: Object Oriented Python
+parent: Meta-Programming
+grand_parent: Python
 nav_order: 3
 permalink: /docs/python/meta-programming/oop/
 ---
@@ -15,6 +15,10 @@ permalink: /docs/python/meta-programming/oop/
 1. TOC
 {:toc}
 </details>
+## Definition
 
+Metaprogramming is producing code that manipulates code:
 
-## 
+- reads code
+- modifies code
+- outputs code
