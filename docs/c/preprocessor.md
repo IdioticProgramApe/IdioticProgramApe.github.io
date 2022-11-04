@@ -56,7 +56,7 @@ nav_order: 2
   - `gcc -D UNIX program.c` to define a macro named UNIX
 
 
-```C
+```c
 #include <stdio.h>
 
 #define JUST_CHECKING   // set to 0 by default
@@ -89,8 +89,7 @@ int main()
     - can use relational and logical operators
   - can contain references to identifiers defined in the previous `#define` directives
 
-<div>
-```C
+```c
 #include <stdio.h>
 
 #define US      0
@@ -113,7 +112,6 @@ int main()
     return 0;
 }
 ```
-</div>
 
 ## Include Guards
 
@@ -162,7 +160,7 @@ int main()
     | `#pragma GCC error "message"`   | - causes the preprocessor to issue a error with the text "message"<br />- message must be a single string literal |
     | `#pragma message "message"`     | - print string as a compiler message on compilation, the message is only for a informative purpose |
 
-    ```C
+    ```c
     #include <stdio.h>
     
     // can be put anywhere, these message are working in preprocessing stage before the compilation
