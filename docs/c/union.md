@@ -61,7 +61,7 @@ nav_order: 2
 
 ## Example
 
-```C
+```c
 #include <stdio.h>
 
 union car 
