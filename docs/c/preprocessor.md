@@ -55,6 +55,7 @@ nav_order: 2
   - use the special option `-D` to the compiler command
   - `gcc -D UNIX program.c` to define a macro named UNIX
 
+
 ```C
 #include <stdio.h>
 
@@ -88,6 +89,7 @@ int main()
     - can use relational and logical operators
   - can contain references to identifiers defined in the previous `#define` directives
 
+<div>
 ```C
 #include <stdio.h>
 
@@ -111,6 +113,7 @@ int main()
     return 0;
 }
 ```
+</div>
 
 ## Include Guards
 
@@ -146,6 +149,8 @@ int main()
     - need to reference the compiler documentation: 
       - `MSBuild`: [Pragma directives and the __pragma and _Pragma keywords | Microsoft Learn](https://learn.microsoft.com/en-us/cpp/preprocessor/pragma-directives-and-the-pragma-keyword?view=msvc-170)
       - `GCC`: [Pragmas (The C Preprocessor) (gnu.org)](https://gcc.gnu.org/onlinedocs/cpp/Pragmas.html)
+
+
 
     | Some GCC #pragmas               | Description                                                  |
     | ------------------------------- | ------------------------------------------------------------ |
