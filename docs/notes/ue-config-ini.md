@@ -21,9 +21,11 @@ In UE, there are many ini files and where store a lot of tuning parameter defini
 
 The file hierarachy of these files are (sorted by load order), taking **Engine** config as example:
 
+```text
 * Engine/Config/Base.ini (usually empty)
 * Engine/Config/BaseEngine.ini
-* Engine/Config/\<Platform\>/\<Platform\>Engine.ini
-* \<ProjectDir\>/Config/BaseEngine.ini
-* \<ProjectDir\>/Config/\<Platform\>/\<Platform\>Engine.ini
-* \<ProjectDir\>/Saved/Config/\<Platform\>/Engine.ini
+* Engine/Config/<Platform>/<Platform>Engine.ini
+* <ProjectDir>/Config/BaseEngine.ini
+* <ProjectDir>/Config/<Platform>/<Platform>Engine.ini
+* <ProjectDir>/Saved/Config/<Platform>/Engine.ini
+```
