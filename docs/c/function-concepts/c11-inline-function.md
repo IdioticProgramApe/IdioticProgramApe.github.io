@@ -22,7 +22,7 @@ permalink: /docs/c/function-concepts/inline-function/
 
 - Declare an inline function by placing the keyword inline before the function declaration
 
-  ```C
+  ```c
   inline void some_func();
   ```
 
@@ -36,7 +36,7 @@ permalink: /docs/c/function-concepts/inline-function/
 
   - inline functions are usually defined before their first use in a file (definition also acts as a prototype)
 
-  ```C
+  ```c
   inline static void foo() //inline definition/prototype
   {
       // do something ... 
