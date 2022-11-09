@@ -39,7 +39,7 @@ nav_order: 2
 
 ## TLDR
 
-PEMDAS rules:
+Parentheses `()` conquers all! to be more specific, the precedence follows PEMDAS rules:
 
 - **P** means **parentheses**
 - **E** means **exponent**
