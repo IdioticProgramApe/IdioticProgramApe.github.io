@@ -13,6 +13,17 @@ nav_order: 2
 1. TOC
 {:toc}
 </details>
+## TLDR
+
+Parentheses `()` conquers all! to be more specific, the precedence follows PEMDAS rules:
+
+- **P** means **parentheses**
+- **E** means **exponent**
+- **M** means **multiplication**
+- **D** means **division**
+- **A** means **addition**
+- **S** means **Subtraction**
+
 ## Operator Precedence Table
 
 | Operator                                                     | Description                                        | Notes                                                        |
@@ -36,14 +47,3 @@ nav_order: 2
 | `or`                                                         | Boolean OR                                         |                                                              |
 | `if condition: expression_a else: expression_b`              | Conditional expression                             | ternary style: <br>`expression_a if condition else expression_b` |
 | `lambda`                                                     | Lambda expression                                  |                                                              |
-
-## TLDR
-
-Parentheses `()` conquers all! to be more specific, the precedence follows PEMDAS rules:
-
-- **P** means **parentheses**
-- **E** means **exponent**
-- **M** means **multiplication**
-- **D** means **division**
-- **A** means **addition**
-- **S** means **Subtraction**
