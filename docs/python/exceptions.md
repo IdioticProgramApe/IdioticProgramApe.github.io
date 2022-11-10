@@ -86,6 +86,8 @@ BaseException
            └── UserWarning
 ```
 
+(source: [Built-in Exceptions — Python 3.11.0 documentation](https://docs.python.org/3/library/exceptions.html))
+
 ## User-Defined Exceptions
 
 Create the class that derived from the Exception classed listed above, either directly or indirectly.
