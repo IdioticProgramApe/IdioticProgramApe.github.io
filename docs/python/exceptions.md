@@ -90,4 +90,4 @@ BaseException
 
 ## User-Defined Exceptions
 
-Create the class that derived from the Exception classed listed above, either directly or indirectly.
+Create the class that derived from the Exception classes listed above, either directly or indirectly.
