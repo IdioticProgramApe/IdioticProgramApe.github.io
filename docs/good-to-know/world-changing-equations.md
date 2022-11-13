@@ -27,7 +27,7 @@ mathjax: true
 | Normal Distribution           | $ \Phi(x) = \displaystyle\frac{1}{\sqrt{2\pi\rho}}e^{\frac{(x-\mu)^2}{2\rho^2}} $ | C.F. Gauss         | 1810   |
 | Wave Equation                 | $ \displaystyle\frac{\partial^2u}{\partial{t^2}} = c^2\displaystyle\frac{\partial^2u}{\partial{x^2}} $ | J.d'Alembert       | 1746   |
 | Fourier Transform             | $ f(\omega) = \displaystyle\int_{\infty}^{\infty}f(x)e^{-2\pi ix\omega}dx $ | J.Fourier          | 1822   |
-| Navier-Stokes Equation        | $ \rho\Big(\displaystyle\frac{\partial\mathbf{v}}{\partial t} + \partial\mathbf{v}\cdot\nabla\mathbf{v}\Big) = -\nabla p + \nabla\cdot\mathbf{T} + \mathbf{f}) $ | C.Navier, G.Stokes | 1845   |
+| Navier-Stokes Equation        | $ \rho\bigg(\displaystyle\frac{\partial\mathbf{v}}{\partial t} + \partial\mathbf{v}\cdot\nabla\mathbf{v}\bigg) = -\nabla p + \nabla\cdot\mathbf{T} + \mathbf{f} $ | C.Navier, G.Stokes | 1845   |
 | Maxwell's Equations           | $$ \nabla\cdot\mathbf{E} = 0\\\nabla\cdot\mathbf{H} = 0\\\nabla\times\mathbf{E} = -\displaystyle\frac{1}{c}\displaystyle\frac{\partial\mathbf{H}}{\partial t}\\\nabla\times\mathbf{H} = \displaystyle\frac{1}{c}\displaystyle\frac{\partial\mathbf{E}}{\partial t} $$ | J.C.Maxwell        | 1865   |
 | Second Law of Thermodynamics  | $ dS \geqslant 0 $                                           | L.Boltzmann        | 1874   |
 | Relativity                    | $ E = mc^2 $                                                 | Einstein           | 1905   |
