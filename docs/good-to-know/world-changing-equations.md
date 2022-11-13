@@ -15,7 +15,7 @@ mathjax: true
 | Calculus                      | $ \displaystyle\frac{df}{dt} = \displaystyle\lim_{h\rightarrow0}\frac{f(t+h)-f(t)}{h} $ | Newton             | 1668   |
 | Law of Gravity                | $ F = G\displaystyle\frac{m_1m_2}{r^2} $                     | Newton             | 1687   |
 | The Square Root of Minus One  | $ i^2  = -1 $                                                | Euler              | 1750   |
-| Euler's Formula for Polyhedra | $ V - E + F = 2 $                                            | Eulerx             | 1751   |
+| Euler's Formula for Polyhedra | $ V - E + F = 2 $                                            | Euler              | 1751   |
 | Normal Distribution           | $ \Phi(x) = \displaystyle\frac{1}{\sqrt{2\pi\rho}}e^{\frac{(x-\mu)^2}{2\rho^2}} $ | C.F. Gauss         | 1810   |
 | Wave Equation                 | $ \displaystyle\frac{\partial^2u}{\partial{t^2}} = c^2\displaystyle\frac{\partial^2u}{\partial{x^2}} $ | J.d'Alembert       | 1746   |
 | Fourier Transform             | $ f(\omega) = \displaystyle\int_{\infty}^{\infty}f(x)e^{-2\pi ix\omega}dx $ | J.Fourier          | 1822   |
