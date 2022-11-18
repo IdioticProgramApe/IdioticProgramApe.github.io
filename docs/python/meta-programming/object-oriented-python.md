@@ -123,7 +123,7 @@ Use `type` function and `.mro()` method to verify this statement, `mro` stands f
 `"If it walks like a duck and it quacks like a duck, then it must be a duck" -- James Whitcomb Riley` ([Duck typing - Wikipedia](https://en.wikipedia.org/wiki/Duck_typing))
 
 - The official type of an object is regardless, only how this object behaves matters
-- Python is a dynamic programming language, not a strong typed language as C/C++ or java
+- Python is a dynamic programming language, not a strong typed language as C/C++, java or rus
   - still recommend use typing module to type the scripts
 - `__dict__`, a reflection mechanism, the ability to see the code we are executing currently as data in that code.
 
