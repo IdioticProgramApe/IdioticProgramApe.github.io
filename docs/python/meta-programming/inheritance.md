@@ -104,8 +104,8 @@ Goal is to compute the MRO (Linearization `L`) of a class `X(Y_1, Y_2, ... Y_n)`
 
 Some examples:
 
-- ` L(object) = [object] `
-- ` L(B) = [B, object] `
+- `L(object) = [object]`
+- `L(B) = [B, object]`
 - `L(C)`
   - step 1: `L(C) = [C] + merge(L(A), L(B), [A, B])`
   - step 2: `L(C) = [C] + merge([A, object], [B, object], [A, B])`
