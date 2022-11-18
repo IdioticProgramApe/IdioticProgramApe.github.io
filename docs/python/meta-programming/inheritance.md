@@ -42,7 +42,7 @@ class Student(Person):
 
 ### Diagram
 
-<div><img style="float: left;" src="../assets/inheritance_diagram.png" /></div>
+![inheritance_diagram](./assets/inheritance_diagram.png)
 
 ```python
 class A(object): ...
@@ -71,7 +71,7 @@ C -> A -> object
 
 ### Diagram
 
-<div><img style="float: left;" src="../assets/multi_inheritance_diagram.png" /></div>
+![multi_inheritance_diagram](./assets/multi_inheritance_diagram.png)
 
 ```python
 class A(object): ...
@@ -122,7 +122,7 @@ Notice that in the last example, it explains why our code in [Multiple Inheritan
 
 To make `super()` works as we expected, it takes references from the **mro** and return **the next class from the mro list**, the real question is **whose** mro list.
 
-<div><img style="float: left;" src="../assets/super_diagram.png" /></div>
+![super_diagram](./assets/super_diagram.png)
 
 ```python
 class A:
