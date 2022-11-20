@@ -19,7 +19,7 @@ If multiple ini files exists, and they happen to share a same key, then the new 
 
 In UE, there are many ini files and where store a lot of tuning parameter definitions, usually related to scalability.
 
-The file hierarachy of these files are (sorted by load order), taking **Engine** config as example:
+The file hierarchy of these files are (sorted by load order), taking **Engine** config as example:
 
 ```text
 * Engine/Config/Base.ini (usually empty)
@@ -29,3 +29,4 @@ The file hierarachy of these files are (sorted by load order), taking **Engine**
 * <ProjectDir>/Config/<Platform>/<Platform>Engine.ini
 * <ProjectDir>/Saved/Config/<Platform>/Engine.ini
 ```
+
