@@ -99,7 +99,7 @@ iterate()
 
 > notice here in the snippet there is a lot of `global` which means variable `state` and `count` are in the global namespace, a more appropriate approach would be put this into a class, since `self` is shared between class methods
 
-  ## Pipeline
+### Pipeline
 
 ```python
 class Processer:
@@ -192,3 +192,88 @@ fib = FibSolver()
 print(', '.join(str(fib(i)) for i in range(18)))
 ```
 
+### Recursive Callability
+
+```python
+class recursion:
+    def __call__(self):
+        return self
+    
+func = recursion()
+func()()()()()()()...   # infinite calls :p
+```
+
+## Lambdas
+
+Lambda functions have no name and simple (one line code)
+
+```python
+def add5(num):
+    return num + 5
+
+lambda_add5 = lambda num: num + 5
+```
+
+### Map
+
+`map` is a built-in function to apply a function to evert element of a sequence: `list`, `tuple`, `range`, etc
+
+The function that `map` takes in should return the mapped value
+
+```python
+', '.join(range(10))  # crash!
+', '.join(map(str, range(10)))
+```
+
+`map` is use a lazy implementation, it will not execute the code until the result is specifically required:
+
+```python
+map(print, range(2))    # will return a map object
+list(map(print, range(2)))   # will print 0 and 1, and a list of [None, None]
+```
+
+### Sorting
+
+`sorted` function is used to sort some objects by certain attributes
+
+```python
+from collections import namedtuple
+Point = namedtuple('Point', ['x', 'y'])
+points = [Point(0, 1), Point(1, 0), Point(-4, 1), Point(100, -2)]
+sorted(points)  # will be sorted by x value
+sorted(points, key=lambda p: p.y)  # will be sorted by y value
+
+import math
+sorted(points, key=lambda p: math.hypot(*p))  # sort the points based on the hypotenuse value
+```
+
+### Filter
+
+`filter` will take 2 arguments: a predicate and a sequence
+
+```python
+array = list(range(25))
+
+# want to get the even numbers that less than 10
+out = []
+for i in array:
+    if i % 2 == 0:
+        if len(str(i)) < 2:
+            out.append(i)
+
+# use `filter` to achieve the same thing 
+list(filter(lambda i: len(str(i)) < 2, filter(lambda i: i % 2 == 0, array)))
+```
+
+### Reduce
+
+`reduce` is used to reduce a sequence to a single value by applying the following algorithm:
+
+- `f(...f(f(s[0], s[1]), s[2])..., s[n]) -> value`
+- in other words, repeatedly apply function to a sequence to get a single value at the end, the function should take in 2 params and return one value
+
+```python
+from functools import reduce
+# the same as 0 + 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9
+reduce(lambda a, b: a + b, range(10))
+```
