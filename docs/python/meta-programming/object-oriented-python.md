@@ -3,7 +3,7 @@ layout: default
 title: Object Oriented Python
 parent: Meta-Programming
 grand_parent: Python
-nav_order: 3
+nav_order: 1
 permalink: /docs/python/meta-programming/oop/
 ---
 

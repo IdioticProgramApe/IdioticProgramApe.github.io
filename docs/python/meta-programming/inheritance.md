@@ -3,7 +3,7 @@ layout: default
 title: Inheritance
 parent: Meta-Programming
 grand_parent: Python
-nav_order: 3
+nav_order: 2
 permalink: /docs/python/meta-programming/inheritance/
 ---
 
