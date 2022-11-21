@@ -41,7 +41,7 @@ Keyword arguments can also be used in function calls to not expect the arguments
 number(base=10, exponent=2, coef=2)  # output 200
 ```
 
- ### Arguments Protection
+### Arguments Protection
 
 Positional arguments are like elements in a tuple and keyword arguments are like pairs in a dictionary.
 
