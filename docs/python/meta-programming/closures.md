@@ -243,3 +243,18 @@ inc = inc_class()
 inc()
 ```
 
+### Example
+
+```python
+def partial(func, *outer_args, **outer_kwargs):
+    def out(*args, **kwargs):
+        return func(
+            *(*args, *outer_args),
+            **{**kwargs, **outer_kwargs}
+        )
+    return out
+```
+
+this can also be written into a class. BTW, `partial` is a built-in function in module `functools`:
+
+- `from functools import partial`
