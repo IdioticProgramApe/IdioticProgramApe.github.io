@@ -124,6 +124,26 @@ bar(1, 2)()  # output 3
 
 `partial(partial, partial)` in python is evaluated as a compiler-compiler thing. 
 
+Other examples on some iterative function:
+
+```python
+# a decorator to make fib func run faster
+def make_fast(func):
+    mem = {}
+    def wrapper(n):
+        if n in mem:
+            return mem[n]
+        mem[n] = func(n)
+        return mem[n]
+   	return wrapper
+
+# another more general solution
+from functools import lru_cache
+make_fast = lru_cache(None)  # don't set limitation to the memoization
+```
+
+For more details about `lru cache`, which refers to least recently used cache, ref: [What is an LRU Cache?](https://medium.com/@vienchitang/what-is-an-lru-cache-3e8ad1853584)
+
 ## Application - Aspect Oriented Programming
 
 **AOP** separate cross-cutting concerns from vertical concerns. ref: [Aspect-oriented programming - Wikipedia](https://en.wikipedia.org/wiki/Aspect-oriented_programming)
