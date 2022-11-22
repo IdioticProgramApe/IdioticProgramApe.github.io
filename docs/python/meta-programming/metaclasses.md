@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Decorators
+title: Metaclasses
 parent: Meta-Programming
 grand_parent: Python
 nav_order: 6
-permalink: /docs/python/meta-programming/decorators/
+permalink: /docs/python/meta-programming/metaclasses/
 ---
 
 <details open markdown="block">
