@@ -262,7 +262,7 @@ class Student(Person):
         print(self.id)
         
 Student('c', 'abc123').report()  # output "abc123"
-Student('d', 'def456').report()  # output "def456"
+Student('d', 'def456').report()  # output "abc123"
 ```
 
 Singleton can also be implemented by using **superclasses** or **decorators**.
