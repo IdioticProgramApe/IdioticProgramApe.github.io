@@ -186,6 +186,12 @@ From the output, we can see the class constructor in python actually has 3 parts
 2. `__new__` method from class
 3. `__init__`  method from class
 
+They work together to create a instance of class:
+
+![instance-creation](./assets/instance-creation.png)
+
+For more details, ref: [Understanding Python metaclasses](https://blog.ionelmc.ro/2015/02/09/understanding-python-metaclasses/) (the image is also copied from the blog).
+
 ## Registering
 
 To solve problems like:
