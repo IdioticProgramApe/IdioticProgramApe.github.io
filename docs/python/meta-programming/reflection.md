@@ -24,12 +24,23 @@ The reflection is pure metaprogramming (not only used for object oriented based 
 
 ## Application - A Runtime Debugger
 
+The code can be found in: [metaprogramming/reflective_debugger.py](https://github.com/max7patek/metaprogramming/blob/master/misc/code_examples/reflective_debugger.py)
+
 ### Step Over
 
 We want our code to run every time a new line is executed by python
 
 - use `sys.settrace(func)`
-  - `func` should take in `(frame, event, arg)`
+  - `func` should take in `(frame, event, arg)`, check [sys.settrace](https://docs.python.org/3/library/sys.html#sys.settrace) for detailed information about the trace function
+  - `event` param stores the trace function's action, and the `arg` param depends on it:
+  
+    - | Event         | Description                                                  |
+      | ------------- | ------------------------------------------------------------ |
+      | `'call'`      | - A function is called (or some other code block entered)<br />- The global trace function is called *arg* is `None`<br />- The return value specifies the local trace function. |
+      | `'line'`      | - The interpreter is about to execute a new line of code or re-execute the condition of a loop<br />- The local trace function is called; *arg* is `None`<br />- The return value specifies the new local trace function. <br />- Per-line events may be disabled for a frame by setting `f_trace_lines` to `False` on that frame. |
+      | `'return'`    | - A function (or other code block) is about to return. <br />- The local trace function is called, *arg* is the value that will be returned, or `None` if the event is caused by an exception being raised. <br />- The trace function’s return value is ignored. |
+      | `'exception'` | - An exception has occurred<br />- The local trace function is called, *arg* is a tuple `(exception, value, traceback)` <br />- The return value specifies the new local trace function. |
+      | `'opcode'`    | - The interpreter is about to execute a new opcode<br />- The local trace function is called *arg* is `None`<br />- The return value specifies the new local trace function<br />- Per-opcode events are not emitted by default: they must be explicitly requested by setting `f_trace_opcodes` to `True` on the frame. |
   - `func` will be called every time a function a called
   - `func` can return another function
     - this returned function also takes in `(frame, event, arg)`

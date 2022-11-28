@@ -8,3 +8,4 @@ has_children: true
 
 All the notes in this section are made after watching Maxwell Patek's lecture videos, ref: [Metaprogramming Class](https://www.youtube.com/playlist?list=PLLet_jPomQZ-5hoX1HM-Vg_jYHGntvuw3).
 
+Code Source: [max7patek/metaprogramming: CS 1501 Student-Taught-Class at the University of Virginia (github.com)](https://github.com/max7patek/metaprogramming)
