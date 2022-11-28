@@ -219,7 +219,7 @@ here is some test code:
 TypeError: age must be of type <class 'int'>
 ```
 
-Combine it with some meta class to auto initialize the member variables, check [work with globals and locals](./reflection/#work-with-globals-and-locals) for more details on `exec`:
+Combine it with some meta class to auto initialize the member variables, check [work with globals and locals](../reflection/#work-with-globals-and-locals) for more details on `exec`:
 
 ```python
 class AutoInit(type):
