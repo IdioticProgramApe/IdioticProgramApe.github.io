@@ -3,7 +3,7 @@ layout: default
 title: Descriptors
 parent: Meta-Programming
 grand_parent: Python
-nav_order: 8
+nav_order: 9
 permalink: /docs/python/meta-programming/descriptors/
 ---
 
