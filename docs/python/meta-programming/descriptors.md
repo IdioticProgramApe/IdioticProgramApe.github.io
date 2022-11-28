@@ -219,7 +219,7 @@ here is some test code:
 TypeError: age must be of type <class 'int'>
 ```
 
-Combine it with some meta class to auto initialize the member variables:
+Combine it with some meta class to auto initialize the member variables, check [work with globals and locals](./reflection/#work-with-globals-and-locals) for more details on `exec`:
 
 ```python
 class AutoInit(type):
@@ -237,3 +237,4 @@ class DescriptPerson(metaclass=AutoInit):
 ```
 
 This is similar to the implementation of [`dataclass`](https://docs.python.org/3/library/dataclasses.html#dataclasses.dataclass) and [`field`](https://docs.python.org/3/library/dataclasses.html#dataclasses.field) in module `dataclasses`.
+
