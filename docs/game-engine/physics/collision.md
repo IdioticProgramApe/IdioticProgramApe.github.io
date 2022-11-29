@@ -22,7 +22,7 @@ permalink: /docs/game-engine/physics/collision/
 Circle is an isotropic form, which means that the orientation doesn't need to be put into consideration when compute collision.
 Only the positions of 2 circle centers matter.
 
-![image.png](D:/Github/IdioticProgramApe.github.io/docs/game-engine/physics/assets/image.png)
+![image.png](./assets/image.png)
 
 * intersection condition: $\Vert\overrightarrow{O_1O_2}\Vert < r_{O_1} + r_{O_2}$, where the radius is denoted as $r$.
 * postion update:
