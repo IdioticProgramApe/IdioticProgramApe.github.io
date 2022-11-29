@@ -22,7 +22,7 @@ permalink: /docs/game-engine/physics/collision/
 Circle is an isotropic form, which means that the orientation doesn't need to be put into consideration when compute collision.
 Only the positions of 2 circle centers matter.
 
-![image.png](./assets/image.png)
+![circle_collision](./assets/circle_collision.png)
 
 * intersection condition: $\Vert\overrightarrow{O_1O_2}\Vert < r_{O_1} + r_{O_2}$, where the radius is denoted as $r$.
 * postion update:
@@ -35,7 +35,7 @@ Only the positions of 2 circle centers matter.
 
 Since the box isn't isotropic form, it has 3 degrees of freedom in 2d space.
 
-<details close>
+<details open>
 <summary>Separating Axis Theorem (SAT)</summary>
 The objective of this theorem is to help finding the normal and overlap depth of the collision: normal and depth
 
