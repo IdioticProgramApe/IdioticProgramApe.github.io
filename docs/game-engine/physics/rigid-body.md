@@ -16,8 +16,7 @@ permalink: /docs/game-engine/physics/rigid-body/
 1. TOC
 {:toc}
 </details>
-
-## Rigid Body
+## Properties
 
 * position: $(p_x, p_y)$
 * rotation: $\theta$ in 2D
