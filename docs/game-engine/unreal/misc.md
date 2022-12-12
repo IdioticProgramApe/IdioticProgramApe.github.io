@@ -39,10 +39,8 @@ Simply speaking, the baking is **the editor just takes the textures of everythin
 
 In Unreal, the lightmaps (where the precomputed light information is stored) are embedded into the umaps (< UE4.14), after UE4.14, the light build data is stored in the **MapBuildDataRegistry** assets, separated from the umaps.
 
-In Unreal4, the tool used to precompute the lighting, is called **Lightmass**, can be found in the world settings.
+In Unreal4, the tool used to precompute the lighting, is called **Lightmass**, can be found in the world settings. What is [Lightmass]([Lighting Companion: Lightmass World Settings in UE4 – techarthub](https://www.techarthub.com/lighting-companion-lightmass-world-settings-in-ue4/)) ?
 
-> ## What is Lightmass?
->
 > Lightmass is an integrated part of Unreal Engine 4 which is responsible for **precomputed lighting.** This involves the generation of **lightmaps**, textures that are overlaid onto level geometry to give them the illusion of shadows, bounce lighting, and other natural lighting phenomena.
 >
 > Features that Lightmass supports include [global illumination](https://en.wikipedia.org/wiki/Global_illumination) (indirect/bounce lighting), ambient occlusion, volumetric lighting, and transmission (changes in color/intensity when light moves through semi-translucent objects).
