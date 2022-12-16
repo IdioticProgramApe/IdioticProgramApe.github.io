@@ -184,7 +184,7 @@ Classes to obtain new types by applying specific transformations to existing typ
 |[**aligned_storage**](https://cplusplus.com/reference/type_traits/aligned_storage/)	|Aligned storage (class template)|
 |[**aligned_union**](https://cplusplus.com/reference/type_traits/aligned_union/)	|Aligned union (class template)|
 |[**common_type**](https://cplusplus.com/reference/type_traits/common_type/)	|Common type (class template)|
-|[**[**conditional**](https://cplusplus.com/reference/type_traits/conditional/)**](https://cplusplus.com/reference/type_traits/common_type/)	|Conditional type (class template)|
+|[**conditional**](https://cplusplus.com/reference/type_traits/conditional/)	|Conditional type (class template)|
 |[**enable_if**](https://cplusplus.com/reference/type_traits/enable_if/)	|Enable type if condition is met (class template)|
 |[**result_of**](https://cplusplus.com/reference/type_traits/result_of/)	|Result of call (class template)|
 
