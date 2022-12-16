@@ -3,8 +3,8 @@ layout: default
 title: Recursion
 parent: Function Concepts
 grand_parent: C
-nav_order: 3
-permalink: /docs/c/function-concepts/recursion/
+nav_order: 1
+permalink: /docs/c-c++/c/function-concepts/recursion/
 ---
 
 <details open markdown="block">

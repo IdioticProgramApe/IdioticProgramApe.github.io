@@ -2,7 +2,9 @@
 layout: default
 title: Preprocessor
 parent: C
-nav_order: 2
+grand_parent: C/C++
+nav_order: 1
+permalink: /docs/c-c++/c/preprocessor/
 ---
 
 <details open markdown="block">
@@ -159,7 +161,7 @@ int main()
     | `#pragma GCC warning "message"` | - causes the preprocessor to issue a warning diagnostic with the text "message"<br />- message must be a single string literal |
     | `#pragma GCC error "message"`   | - causes the preprocessor to issue a error with the text "message"<br />- message must be a single string literal |
     | `#pragma message "message"`     | - print string as a compiler message on compilation, the message is only for a informative purpose |
-
+    
     ```c
     #include <stdio.h>
     

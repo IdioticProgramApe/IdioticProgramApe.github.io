@@ -2,7 +2,9 @@
 layout: default
 title: Union
 parent: C
+grand_parent: C/C++
 nav_order: 2
+permalink: /docs/c-c++/c/union/
 ---
 
 <details open markdown="block">

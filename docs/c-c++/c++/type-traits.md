@@ -2,7 +2,9 @@
 layout: default
 title: Type Traits
 parent: C++
+grand_parent: C/C++
 nav_order: 1
+permalink: /docs/c-c++/c++/type-traits/
 ---
 
 <details open markdown="block">

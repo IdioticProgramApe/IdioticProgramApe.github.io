@@ -4,7 +4,7 @@ title: Inline Function (C11)
 parent: Function Concepts
 grand_parent: C
 nav_order: 3
-permalink: /docs/c/function-concepts/inline-function/
+permalink: /docs/c-c++/c/function-concepts/inline-function/
 ---
 
 <details open markdown="block">
