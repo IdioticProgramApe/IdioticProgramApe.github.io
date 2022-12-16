@@ -20,22 +20,24 @@ permalink: /docs/c-c++/c++/type-traits/
 
 A basic trait for types is the categories in which they can be classified. This is a chart on how these categories overlap:
 
-<table class="boxed"><tr><th></th><th>primary categories</th><th colspan="3">composite categories</th></tr>
-<tr><td rowspan="4"><a href="/is_fundamental">fundamental</a></td><td><a href="/is_void">void</a></td><td></td><td></td><td></td></tr>
-<tr><td><tt>std::nullptr_t</tt></td><td></td><td rowspan="7"><a href="/is_scalar">scalar</a></td><td rowspan="10"><a href="/is_object">object</a></td></tr>
-<tr><td><a href="/is_integral">integral</a></td><td rowspan="2"><a href="/is_arithmetic">arithmetic</a></td></tr>
-<tr><td><a href="/is_floating_point">floating point</a></td></tr>
-<tr><td rowspan="10"><a href="/is_compound">compound</a></td><td><a href="/is_pointer">pointer</a></td><td></td></tr>
-<tr><td><a href="/is_member_object_pointer">member object pointer</a></td><td rowspan="2"><a href="/is_member_pointer">member pointer</a></td></tr>
-<tr><td><a href="/is_member_function_pointer">member function pointer</a></td></tr>
-<tr><td><a href="/is_enum">enum</a></td><td></td></tr>
-<tr><td><a href="/is_union">union</a></td><td></td><td></td></tr>
-<tr><td><a href="/is_class">class</a><span title="(a class that is not a union)">*</span></td><td></td><td></td></tr>
-<tr><td><a href="/is_array">array</a></td><td></td><td></td></tr>
-<tr><td><a href="/is_lvalue_reference">l-value reference</a></td><td rowspan="2"><a href="/is_reference">reference</a></td><td></td><td></td></tr>
-<tr><td><a href="/is_rvalue_reference">r-value reference</a></td><td></td><td></td></tr>
-<tr><td><a href="/is_function">function</a></td><td></td><td></td><td></td></tr>
+<table>
+<tr><th></th><th>primary categories</th><th colspan="3">composite categories</th></tr>
+<tr><td rowspan="4">fundamental</td><td>void</td><td></td><td></td><td></td></tr>
+<tr><td><tt>std::nullptr_t</tt></td><td></td><td rowspan="7">scalar</td><td rowspan="10">object</td></tr>
+<tr><td>integral</td><td rowspan="2">arithmetic</td></tr>
+<tr><td>floating point</td></tr>
+<tr><td rowspan="10">compound</td><td>pointer</td><td></td></tr>
+<tr><td>member object pointer</td><td rowspan="2">member pointer</td></tr>
+<tr><td>member function pointer</td></tr>
+<tr><td>enum</td><td></td></tr>
+<tr><td>union</td><td></td><td></td></tr>
+<tr><td>class<span title="(a class that is not a union)">*</span></td><td></td><td></td></tr>
+<tr><td>array</td><td></td><td></td></tr>
+<tr><td>l-value reference</td><td rowspan="2">reference</td><td></td><td></td></tr>
+<tr><td>r-value reference</td><td></td><td></td></tr>
+<tr><td>function</td><td></td><td></td><td></td></tr>
 </table>
+
 \* = excluding unions
 
 ## Helper Classes
