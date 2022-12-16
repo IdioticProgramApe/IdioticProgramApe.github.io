@@ -53,4 +53,5 @@ In Unreal4, the tool used to precompute the lighting, is called **Lightmass**, c
 
 ![ActorLifeCycle](./assets/ActorLifeCycle_426.jpg)
 
-Check more details at [Actor Lifecycle | Unreal Engine Documentation](https://docs.unrealengine.com/4.26/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/Actors/ActorLifecycle/)
+Check more details at [Actor Lifecycle \| Unreal Engine Documentation](https://docs.unrealengine.com/4.26/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/Actors/ActorLifecycle/)
+
