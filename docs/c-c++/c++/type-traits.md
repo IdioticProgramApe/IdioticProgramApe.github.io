@@ -179,6 +179,7 @@ Classes to obtain new types by applying specific transformations to existing typ
 |[**underlying_type**](https://cplusplus.com/reference/type_traits/underlying_type/)	|Underlying type of enum (class template)|
 
 ### Other Type Generators
+
 | <!-- --> | <!-- -->|
 | ----- | ------ |
 |[**aligned_storage**](https://cplusplus.com/reference/type_traits/aligned_storage/)	|Aligned storage (class template)|
