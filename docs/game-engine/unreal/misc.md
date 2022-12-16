@@ -48,3 +48,9 @@ In Unreal4, the tool used to precompute the lighting, is called **Lightmass**, c
 > These features are all ***precomputed*** because they are generated *before* the game is run via a process called ***baking***. Depending on the quality and scale of the bake, this process can take a **long time.**
 >
 > All of these features are also collectively referred to as ***static lighting***, as they cannot be changed while the game is running. This is why you can’t move static lights during play. They are quite literally baked into the scene, and you’d need to rebake them to see any of your changes reflected in the world’s lightmaps. This is separate and distinct from ***dynamic lighting***, which *can* be altered at runtime. Lightmass does not handle dynamic lighting.
+
+## Actor Lifecycle
+
+![ActorLifeCycle](./assets/ActorLifeCycle_426.jpg)
+
+Check more details at [Actor Lifecycle | Unreal Engine Documentation](https://docs.unrealengine.com/4.26/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/Actors/ActorLifecycle/)
