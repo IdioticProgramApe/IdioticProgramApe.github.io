@@ -1,10 +1,10 @@
 ---
 layout: default
 title: Noreturn Function (C11)
-parent: Function Concepts
-grand_parent: C
-nav_order: 4
-permalink: /docs/c-c++/c/function-concepts/noreturn-function/
+parent: C
+grand_parent: C/C++
+nav_order: 6
+permalink: /docs/c-c++/c/noreturn-function/
 ---
 
 <details open markdown="block">

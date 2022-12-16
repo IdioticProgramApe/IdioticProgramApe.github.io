@@ -1,10 +1,10 @@
 ---
 layout: default
 title: Variadic Function
-parent: Function Concepts
-grand_parent: C
-nav_order: 2
-permalink: /docs/c-c++/c/function-concepts/variadic-function/
+parent: C
+grand_parent: C/C++
+nav_order: 4
+permalink: /docs/c-c++/c/variadic-function/
 ---
 
 <details open markdown="block">

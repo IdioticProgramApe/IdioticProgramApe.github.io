@@ -1,10 +1,10 @@
 ---
 layout: default
 title: Inline Function (C11)
-parent: Function Concepts
-grand_parent: C
-nav_order: 3
-permalink: /docs/c-c++/c/function-concepts/inline-function/
+parent: C
+grand_parent: C/C++
+nav_order: 5
+permalink: /docs/c-c++/c/inline-function/
 ---
 
 <details open markdown="block">
