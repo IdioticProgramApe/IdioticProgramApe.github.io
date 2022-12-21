@@ -28,3 +28,24 @@ So yeah baby steps, don't rush it!
 ### Contact
 
 By accessing this page, you already got my Github info, just leave a message!
+
+### Page Theme
+
+The default theme is light color, if you prefer a darker theme, try out the button down below:
+
+<script> 
+    const toggleDarkMode = document.querySelector('.js-toggle-dark-mode'); 
+    jtd.addEvent(toggleDarkMode, 'click', function()
+    { 
+        if (jtd.getTheme() === 'dark') 
+        { 
+            jtd.setTheme('light'); 
+            toggleDarkMode.textContent = 'Preview dark color scheme'; 
+        } 
+        else 
+        { 
+            jtd.setTheme('dark'); 
+            toggleDarkMode.textContent = 'Return to the light side'; 
+        } 
+    }); 
+</script>
