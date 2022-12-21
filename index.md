@@ -29,9 +29,11 @@ So yeah baby steps, don't rush it!
 
 By accessing this page, you already got my Github info, just leave a message!
 
-### Page Theme
+### Color Scheme
 
-The default theme is light color, if you prefer a darker theme, try out the button down below:
+The default scheme is light color, if you prefer a darker scheme, try out the button down below:
+
+<button class="btn js-toggle-dark-mode">Switch to dark scheme</button>
 
 <script> 
     const toggleDarkMode = document.querySelector('.js-toggle-dark-mode'); 
@@ -40,12 +42,12 @@ The default theme is light color, if you prefer a darker theme, try out the butt
         if (jtd.getTheme() === 'dark') 
         { 
             jtd.setTheme('light'); 
-            toggleDarkMode.textContent = 'Preview dark color scheme'; 
+            toggleDarkMode.textContent = 'Switch to dark scheme'; 
         } 
         else 
         { 
             jtd.setTheme('dark'); 
-            toggleDarkMode.textContent = 'Return to the light side'; 
+            toggleDarkMode.textContent = 'Switch to light scheme'; 
         } 
     }); 
 </script>
