@@ -1,10 +1,10 @@
 ---
 layout: default
-title: EuroPython
+title: EuroPython 2022
 parent: Conference
 grand_parent: Python
 nav_order: 1
-permalink: /docs/python/meta-programming/euro-python/
+permalink: /docs/python/meta-programming/euro-python-2022/
 ---
 
 <details open markdown="block">
