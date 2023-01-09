@@ -234,28 +234,28 @@ import inspect
 import pprint
 
 class PipFinder:
-	ALREADY_PROCESSED = set()
+    ALREADY_PROCESSED = set()
 
-	@classmethod
-	def find_spec(cls, name, path, target=None):
-		if name in cls.ALREADY_PROCESSED:
-			return None
-		print(f"Module {name!r} not installed. Attempting to pip install", end='...')
-		cmd = f"{sys.executable} -m pip install {name}"
-		try:
-			subprocess.run(cmd.split(), check=True, capture_output=True)
-		except subprocess.CalledProcessError:
-			print("failed")
-			pp = pprint.PrettyPrinter(indent=1)
-			outerframes = list(filter(
-				lambda frame: os.path.isfile(frame.filename),
-				inspect.getouterframes(inspect.currentframe())
-			))
-			pp.pprint(outerframes)
-			cls.ALREADY_PROCESSED.add(name)
-			return None
-		print("succeeded")
-		return util.find_spec(name)
+    @classmethod
+    def find_spec(cls, name, path, target=None):
+        if name in cls.ALREADY_PROCESSED:
+            return None
+        print(f"Module {name!r} not installed. Attempting to pip install", end='...')
+        cmd = f"{sys.executable} -m pip install {name}"
+        try:
+            subprocess.run(cmd.split(), check=True, capture_output=True)
+        except subprocess.CalledProcessError:
+            print("failed")
+            pp = pprint.PrettyPrinter(indent=1)
+            outerframes = list(filter(
+                lambda frame: os.path.isfile(frame.filename),
+                inspect.getouterframes(inspect.currentframe())
+            ))
+            pp.pprint(outerframes)
+            cls.ALREADY_PROCESSED.add(name)
+            return None
+        print("succeeded")
+        return util.find_spec(name)
 
 sys.meta_path.append(PipFinder)
 ```
