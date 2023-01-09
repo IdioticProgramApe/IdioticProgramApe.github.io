@@ -203,7 +203,7 @@ the results are different:
 ```bash
 # run mode
 Traceback (most recent call last):
-  File "D:/ModuleFinder/__main__.py", line 6, in <module>
+  File "D:/ModuleFinder/test.py", line 6, in <module>
     import csv
   File "C:\Users\ipa\Miniconda3\envs\test\lib\csv.py", line 6, in <module>
     import re
@@ -219,5 +219,76 @@ Traceback (most recent call last):
   File "D:\ModuleFinder\ban_importer.py", line 9, in find_spec
     raise ModuleNotFoundError(f"module {name!r} is banned!")
 ModuleNotFoundError: module 'numpy' is banned!
+```
+
+### Pip Finder
+
+```python
+# pip_importer.py
+# this module is to auto pip install the module which cannot be found when it's imported
+from importlib import util
+import sys
+import os
+import subprocess
+import inspect
+import pprint
+
+class PipFinder:
+	ALREADY_PROCESSED = set()
+
+	@classmethod
+	def find_spec(cls, name, path, target=None):
+		if name in cls.ALREADY_PROCESSED:
+			return None
+		print(f"Module {name!r} not installed. Attempting to pip install", end='...')
+		cmd = f"{sys.executable} -m pip install {name}"
+		try:
+			subprocess.run(cmd.split(), check=True, capture_output=True)
+		except subprocess.CalledProcessError:
+			print("failed")
+			pp = pprint.PrettyPrinter(indent=1)
+			outerframes = list(filter(
+				lambda frame: os.path.isfile(frame.filename),
+				inspect.getouterframes(inspect.currentframe())
+			))
+			pp.pprint(outerframes)
+			cls.ALREADY_PROCESSED.add(name)
+			return None
+		print("succeeded")
+		return util.find_spec(name)
+
+sys.meta_path.append(PipFinder)
+```
+
+This finder can help us to auto install some not installed modules when we try to import them, however this importer has some drawbacks:
+
+- some imports are written in a try block to guarantee the backwards compatibility, there is no way for a new interpreter to import that
+- some module name doesn't match its package name, which can leads to an intallation failure, then a import failure
+
+Here is an example and the output
+
+```python
+# test.py
+import pip_importer
+import matplotlib        # not installed
+import cv2               # not installed, and package name is opencv-python
+```
+
+```bash
+Module 'matplotlib' not installed. Attempting to pip install...succeeded
+Module 'pickle5' not installed. Attempting to pip install...failed
+[...,
+ FrameInfo(frame=<frame at 0x0000020B11D5C6C0, file 'C:\\Users\\ipa\\Miniconda3\\envs\\test\\lib\\site-packages\\numpy\\compat\\__init__.py', line 12, code <module>>, filename='C:\\Users\\ipa\\Miniconda3\\envs\\test\\lib\\site-packages\\numpy\\compat\\__init__.py', lineno=12, function='<module>', code_context=['from . import py3k\n'], index=0),
+ ...]
+Module 'org' not installed. Attempting to pip install...failed
+[...,
+ FrameInfo(frame=<frame at 0x0000020B12642180, file 'C:\\Users\\ipa\\Miniconda3\\envs\\test\\lib\\pickle.py', line 103, code <module>>, filename='C:\\Users\\ipa\\Miniconda3\\envs\\test\\lib\\pickle.py', lineno=103, function='<module>', code_context=['    from org.python.core import PyStringMap\n'], index=0),
+ ...]
+Module 'cv2' not installed. Attempting to pip install...failed
+Traceback (most recent call last):
+  File "D:\ModuleFinder\test.py", line 6, in <module>
+    import cv2
+ModuleNotFoundError: No module named 'cv2'
+[...]
 ```
 
