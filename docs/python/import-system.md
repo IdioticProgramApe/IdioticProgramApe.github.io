@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Python Import System
+title: Import System
 parent: Python
 nav_order: 6
 ---
@@ -270,8 +270,8 @@ Here is an example and the output
 ```python
 # test.py
 import pip_importer
-import matplotlib        # not installed
-import cv2               # not installed, and package name is opencv-python
+import matplotlib        # not installed, will be installed with some failures (because of some numpy dep)
+import cv2               # not installed, and package name is opencv-python, unknown to pip
 ```
 
 ```bash
