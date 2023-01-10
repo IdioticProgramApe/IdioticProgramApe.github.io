@@ -103,22 +103,7 @@ There are several steps when we try to import a module:
  _frozen_importlib_external.PathFinder]
 ```
 
-If we delete all 3 finders in `sys.meta_path`, python will not be able to find or import any new module (not cached). The finder is a class which **must contains** a class method called `find_spec` with following signature:
-
-```python
-class SomeFinder:
-    @classmethod
-    def find_spec(cls, name, path, target=None):
-        ...
-```
-
-where:
-
-- `name`: the name of the module
-- `path`: the value of `__path__` from the parent package, `None` if it's top-level import
-- `target`: a module object that the finder may use to make a more educated guess about what spec to return
-
-`find_spec` can terminate with 3 senarios:
+If we delete all 3 finders in `sys.meta_path`, python will not be able to find or import any new module (not cached). The finder is a class which **must contains** a class method called `find_spec` which can terminate with 3 scenarios:
 
 - by returning `None` if it doesn't know how to find and load the module, and let other finders to figure it out (can be used as a import debugger)
 - by returning a `module spec` specifying how to load the module
@@ -286,41 +271,41 @@ from importlib.abc import Loader
 from importlib.machinery import ModuleSpec
 
 class CsvImporter(Loader):
-	def __init__(self, csv_path):
-		self.csv_path: pathlib.Path = csv_path
+    def __init__(self, csv_path):
+        self.csv_path: pathlib.Path = csv_path
 
-	@classmethod
-	def find_spec(cls, name, path, target=None):
-		package, _, module_name = name.rpartition(".")
-		csv_filename = f"{module_name}.csv"
-		directories = sys.path if path is None else path
-		for directory in directories:
-			csv_path = pathlib.Path(directory) / csv_filename
-			if csv_path.exists():
-				return ModuleSpec(name, cls(csv_path))
+    @classmethod
+    def find_spec(cls, name, path, target=None):
+        package, _, module_name = name.rpartition(".")
+        csv_filename = f"{module_name}.csv"
+        directories = sys.path if path is None else path
+        for directory in directories:
+            csv_path = pathlib.Path(directory) / csv_filename
+            if csv_path.exists():
+                return ModuleSpec(name, cls(csv_path))
 
-	def create_module(self, spec: ModuleSpec):
-		# use default standard machinery to create module
-		return None
+    def create_module(self, spec: ModuleSpec):
+        # use default standard machinery to create module
+        return None
 
-	def exec_module(self, module):
-		with self.csv_path.open('r') as fid:
-			rows = csv.DictReader(fid)
-			data = list(rows)
-			fieldnames = tuple(*rows.fieldnames)
+    def exec_module(self, module):
+        with self.csv_path.open('r') as fid:
+            rows = csv.DictReader(fid)
+            data = list(rows)
+            fieldnames = tuple(*rows.fieldnames)
 
-		# create a dict with each field
-		values = zip(*(row.values() for row in data))
-		fields = dict(zip(fieldnames, values))
+        # create a dict with each field
+        values = zip(*(row.values() for row in data))
+        fields = dict(zip(fieldnames, values))
 
-		# Add the data to the module
-		module.__dict__.update(fields)
-		module.__dict__["data"] = data
-		module.__dict__["fieldnames"] = fieldnames
-		module.__file__ = str(self.csv_path)
+        # Add the data to the module
+        module.__dict__.update(fields)
+        module.__dict__["data"] = data
+        module.__dict__["fieldnames"] = fieldnames
+        module.__file__ = str(self.csv_path)
 
-	def __repr__(self):
-		return f"{self.__class__.__name__}({str(self.csv_path)!r})"
+    def __repr__(self):
+        return f"{self.__class__.__name__}({str(self.csv_path)!r})"
 
 # make sure finder can successfully find the csv file.
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
