@@ -351,11 +351,11 @@ We can use the following code to test whether this importer is doing a fine job,
 {'player_name': 'A. DANRIDGE', 'team_name': 'NACIONAL', 'season': 'Season_17_18', 'assisted': '130', 'notassisted': '445'}
 >>> player_data.fieldnames
 ('player_name', 'team_name', 'season', 'assisted', 'notassisted')
-csv_name = player_data.__file__
+>>> player_data.__file__
 'D:\\ModuleFinder\\source\\csv\\player_data.csv'
 ```
 
-> The data importer as this csv_importer.py can be put into a data module initialization script together with the data files, when we need to import a file, the importer will automatically imported firstly!
+> The data importer as this csv_importer.py can be put into a data module initialization script together with the data files, when we need to import a file, the importer will be automatically imported firstly!
 
 [^1]: All the examples are originally coming from [Python import](https://realpython.com/python-import/#the-python-import-system), they are all tested and some of them are modified in order to know how the importers work behind the curtain.
 
