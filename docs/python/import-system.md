@@ -13,7 +13,7 @@ nav_order: 6
 1. TOC
 {:toc}
 </details>
-## Break into Import
+## Break into Import[^1]
 
 Overall, when import a module/package in python, there are several things happening on the background:
 
@@ -44,26 +44,7 @@ import sys
 sys.modules["math"].cos(PI)    # output -1.0
 ```
 
-`sys.modules` acts as a cache for all the imported modules/packages, it's the first place the finder will look for a module/package in case the module/package is already imported in the past.
-
-## Singleton
-
-We discussed about the singleton design pattern when we talked about the [singletons in meta-classes](/docs/python/meta-programming/metaclasses/#singletons), however, since python has already its own caching system which we can take advantage of to make a singleton without using meta class.
-
-```python
-# person.py
-class _Person:
-    def __init__(self, name):
-        self.name = name
-    def talk(self):
-        print("I'm", self.name)
-        
-a = _Person("a")
-
-# test.py
-import person
-person.a.talk()    # person.a is a singleton, this outputs "I'm a"
-```
+`sys.modules` acts as a cache for all the imported modules/packages, it's the first place the finder will look for a module/package in case the module/package is already imported in the past. The same mechanism as [singletons in meta-classes](/docs/python/meta-programming/metaclasses/#singletons).
 
 ## Reload Modules
 
@@ -105,8 +86,8 @@ print(Foo.name)    # outputs "Bar"
 There are several steps when we try to import a module:
 
 1. Python checks if the module is available in the module cache. If `sys.modules` contains the name of the module, then the module is already available, and the import process ends.
-2. Python starts looking for the module using several **finders**. A finder will search for the module using a given strategy. The default finders can import **built-in** modules, **frozen** modules, and modules **on the import path**.
-3. Python loads the module using a **loader**. Which loader python uses is determined by the finder that located the module and is specified in something called a **module spec**.
+2. Python starts looking for the module using several [**finders**](https://docs.python.org/3/library/importlib.html#importlib.abc.MetaPathFinder). A finder will search for the module using a given strategy. The default finders can import **built-in** modules, **frozen** modules, and modules **on the import path**.
+3. Python loads the module using a [**loader**](https://docs.python.org/3/library/importlib.html#importlib.abc.Loader). Which loader python uses is determined by the finder that located the module and is specified in something called a **module spec**.
 
 > from [What is a frozen Python module](https://stackoverflow.com/questions/9916432/what-is-a-frozen-python-module)
 >
@@ -291,4 +272,90 @@ Traceback (most recent call last):
 ModuleNotFoundError: No module named 'cv2'
 [...]
 ```
+
+### CSV Loader
+
+```python
+# csv_importer.py
+# this module is to read the data from a csv file when to import it
+import csv
+import pathlib
+import re
+import sys
+from importlib.abc import Loader
+from importlib.machinery import ModuleSpec
+
+class CsvImporter(Loader):
+	def __init__(self, csv_path):
+		self.csv_path: pathlib.Path = csv_path
+
+	@classmethod
+	def find_spec(cls, name, path, target=None):
+		package, _, module_name = name.rpartition(".")
+		csv_filename = f"{module_name}.csv"
+		directories = sys.path if path is None else path
+		for directory in directories:
+			csv_path = pathlib.Path(directory) / csv_filename
+			if csv_path.exists():
+				return ModuleSpec(name, cls(csv_path))
+
+	def create_module(self, spec: ModuleSpec):
+		# use default standard machinery to create module
+		return None
+
+	def exec_module(self, module):
+		with self.csv_path.open('r') as fid:
+			rows = csv.DictReader(fid)
+			data = list(rows)
+			fieldnames = tuple(*rows.fieldnames)
+
+		# create a dict with each field
+		values = zip(*(row.values() for row in data))
+		fields = dict(zip(fieldnames, values))
+
+		# Add the data to the module
+		module.__dict__.update(fields)
+		module.__dict__["data"] = data
+		module.__dict__["fieldnames"] = fieldnames
+		module.__file__ = str(self.csv_path)
+
+	def __repr__(self):
+		return f"{self.__class__.__name__}({str(self.csv_path)!r})"
+
+# make sure finder can successfully find the csv file.
+sys.path.insert(0, str(pathlib.Path(__file__).parent))
+sys.meta_path.append(CsvImporter)
+```
+
+Let's say there is csv file named **player_data.csv** in a subfolder called **source/csv**, which contains such information:
+
+| player_name | team_name | season       | assisted | notassisted |
+| ----------- | --------- | ------------ | -------- | ----------- |
+| A. DANRIDGE | NACIONAL  | Season_17_18 | 130      | 445         |
+| A. DANRIDGE | NACIONAL  | Season_18_19 | 132      | 382         |
+| D. ROBINSON | TROUVILLE | Season_18_19 | 89       | 286         |
+| D. DAVIS    | AGUADA    | Season_18_19 | 101      | 281         |
+| E. BATISTA  | WELCOME   | Season_17_18 | 148      | 278         |
+| F. MARTINEZ | GOES      | Season_18_19 | 52       | 259         |
+| D. ALVAREZ  | AGUADA    | Season_17_18 | 114      | 246         |
+| M. HICKS    | H. MACABI | Season_17_18 | 140      | 245         |
+
+We can use the following code to test whether this importer is doing a fine job, and it turned to be a yes! 
+
+```python
+>>> import csv_importer
+>>> from source.csv import player_data
+>>> set(player_data.player_name)
+{'F. MARTINEZ', 'M. HICKS', 'D. ROBINSON', 'D. ALVAREZ', 'A. DANRIDGE', 'E. BATISTA', 'D. DAVIS'}
+>>> player_data.data[0]
+{'player_name': 'A. DANRIDGE', 'team_name': 'NACIONAL', 'season': 'Season_17_18', 'assisted': '130', 'notassisted': '445'}
+>>> player_data.fieldnames
+('player_name', 'team_name', 'season', 'assisted', 'notassisted')
+csv_name = player_data.__file__
+'D:\\ModuleFinder\\source\\csv\\player_data.csv'
+```
+
+> The data importer as this csv_importer.py can be put into a data module initialization script together with the data files, when we need to import a file, the importer will automatically imported firstly!
+
+[^1]: All the examples are originally coming from [Python import](https://realpython.com/python-import/#the-python-import-system), they are all tested and some of them are modified in order to know how the importers work behind the curtain.
 
