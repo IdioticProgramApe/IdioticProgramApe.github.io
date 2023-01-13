@@ -44,7 +44,7 @@ where
 <div>$$
 nearest(\lambda) = 
 \begin{cases}
-\lceil level_{base}+\lambda\+\frac{1}{2}\rceil-1, & preferred \\
-\lfloor level_{base}+\lambda\+\frac{1}{2}\rfloor, & alternative
+\lceil level_{base}+\lambda+\frac{1}{2}\rceil-1, & preferred \\
+\lfloor level_{base}+\lambda+\frac{1}{2}\rfloor, & alternative
 \end{cases}
 $$</div>
