@@ -34,7 +34,7 @@ The texture streaming technique is developed based on the mipmaps, on top of tha
 d = 
 \begin{cases}
 level_{base}, & \lambda\leqslant0 \\
-nearest(\lambda), & \lambda>0,level_{base}+\lambda\leqslantq+\frac{1}{2} \\
+nearest(\lambda), & \lambda>0,level_{base}+\lambda\leqslant q+\frac{1}{2} \\
 q, & \lambda>0,level_{base}+\lambda>q+\frac{1}{2}
 \end{cases}
 $$</div>
@@ -44,7 +44,7 @@ where
 <div>$$
 nearest(\lambda) = 
 \begin{cases}
-\lceillevel_{base}+\lambda\+\frac{1}{2}\rceil-1, & preferred \\
-\lfloorlevel_{base}+\lambda\+\frac{1}{2}\rfloor, & alternative
+\lceil level_{base}+\lambda\+\frac{1}{2}\rceil-1, & preferred \\
+\lfloor level_{base}+\lambda\+\frac{1}{2}\rfloor, & alternative
 \end{cases}
 $$</div>
