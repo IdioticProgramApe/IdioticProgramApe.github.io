@@ -2,7 +2,7 @@
 layout: default
 title: Conference
 parent: Python
-nav_order: 8
+nav_order: 7
 has_children: true
 ---
 

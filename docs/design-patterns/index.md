@@ -1,8 +1,7 @@
 ---
 layout: default
-title: Design
-parent: Python
-nav_order: 7
+title: Design Patterns
+nav_order: 4
 has_children: true
 ---
 
