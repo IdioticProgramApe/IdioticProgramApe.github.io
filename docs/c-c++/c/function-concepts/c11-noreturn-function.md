@@ -5,6 +5,7 @@ parent: C
 grand_parent: C/C++
 nav_order: 6
 permalink: /docs/c-c++/c/noreturn-function/
+tag: c11
 ---
 
 <details open markdown="block">
