@@ -56,6 +56,10 @@ overall, the complexity for Graham Scan algorithm is about $ \mathcal{O}(n \log 
 2. select the point with smallest counterclockwise in reference to previous vertex
 ```
 
-Time complexity is more dependent on the given points, it comes from the number of points forming the convex hull $ n $ and the total number of the points $ m $, thus the complexity is $ \mathcal{O}(n m) $.
+Time complexity is more dependent on the given points, it comes from the number of points forming the convex hull $ m $ and the total number of the points $ n $, thus the complexity is $ \mathcal{O}(n m) $.
 
 2 extreme cases are, only 3 points are used to enclose the entire point set and 0 inner points, all points are on the circumference of the hull.
+
+### Simple Output Sensitive Algorithm
+
+Brought by Timothy Chen, published in [Optimal output-sensitive convex hull algorithms in two and three dimensions (springer.com)](https://link.springer.com/content/pdf/10.1007/BF02712873.pdf) in 1996, which reduce the time complexity to $ \mathcal{O}(n \log m) $, where $ m $ denotes the number of the vertices of the convex hull.
