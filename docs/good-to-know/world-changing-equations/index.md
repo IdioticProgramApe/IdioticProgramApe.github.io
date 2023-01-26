@@ -2,7 +2,8 @@
 layout: default
 title: World Changing Equations
 parent: Good to Know
-nav_order: 2
+nav_order: 1
+has_children: true
 mathjax: true
 ---
 
