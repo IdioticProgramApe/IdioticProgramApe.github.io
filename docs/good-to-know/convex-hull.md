@@ -21,7 +21,7 @@ A convex hull to a set of 2-dimensional points is a polygon that enclose all tho
 
 ## Applications
 
-Convex hull has a wide applications in **mathematics**, **statistics**, **combinatorial optimization**, **economics**, geometric modeling, and **ethology**
+Convex hull has a wide applications in **mathematics**, **statistics**, **combinatorial optimization**, **economics**, **geometric modeling**, and **ethology**
 
 ## Algorithms
 
@@ -33,7 +33,7 @@ Convex hull has a wide applications in **mathematics**, **statistics**, **combin
 3. iterate in sorted order, placing each point on a stack, but only if it makes a counterclockwise turn relative to the previous to the previous 2 points on the stack, pop previous points off of the stack if making a clockwise turn
 ```
 
-There are 2 things to pinpoint:
+There are a few things to pinpoint:
 
 - calculate the angles: $ \theta_i = \arctan(y_i - y_0, x_i - x_0) $
 - determine the orientation of the turn, use the cross product of 2 vectors $ \vec{v}_1 \times \vec{v}_2 $, of which the geometry meaning is the **signed** area of parallelogram formed by these 2 vectors.
