@@ -4,4 +4,8 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
-docs/World-Changing-Equations
+**/.vs
+**/bin
+**/obj
+
+
