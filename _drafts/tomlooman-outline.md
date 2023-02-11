@@ -40,7 +40,18 @@ site: https://courses.tomlooman.com/
 - PIE settings: `Play` -> `Advanced Settings` -> `Play in Editor` -> `Game Gets Mouse Control`, change to `true` to let game automatically gain the control over mouse instead of click it once we hit the PIE
 - Editor preferences: `General - Loading & Saving` -> `startup` -> `Load Level at Startup`, to set the default map  
 - A customized actor as projectile:
-  - `USphereComponent`: as basic collider
+  - `USphereComponent`: as basic collider, cf: `Collision`->`Collision Presets`
+    - can also trigger some events based on the collision settings
+      - set the `Generate Overlap Events` to true to trigger the defined overlap events for example.
+    - always use the least reactive one (interaction coming from 2 parties)
+    - `SetCollisionObjectType(ECollisionChannel)`: `ECC_WorldDynamic` since it's moving
+    - `SetCollisionProfileName(...)`: a collision preset name:
+      - can be added in project settings: `Engine` -> `Collision` -> `Preset`
+      - or in `DefaultEngine.ini `
+    - alternatively, instead of adding one profile, can add responses:
+      - `SetCollisionResponseToAllChannels`
+      - `SetCollisionResponseToChannel`
+      - `SetCollisionResponseToChannels`
   - `UProjectileMovementComponent`: which provides a velocity to the actor
     - `InitialiSpeed`
     - `bRotationFollowsVelocity`
@@ -57,6 +68,5 @@ site: https://courses.tomlooman.com/
         - `GetMesh` is used to get the character's skeletal mesh
       - the `SpawnParams` is of type `FActorSpawnParameters`:
         - `SpawnCollisionHandlingOverride`: collision check method before spawning
-  - Collisions
 
  
