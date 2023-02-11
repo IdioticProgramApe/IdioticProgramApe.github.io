@@ -10,7 +10,7 @@
 - `UBlueprintLibrary` (to expose python functions, later on with `-run=pythonscript` to launch python files)
 - `Slate` to create tools (have a nice UI widget)
 - `AutoTest`
-- `ECS`: [Entity Component System (guru99.com)](https://www.guru99.com/entity-component-system.html)
+- `ECS`: [Entity Component System (guru99.com)](https://www.guru99.com/entity-component-system.html), [The Entity-Component-System (gamedeveloper.com)](https://www.gamedeveloper.com/design/the-entity-component-system---an-awesome-game-design-pattern-in-c-part-1-)
 - `LevelStreaming`, `WorldComposition` before UE5.0, after use `WorldPartition` 
 - prevent gc:
 
