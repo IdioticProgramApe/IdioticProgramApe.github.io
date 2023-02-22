@@ -48,3 +48,11 @@
 - check if in PIE mode:
 
   -  `GIsEditor && FApp::IsGame()`
+- set a ref param to a function used in blueprint:
+
+  - ```c++
+    UFUNCTION(BlueprintCallable)
+    void SomeFun(PARAM(Ref)int& SomeInteger, PARAM(Ref)AActor* Actor)
+    ```
+- a `delay` node with delay set to `0.0` will execute its output next frame
+- `QUICK_SCOPE_CYCLE_COUNTER` to quickly add a scope for the profiling in both Frontend and Insights

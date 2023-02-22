@@ -1,21 +1,3 @@
-# Tom Looman's Outline
-
-site: https://courses.tomlooman.com/
-
-## Lecture2 - Project Start & Version Control
-
-- UE C++ naming convention
-- `UCameraComponent` and `USpringArmComponent` in a customized `ACharacter` pawn
-  - `CreateDefaultSubobject` to new a component
-  - `SetupAttachment` to build up parent-children relation
-  - `UPROPERTY`: `VisibleAnywhere`
-- `SetupPlayerInputComponent` in `ACharacter`
-  - `UInputComponent::BindAxis` and `UInputComponent::BindAction`
-  - `ACharacter::AddMovementInput`
-    - `AActor::GetActorForwardVector` and `AActor::GetActorRightVector`
-  - `APawn::AddControllerYawInput` and `APawn::AddControllerPitchInput`
-- Github repo setup for an UE project
-
 ## Lecture3 - Gameplay, Collision, and Physics
 
 - Directions in UE: `X` - Forward, `Y` - Right, `Z` - Up
@@ -41,6 +23,7 @@ site: https://courses.tomlooman.com/
 - Editor preferences: `General - Loading & Saving` -> `startup` -> `Load Level at Startup`, to set the default map  
 - A customized actor as projectile:
   - `USphereComponent`: as basic collider, cf: `Collision`->`Collision Presets`
+    - 3 types of resposes: `Block`, `Overlap`, `Ignore`
     - can also trigger some events based on the collision settings
       - set the `Generate Overlap Events` to true to trigger the defined overlap events for example.
     - always use the least reactive one (interaction coming from 2 parties)
@@ -48,6 +31,11 @@ site: https://courses.tomlooman.com/
     - `SetCollisionProfileName(...)`: a collision preset name:
       - can be added in project settings: `Engine` -> `Collision` -> `Preset`
       - or in `DefaultEngine.ini `
+      - `CollisionEnabled` has 4 different choices, where `Physics` means the object can be applied with force as gravity, explosion, `Query` means this object can be detected, i.e. the line traces, blocked during the movement, etc:
+        - `No Collision`
+        - `Query Only (No Physics Collision)`
+        - `Physics Only (No Query Collision)`
+        - `Collision Enabled (Query and Physics)`
     - alternatively, instead of adding one profile, can add responses:
       - `SetCollisionResponseToAllChannels`
       - `SetCollisionResponseToChannel`
@@ -68,5 +56,13 @@ site: https://courses.tomlooman.com/
         - `GetMesh` is used to get the character's skeletal mesh
       - the `SpawnParams` is of type `FActorSpawnParameters`:
         - `SpawnCollisionHandlingOverride`: collision check method before spawning
+  - Enable the physics by set the `Simulate Physics` to `true` in `Physics` section
+    - after enable the physics, the collision preset will be automatically changed to `PhysicsActor`, of which object type is `PhysicsBody`
+- `URadialForceComponent`: `FireImpulse` to emit a impulse radial force
+  - the impulse radius can be configured by `Redius` in `Radial Force Component` section
+  - the impulse strength can be configured by `Impulse Strength` in `Impulse` section
 
- 
+- `UStaticMeshComponent`:
+  - Event: `OnComponentHit`, triggered when 2 objects hit each other.
+  - All the available events can be found in the `Events` section.
+
