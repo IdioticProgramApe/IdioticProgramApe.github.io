@@ -56,3 +56,15 @@
     ```
 - a `delay` node with delay set to `0.0` will execute its output next frame
 - `QUICK_SCOPE_CYCLE_COUNTER` to quickly add a scope for the profiling in both Frontend and Insights
+- UE4 async action methods, [https://xusjtuer.github.io/post/ue4-post8_async_bp_node_set_timer/](https://xusjtuer.github.io/post/ue4-post8_async_bp_node_set_timer/):
+
+  - In blueprint
+    - `Delay`
+    - `Timeline`
+    - `SetTimerByFunctionName`/`SetTimerByEvent`
+    - `Tick`
+  - In C++
+    - `UFUNCTION`: `Latent` keyword, need an instance from `FPendingLatentAction`, i.e. `Delay`, `MoveComponentTo`
+    - `UBlueprintAsyncActionBase`, i.e. `DownloadImage`, [Creating Asynchronous Blueprint Nodes](https://nerivec.github.io/old-ue4-wiki/pages/creating-asynchronous-blueprint-nodes.html)
+    - `Tick`
+- 
