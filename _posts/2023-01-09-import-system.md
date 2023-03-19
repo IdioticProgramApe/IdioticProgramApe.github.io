@@ -37,7 +37,7 @@ import sys
 sys.modules["math"].cos(PI)    # output -1.0
 ```
 
-`sys.modules` acts as a cache for all the imported modules/packages, it's the first place the finder will look for a module/package in case the module/package is already imported in the past. The same mechanism as [singletons in meta-classes](/docs/python/meta-programming/metaclasses/#singletons).
+`sys.modules` acts as a cache for all the imported modules/packages, it's the first place the finder will look for a module/package in case the module/package is already imported in the past. The same mechanism as [singletons in meta-classes](/posts/metaclasses/#metaclass).
 
 ## Reload Modules
 

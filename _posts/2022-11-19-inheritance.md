@@ -52,7 +52,7 @@ raise MyException('test')	# will crash the program
 
 ### Method Resolution Order
 
-Taking the example in the section [Single Inheritance Diagram](#Single Inheritance), suppose we need to call method `foo()` in `c` one instance of class `C`, we need to know where this `foo()` is defined, the lookup order should be
+Taking the example in the section [Single Inheritance Diagram](#single-inheritance), suppose we need to call method `foo()` in `c` one instance of class `C`, we need to know where this `foo()` is defined, the lookup order should be
 
 ```text
 C -> A -> object 
@@ -107,7 +107,7 @@ Some examples:
   - step 2: `L(E) = [E] + merge([C, A, B, object], [D, B, A, object], [C, D])`
   - step 3: `L(E) = [E, C, D] + merge([A, B, object], [B, A, object])`, error, since A is in tail of second list and B is in tail of first list, they interlocked each other, the order cannot be resolved.
 
-Notice that in the last example, it explains why our code in [Multiple Inheritance Diagram](#Multiple Inheritance ) fails to compile, according to C3, it failed to construct this class's mro, therefore crash. More details, check [C3 linearization - Wikipedia](https://en.wikipedia.org/wiki/C3_linearization)
+Notice that in the last example, it explains why our code in [Multiple Inheritance Diagram](#multiple-inheritance) fails to compile, according to C3, it failed to construct this class's mro, therefore crash. More details, check [C3 linearization - Wikipedia](https://en.wikipedia.org/wiki/C3_linearization)
 
 ## `super()`
 
