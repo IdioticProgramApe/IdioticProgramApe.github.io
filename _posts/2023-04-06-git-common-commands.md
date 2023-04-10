@@ -73,7 +73,6 @@ Other parameters can get from the `.gitconfig` files, use the same pattern to ov
 | `git rebase --continue`                 | let rebase operation to continue after solving the conflicts <br>usually used when conflicts occurred during a rebase process |
 
 > - Normally we prefer the `merge` commands than the `rebase` commands, since `rebase` will clear the source branch and lose the track of repo activities.
->
 > - Never rebase public branches!
 {: .prompt-tip }
 
