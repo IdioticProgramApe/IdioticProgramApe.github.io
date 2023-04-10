@@ -8,7 +8,7 @@ tags: [code management, ci/cd, git]
 
 ## First-Time Git Setup
 
-| Command                                        | Description                                                  |
+| <div style="width:300px">Command</div>         | <div style="width:600px">Description</div>                   |
 | ---------------------------------------------- | ------------------------------------------------------------ |
 | `git config --list --show-origin [param name]` | used to view all/given param name the existing git settings and their setting files' whereabouts |
 | `git config [--global] user.name <username>`   | used to setup the submitter's username for current repo without `--global`, otherwise for all repos |
@@ -18,7 +18,7 @@ Other parameters can get from the `.gitconfig` files, use the same pattern to ov
 
 ## Setup Repository
 
-| Command                         | Description                                                  |
+| <div style="width:300px">Command</div>         | <div style="width:600px">Description</div>                   |
 | ------------------------------- | ------------------------------------------------------------ |
 | `git init`                      | initialize a git repo, will create a .git folder in the cwd  |
 | `git clone <url> [path]`        | clone a remote git repo to cwd or the given path if provided |
@@ -26,7 +26,7 @@ Other parameters can get from the `.gitconfig` files, use the same pattern to ov
 
 ## Helpers
 
-| Command                     | Description                                                  |
+| <div style="width:300px">Command</div>         | <div style="width:600px">Description</div>                   |
 | --------------------------- | ------------------------------------------------------------ |
 | `git status`                | show the current status of the current repo, usually to check how many files are added/deleted/modified |
 | `git stash`                 | save the uncommitted local changes to an invisible place which sometimes can be useful when conflicts happen during `pull` |
@@ -45,7 +45,7 @@ Other parameters can get from the `.gitconfig` files, use the same pattern to ov
 
 ### Local Operations
 
-| Command                                     | Description                                                  |
+| <div style="width:300px">Command</div>         | <div style="width:600px">Description</div>                   |
 | ------------------------------------------- | ------------------------------------------------------------ |
 | `git add <file/folder>`                     | add the given file/folder to the pending commit list (stage the changes), wildcards are allowed |
 | `git diff`                                  | show any uncommitted changes since the last commit           |
@@ -64,7 +64,7 @@ Other parameters can get from the `.gitconfig` files, use the same pattern to ov
 
 #### Merge Branches
 
-| Command                                 | Description                                                  |
+| <div style="width:300px">Command</div>         | <div style="width:600px">Description</div>                   |
 | --------------------------------------- | ------------------------------------------------------------ |
 | `git merge [target name] <source name>` | use fast-forward method to merge the branch `source name` to current branch or the branch `target name` |
 | `git merge --squash <source name>`      | same as `git merge` and will additionally squash all the commits to merge into one commit on target branch |
@@ -78,7 +78,7 @@ Never rebase public branches!
 
 ### Remote Operations
 
-| Command     | Description                                                  |
+| <div style="width:300px">Command</div>         | <div style="width:600px">Description</div>                   |
 | ----------- | ------------------------------------------------------------ |
 | `git push`  | push the local commits to the remote repo                    |
 | `git fetch` | fetch the remote repo's most recent information, no change to local files |
