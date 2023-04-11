@@ -9,7 +9,7 @@ tags: [coding, modern cpp, cpp]
 > Type duction is applicable on:
 > - function templates (c++98 & c++11 & c++14, etc)
 > - `auto` and `decltype` (c++11 & c++14, etc)
-> - `decltyoe(auto)` (c++14, etc)
+> - `decltype(auto)` (c++14, etc)
 {: .prompt-info }
 
 ## Template Type Deduction
@@ -25,18 +25,18 @@ void func(ParamType param);
 func(expr)
 ```
 
-Most commonly, `ParamType` has 3 different forms:
+Most commonly, **ParamType** has 3 different forms:
 
-- `ParamType` is a pointer or reference type, but not a universal reference.
-- `ParamType` is a universal reference.
-- `ParamType` is neither a pointer nor a reference.
+- **ParamType** is a pointer or reference type, but not a universal reference.
+- **ParamType** is a universal reference.
+- **ParamType** is neither a pointer nor a reference.
 
-We will need `expr` to deduce `ParamType` and `T`
+We will need **expr** to deduce **ParamType** and **T**
 
 ### ParamType: Pointer or Non-Uni Reference
 
-> 1. If `expr`'s type is a reference, ignore the reference part
-> 2. Then pattern-match `expr`'s type against `ParamType` to determine `T`
+> 1. If **expr**'s type is a reference, ignore the reference part
+> 2. Then pattern-match **expr**'s type against **ParamType** to determine **T**
 {: .prompt-tip}
 
 With templates as such, we will have the following type deduction:
@@ -48,11 +48,11 @@ template<typename T>
 void func1(T& param);
 ```
 
-| Vairable Declaration | Function Call | `expr`                   | `T`         | `ParamType`  |
-| -------------------- | ------------- | ------------------------ | ----------- | ------------ |
-| `int x = 27;`        | `func1(x);`   | `int`                    | `int`       | `int&`       |
-| `const int cx = x;`  | `func1(cx);`  | `const int`              | `const int` | `const int&` |
-| `const int& rx = x;` | `func1(rx);`  | reference to `const int` | `const int` | `const int&` |
+| Vairable Declaration | Function Call | **expr**                 | **T**       | **ParamType** |
+| -------------------- | ------------- | ------------------------ | ----------- | ------------- |
+| `int x = 27;`        | `func1(x);`   | `int`                    | `int`       | `int&`        |
+| `const int cx = x;`  | `func1(cx);`  | `const int`              | `const int` | `const int&`  |
+| `const int& rx = x;` | `func1(rx);`  | reference to `const int` | `const int` | `const int&`  |
 
 #### Const Reference
 
@@ -61,11 +61,11 @@ template<typename T>
 void func2(const T& param);
 ```
 
-| Vairable Declaration | Function Call | `expr`                   | `T`   | `ParamType`  |
-| -------------------- | ------------- | ------------------------ | ----- | ------------ |
-| `int x = 27;`        | `func2(x);`   | `int`                    | `int` | `const int&` |
-| `const int cx = x;`  | `func2(cx);`  | `const int`              | `int` | `const int&` |
-| `const int& rx = x;` | `func2(rx);`  | reference to `const int` | `int` | `const int&` |
+| Vairable Declaration | Function Call | **expr**                 | **T** | **ParamType** |
+| -------------------- | ------------- | ------------------------ | ----- | ------------- |
+| `int x = 27;`        | `func2(x);`   | `int`                    | `int` | `const int&`  |
+| `const int cx = x;`  | `func2(cx);`  | `const int`              | `int` | `const int&`  |
+| `const int& rx = x;` | `func2(rx);`  | reference to `const int` | `int` | `const int&`  |
 
 #### Pointer
 
@@ -74,17 +74,17 @@ template<typename T>
 void func3(T* param);
 ```
 
-| Vairable Declaration  | Function Call | `expr`                 | `T`         | `ParamType`  |
-| --------------------- | ------------- | ---------------------- | ----------- | ------------ |
-| `int x = 27;`         | `func3(&x);`  | `int`                  | `int`       | `int*`       |
-| `const int *px = &x;` | `func3(px);`  | pointer to `const int` | `const int` | `const int*` |
+| Vairable Declaration  | Function Call | **expr**               | **T**       | **ParamType** |
+| --------------------- | ------------- | ---------------------- | ----------- | ------------- |
+| `int x = 27;`         | `func3(&x);`  | `int`                  | `int`       | `int*`        |
+| `const int *px = &x;` | `func3(px);`  | pointer to `const int` | `const int` | `const int*`  |
 
 ### ParamType: Universal Reference
 
-> 1. If `expr` is an lvalue, both `T` and `ParamType` are deduced to be lvalue references. That’s doubly unusual.
->    1. it’s the only situation in template type deduction where `T` is deduced to be a reference. 
->    2. although `ParamType` is declared using the syntax for an rvalue reference, its deduced type is an lvalue reference
-> 2. If `expr` is an rvalue, the “normal reference” rules apply.
+> 1. If **expr** is an lvalue, both **T** and **ParamType** are deduced to be lvalue references. That’s doubly unusual.
+>    1. it’s the only situation in template type deduction where **T** is deduced to be a reference. 
+>    2. although **ParamType** is declared using the syntax for an rvalue reference, its deduced type is an lvalue reference
+> 2. If **expr** is an rvalue, the “normal reference” rules apply.
 {: .prompt-tip}
 
 ```c++
@@ -92,17 +92,17 @@ template<typename T>
 void func(T&& param);
 ```
 
-| Vairable Declaration | Function Call | `expr`                           | `T`          | `ParamType`  |
-| -------------------- | ------------- | -------------------------------- | ------------ | ------------ |
-| `int x = 27;`        | `func(x)`     | `int`, lvalue                    | `int&`       | `int&`       |
-| `const int cx = x;`  | `func(cx)`    | `const int`, lvalue              | `const int&` | `const int&` |
-| `const int& rx = x;` | `func(rx)`    | reference to `const int`, lvalue | `const int&` | `const int&` |
-| `27`                 | `func(27)`    | magic number, rvalue             | `int`        | `int&&`      |
+| Vairable Declaration | Function Call | **expr**                         | **T**        | **ParamType** |
+| -------------------- | ------------- | -------------------------------- | ------------ | ------------- |
+| `int x = 27;`        | `func(x)`     | `int`, lvalue                    | `int&`       | `int&`        |
+| `const int cx = x;`  | `func(cx)`    | `const int`, lvalue              | `const int&` | `const int&`  |
+| `const int& rx = x;` | `func(rx)`    | reference to `const int`, lvalue | `const int&` | `const int&`  |
+| `27`                 | `func(27)`    | magic number, rvalue             | `int`        | `int&&`       |
 
 ### ParamType: Neither Pointer Nor Reference
 
-> 1. If `expr`'s type is a reference, ignore the reference part
-> 2. If after ignoring `expr`’s reference-ness, `expr` is `const`, ignore that, too. If it’s `volatile`, also ignore that. 
+> 1. If **expr**'s type is a reference, ignore the reference part
+> 2. If after ignoring **expr**’s reference-ness, **expr** is `const`, ignore that, too. If it’s `volatile`, also ignore that. 
 {: .prompt-tip}
 
 ```c++
@@ -110,11 +110,11 @@ template<typename T>
 void func(T param);  // pass by-value
 ```
 
-| Vairable Declaration | Function Call | `expr`                   | `T`   | `ParamType` |
-| -------------------- | ------------- | ------------------------ | ----- | ----------- |
-| `int x = 27;`        | `func(x)`     | `int`                    | `int` | `int`       |
-| `const int cx = x;`  | `func(cx)`    | `const int`              | `int` | `int`       |
-| `const int& rx = x;` | `func(rx)`    | reference to `const int` | `int` | `int`       |
+| Vairable Declaration | Function Call | **expr**                 | **T** | **ParamType** |
+| -------------------- | ------------- | ------------------------ | ----- | ------------- |
+| `int x = 27;`        | `func(x)`     | `int`                    | `int` | `int`         |
+| `const int cx = x;`  | `func(cx)`    | `const int`              | `int` | `int`         |
+| `const int& rx = x;` | `func(rx)`    | reference to `const int` | `int` | `int`         |
 
 ### Array Arguments
 
@@ -140,7 +140,7 @@ template<typename T>
 void f(T param);
 ```
 
-Because of the *array-to-pointer decay rule*, the array declaration is treated as a pointer declaration, which means `T` will be deduced as `const char*` instead of `char[13]`
+Because of the *array-to-pointer decay rule*, the array declaration is treated as a pointer declaration, which means **T** will be deduced as `const char*` instead of `char[13]`
 
 #### With By-ref Parameter
 
@@ -149,7 +149,7 @@ template<typename T>
 void f(T& param);
 ```
 
-`T` will be deduced as `const char (&)[13]` as an array instead of a pointer. This property provide us a method to get the size of an array just by type deduction **at compile-time**:
+**T** will be deduced as `const char (&)[13]` as an array instead of a pointer. This property provide us a method to get the size of an array just by type deduction **at compile-time**:
 
 ```c++
 template<typename T, std::size_t N>
@@ -184,7 +184,7 @@ template<typename T>
 void f(T param);
 ```
 
-`T` will be deduced as `void (*)(int, double)`
+**T** will be deduced as `void (*)(int, double)`
 
 #### With By-ref Parameter
 
@@ -193,19 +193,19 @@ template<typename T>
 void f(T& param);
 ```
 
-`T` will be deduced as `void (&)(int, double)`
+**T** will be deduced as `void (&)(int, double)`
 
 ## `auto` Type Deduction
 
 `auto` type deduction is template type deduction with one more exception. When a variable is declared using `auto`:
 
-- `auto` plays the role of `T` in the template
-- type specifier for the variable acts as `ParamType`
-- everything on the right of `=` is considered as `expr` in the template
+- `auto` plays the role of **T** in the template
+- type specifier for the variable acts as **ParamType**
+- everything on the right of `=` is considered as **expr** in the template
 
 ### General Cases
 
-| Scenario                      | Statement             | `expr`         | `auto`       | type specifier |
+| Scenario                      | Statement             | **expr**       | `auto`       | type specifier |
 | ----------------------------- | --------------------- | -------------- | ------------ | -------------- |
 | Neither Pointer Nor Reference | `auto x = 27;`        | magic number   | `int`        | `int`          |
 | Neither Pointer Nor Reference | `const auto cx = x;`  | `int`          | `int`        | `const int`    |
@@ -216,7 +216,7 @@ void f(T& param);
 
 ### Array & Function
 
-| Scenario                                    | Statement                 | `expr`              | `auto`                  | type specifier          |
+| Scenario                                    | Statement                 | **expr**            | `auto`                  | type specifier          |
 | ------------------------------------------- | ------------------------- | ------------------- | ----------------------- | ----------------------- |
 | array `const char name[] = "R. N. Briggs";` | `auto arr1 = name; `      | `const char[13]`    | `const char*`           | `const char*`           |
 | array `const char name[] = "R. N. Briggs";` | `auto& arr2 = name; `     | `const char[13]`    | `const char[13]`        | `const char (&)[13]`    |
@@ -246,7 +246,7 @@ auto x5 = { 1, 2, 3.0 }; 	// error, cannot deduce the type for the initializer_l
 
 There are 2 deductions happening:
 
-1. `auto` type deduction for `x5`, which is a `std::initializer_list<T>`
+1. `auto` type deduction for **x5**, which is a `std::initializer_list`, a template class
 2. template type deduction for `std::initializer_list`, which led to an error.
 
 > Things to Remember
