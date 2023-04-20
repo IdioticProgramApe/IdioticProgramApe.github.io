@@ -115,7 +115,7 @@ class DebugFinder:
         print(f"importing {name!r} from {path!r}")
         return None    # can be omitted since python will return automatically None
     
-sys.meta_path.insert(0, Debug)
+sys.meta_path.insert(0, DebugFinder)
 ```
 
 This finder can help us tracking the modules which are about to be imported when we try to import a module:
