@@ -126,7 +126,7 @@ def make_fast(func):
             return mem[n]
         mem[n] = func(n)
         return mem[n]
-   	return wrapper
+    return wrapper
 
 # another more general solution
 from functools import lru_cache
