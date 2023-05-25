@@ -1,7 +1,7 @@
 ---
 title: Memory Introduction
 author: ipa
-date: 2023-05-25
+date: 2023-05-24
 categories: [C-Cpp Language]
 tags: [coding, c, cpp, debug, memory]
 img_path: /memory/
