@@ -11,8 +11,7 @@ img_path: /memory/
 
 ### Process Memory Layout
 
-![virtual address space](virtual_address_space.png){ : width="284" height="393" }
-_Virtual Address Space_
+![virtual address space](virtual_address_space.png){: width="284" height="393" }
 
 - when a program is started, virtual memory is allocated and is called **virtual address space**
 - **virtual address space** provides an environment for the executable to run
