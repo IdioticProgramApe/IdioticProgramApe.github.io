@@ -40,6 +40,8 @@ img_path: /memory/
     ```c
     int* p = &<variable> or dynamic memory
     ```
+    {: .nolineno }
+    
 - a pointer can hold address of ***variable, pointer, object, function***.
 
 ### Byte Ordering
@@ -96,4 +98,5 @@ free(malloc_ptr);
 >     - the destructor during deallocation
 >   - C allocation functions cannot be customized
 >   - when the allocation fails, C allocation functions return `0/NULL`
+>
 {: .prompt-info }
