@@ -11,7 +11,7 @@ img_path: /memory/
 
 ### Process Memory Layout
 
-![virtual address space](virtual_address_space.png)
+![virtual address space](virtual_address_space.png){ : width="284" height="393" }
 _Virtual Address Space_
 
 - when a program is started, virtual memory is allocated and is called **virtual address space**
@@ -20,13 +20,14 @@ _Virtual Address Space_
   - Platform x86 (32-bit):  4GB
   - Platform x64 (64-bit): 16EB (Exa-Bytes)
 - some parts of the process are used for storing data, as *global, static, local and runtime* data.
+
   | Section      | Purpose                                                      |
   | ------------ | ------------------------------------------------------------ |
   | Coda Segment | Program executable code, i.e. the statements in the code     |
   | Data Segment | Global & static variables in the code                        |
   | Heap         | Dynamically allocated memory                                 |
   | Stack        | Local variables, which are stored from high memory address to low memory address (stack grows from top to bottom) |
-  
+
   - the scope/lifetime of the global variables is same as the scope/lifetime of the program, which can be accessed throughout the program
   - the scope of the static variable depends on where it gets declared, however the lifetime is same as the lifetime of the program
   - these 4 sections are not already put in the same location in the **virtual address space**, many *modern* operating systems implement a technique called **address space layout randomization**, this will make the OS to place these sections at random locations every time the program is executed.
@@ -96,4 +97,4 @@ free(malloc_ptr);
 >     - the destructor during deallocation
 >   - C allocation functions cannot be customized
 >   - when the allocation fails, C allocation functions return `0/NULL`
-  {: .prompt-info }
+    {: .prompt-info }
