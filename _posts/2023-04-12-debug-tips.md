@@ -2,7 +2,7 @@
 title: Debug Tips
 author: ipa
 date: 2023-04-12
-categories: [Cpp Language]
+categories: [C-Cpp Language]
 tags: [coding, modern cpp, cpp, debug]
 ---
 

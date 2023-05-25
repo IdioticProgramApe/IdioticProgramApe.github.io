@@ -50,10 +50,10 @@
   -  `GIsEditor && FApp::IsGame()`
 - set a ref param to a function used in blueprint:
 
-  - ```c++
-    UFUNCTION(BlueprintCallable)
-    void SomeFun(PARAM(Ref)int& SomeInteger, PARAM(Ref)AActor* Actor)
-    ```
+  ```c++
+  UFUNCTION(BlueprintCallable)
+  void SomeFun(PARAM(Ref)int& SomeInteger, PARAM(Ref)AActor* Actor)
+  ```
 - a `delay` node with delay set to `0.0` will execute its output next frame
 - `QUICK_SCOPE_CYCLE_COUNTER` to quickly add a scope for the profiling in both Frontend and Insights
 - UE4 async action methods, [https://xusjtuer.github.io/post/ue4-post8_async_bp_node_set_timer/](https://xusjtuer.github.io/post/ue4-post8_async_bp_node_set_timer/):
@@ -67,4 +67,30 @@
     - `UFUNCTION`: `Latent` keyword, need an instance from `FPendingLatentAction`, i.e. `Delay`, `MoveComponentTo`
     - `UBlueprintAsyncActionBase`, i.e. `DownloadImage`, [Creating Asynchronous Blueprint Nodes](https://nerivec.github.io/old-ue4-wiki/pages/creating-asynchronous-blueprint-nodes.html)
     - `Tick`
-- 
+- **Unreal Insight** common flags: 
+
+  - `-tracehost=... -trace=cpu,log,bookmark,frame,memory,loadtime,rhicommands,rendercommands`
+  
+- **Unreal TextureGroupSettings** are initialized in `FRenderAssetStreamingManager`'s ctor:
+
+  - to get the current device profile settings:
+
+    ```c++
+    const FTextureLODGroup& TexGroup = UDeviceProfileManager::Get().GetActiveProfile()->GetTextureLODSettings()->GetTextureLODGroup(TextureGroup(LODGroup));
+    ```
+
+- Quickly find the first instance of type **T** in the current world:
+
+  - to get the current world: 
+
+    ```c++
+    UWorld* World = GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::LogAndReturnNull);
+    ```
+
+  - to find first object of type **T** from the world (standard way):
+  
+    ```c++
+    for (TActorIterator<T> It(World); It; ++It) { return *It; }
+    ```
+  
+  -  there is a transient member variable which may come into handy: `UWorld::PerModuleDataObjects`, can start searching from there.

@@ -2,7 +2,7 @@
 title: Deducing Types I
 author: ipa
 date: 2023-04-10
-categories: [Cpp Language]
+categories: [C-Cpp Language]
 tags: [coding, modern cpp, cpp]
 ---
 

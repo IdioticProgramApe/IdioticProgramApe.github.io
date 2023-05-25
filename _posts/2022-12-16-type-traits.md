@@ -2,7 +2,7 @@
 title: Type Traits
 author: ipa
 date: 2022-12-16
-categories: [Cpp Language]
+categories: [C-Cpp Language]
 tags: [coding, cpp, meta-programming]
 ---
 
