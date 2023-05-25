@@ -76,5 +76,5 @@ From [Meaning of python -m flag - Stack Overflow](https://stackoverflow.com/ques
 > This works as expected.
 {: .prompt-info }
 
-More `-m` detail can be found here](https://docs.python.org/3/using/cmdline.html#cmdoption-m).
+More `-m` detail can be found [here](https://docs.python.org/3/using/cmdline.html#cmdoption-m).
 
