@@ -184,9 +184,7 @@ They work together to [create a instance of class](https://blog.ionelmc.ro/2015/
 
 ## Registering
 
-To solve problems like:
-
-- we want a class that knows about all of its subclasses (which is quite useful for APIs)
+This registration can provide some insights about the class inheritance:
 
 ```python
 class registrar(type):
@@ -198,6 +196,8 @@ class registrar(type):
             if hasattr(c, "_add_subclass") and callable(c._add_subclass):
                 c._add_subclass(cls)
 ```
+
+We can use the class above to peek into the following classes, and know their relations:
 
 ```mermaid
 classDiagram
@@ -216,7 +216,7 @@ classDiagram
     D <|-- E : Inheritance
 ```
 
-
+Here is the code associated with:
 
 ```python
 class A(metaclass=registrar): ...
