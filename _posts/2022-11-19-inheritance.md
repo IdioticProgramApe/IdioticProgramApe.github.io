@@ -5,7 +5,6 @@ date: 2022-11-19
 categories: [Python Language]
 tags: [coding, python, meta-programming]
 mermaid: true
-img_path: /python/meta-programming/
 ---
 
 ## Syntax
