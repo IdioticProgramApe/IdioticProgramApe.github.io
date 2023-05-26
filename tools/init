@@ -5,7 +5,7 @@
 set -eu
 
 # CLI Dependencies
-CLI=("git", "npm")
+CLI=("git" "npm")
 
 ACTIONS_WORKFLOW=pages-deploy.yml
 
