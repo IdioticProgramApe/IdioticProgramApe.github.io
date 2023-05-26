@@ -200,20 +200,18 @@ class registrar(type):
 We can use the class above to peek into the following classes, and know their relations:
 
 ```mermaid
-classDiagram
-	direction LR
-
-	class A["class A"]
-	class B["class B"]
-	class C["class C"]
-	class D["class D"]
-	class E["class E"]
+stateDiagram-v2
+	classA: class A
+	classB: class B
+	classC: class C
+	classD: class D
+	classE: class E
 	
-    A <|-- B : Inheritance
-    A <|-- C : Inheritance
-    C <|-- D : Inheritance
-    B <|-- E : Inheritance
-    D <|-- E : Inheritance
+	classB --> classA : Inheritance
+	classC --> classA : Inheritance
+    classD --> classC : Inheritance
+    classE --> classB : Inheritance
+    classE --> classD : Inheritance
 ```
 
 Here is the code associated with:
