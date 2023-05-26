@@ -60,6 +60,8 @@ classDiagram
     A <|-- E
 ```
 
+Here is the code associated with:
+
 ```python
 class A(object): ...
 class C(A): ...
@@ -111,6 +113,8 @@ classDiagram
     C <|-- E
     D <|-- E
 ```
+
+Here is the code associated with:
 
 ```python
 class A(object): ...
@@ -175,6 +179,8 @@ classDiagram
     B <|-- C
     D <|-- C
 ```
+
+Here is the code associated with:
 
 ```python
 class A:
