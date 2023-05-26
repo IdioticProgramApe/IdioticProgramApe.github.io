@@ -27,6 +27,19 @@ panel:
   trending_tags: Tags tendance
   toc: Contenu
 
+copyright:
+  # Shown at the bottom of the post
+  license:
+    template: Cet article est sous licence :LICENSE_NAME par l'auteur.
+    name: CC BY 4.0
+    link: https://creativecommons.org/licenses/by/4.0/
+
+  # Displayed in the footer
+  brief: Certains droits réservés.
+  verbose: >-
+    Sauf mention contraire, les articles de ce site sont publiés sous licence
+    sous la licence Creative Commons Attribution 4.0 International (CC BY 4.0) par l'auteur.
+
 meta: Propulsé par :PLATFORM avec le thème :THEME
 
 not_found:
@@ -57,8 +70,6 @@ post:
     share_link:
       title: Copier le lien
       succeed: Lien copié avec succès !
-  # pinned prompt of posts list on homepage
-  pin_prompt: Épinglé
 
 # categories page
 categories:
