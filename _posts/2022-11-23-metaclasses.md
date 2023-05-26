@@ -5,7 +5,7 @@ date: 2022-11-23
 categories: [Python Language]
 tags: [coding, python, meta-programming]
 mermaid: true
-img_path: /python/meta-programming/
+img_path: /python/
 ---
 
 ## `__new__`, `__init__` and `__call__`
