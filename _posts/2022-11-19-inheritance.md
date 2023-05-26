@@ -34,10 +34,6 @@ class Student(Person):
 ### Diagram
 
 ```mermaid
----
-title: Single Inheritance Graph
----
-
 classDiagram
 	direction LR
 	
@@ -92,10 +88,6 @@ C -> A -> object
 ### Diagram
 
 ```mermaid
----
-title: Multiple Inheritance Graph
----
-
 classDiagram
 	direction LR
 	
@@ -170,10 +162,6 @@ Notice that in the last example, it explains why our code in [Multiple Inheritan
 To make `super()` works as we expected, it takes references from the **mro** and return **the next class from the mro list**, the real question is **whose** mro list.
 
 ```mermaid
----
-title: Inheritance Graph
----
-
 classDiagram
 	direction TB
 

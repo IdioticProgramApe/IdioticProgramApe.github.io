@@ -200,10 +200,6 @@ class registrar(type):
 ```
 
 ```mermaid
----
-title: Inheritance Graph
----
-
 classDiagram
 	direction LR
 
