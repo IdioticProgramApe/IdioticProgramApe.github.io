@@ -34,30 +34,20 @@ class Student(Person):
 ### Diagram
 
 ```mermaid
-classDiagram
-	direction LR
+stateDiagram-v2
+	classO: object
+	classX: Exception
+	classA: class A
+	classC: class C
+	classD: class D
+	classE: class E
 	
-	class object{
-		attributes
-		methods()
-	}
-	
-	class Exception{
-		other attributes
-		other methods()
-	}
-
-	class A["class A"]
-	class C["class C"]
-	class D["class D"]
-	class E["class E"]
-	
-	object <|-- Exception
-	object <|-- A
-	Exception <|-- CustomException
-    A <|-- C
-    A <|-- D
-    A <|-- E
+	classX --> classO : Inheritance
+	classA --> classO : Inheritance
+	CustomException --> classX : Inheritance
+	classC --> classA : Inheritance
+    classD --> classA : Inheritance
+    classE --> classA : Inheritance
 ```
 
 Here is the code associated with:
@@ -90,28 +80,22 @@ C -> A -> object
 ### Diagram
 
 ```mermaid
-classDiagram
-	direction LR
+stateDiagram-v2
+	classO: object
+	classA: class A
+	classB: class B
+	classC: class C
+	classD: class D
+	classE: class E
 	
-	class O["object"]{
-		attributes
-		methods()
-	}
-
-	class A["class A"]
-	class B["class B"]
-	class C["class C"]
-	class D["class D"]
-	class E["class E"]
-	
-	O <|-- A
-	O <|-- B
-    A <|-- C
-    A <|-- D
-    B <|-- C
-    B <|-- D
-    C <|-- E
-    D <|-- E
+	classA --> classO : Inheritance
+	classB --> classO : Inheritance
+	classC --> classA : Inheritance
+    classD --> classA : Inheritance
+    classC --> classB : Inheritance
+    classD --> classB : Inheritance
+    classE --> classC : Inheritance
+    classE --> classD : Inheritance
 ```
 
 Here is the code associated with:
@@ -166,18 +150,16 @@ Notice that in the last example, it explains why our code in [Multiple Inheritan
 To make `super()` works as we expected, it takes references from the **mro** and return **the next class from the mro list**, the real question is **whose** mro list.
 
 ```mermaid
-classDiagram
-	direction TB
-
-	class A["class A"]
-	class B["class B"]
-	class C["class C"]
-	class D["class D"]
+stateDiagram-v2
+	classA: class A
+	classB: class B
+	classC: class C
+	classD: class D
 	
-    A <|-- B
-    A <|-- D
-    B <|-- C
-    D <|-- C
+	classB --> classA : Inheritance
+    classD --> classA : Inheritance
+    classC --> classB : Inheritance
+    classC --> classD : Inheritance
 ```
 
 Here is the code associated with:
