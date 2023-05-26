@@ -55,8 +55,8 @@ The `new[]` expression and `operator new` are working in the same way, and use `
 > - All the functions will return a value in the accumulator register, that register on 32-bit platform is `eax`.
 > - make some local variable to global variable to prevent the code optimization
 > - move the ctor/dtor definition out of class body, prevent compiler inline them
-> - in the project property page, disable the **Inline Function Expansion** (can be found in **C/C++** -> **Optimizations**)
->   ![vs disable inline function expansion](vs_disable-inline_expansion.png)
+> - in the project property page, disable the **Inline Function Expansion** (can be found in _C/C++_ -> _Optimizations_)
+>   ![vs disable inline function expansion](vs_disable_inline_expansion.png)
 >
 {: .prompt-tip }
 
@@ -97,7 +97,7 @@ int main()
         {
             ptr[i] = new int[INT_MAX / 10];
         }
-	}
+    }
     catch (std::exception& ex)
     {
         std::cout << "Exception: " << ex.what() << std::endl;
@@ -165,7 +165,7 @@ int main()
     {
         std::cout << "Failed to allocate memory" << std::endl;
         return -1;
-	}
+    }
     delete ptr;
     return 0;
 }
