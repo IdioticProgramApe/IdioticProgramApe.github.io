@@ -53,7 +53,7 @@ jobs:
           cache-version: 0 # Increment this number if you need to re-download cached gems
 
       - name: Init Site
-        run: bash tools/init
+        run: bash tools/init --no-gh
 
       - name: Test Site
         run: bash tools/test
