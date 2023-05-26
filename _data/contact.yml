@@ -1,19 +1,19 @@
 #  The contact options.
 
 - type: github
-  icon: 'fab fa-github'
+  icon: "fab fa-github"
 
 - type: linkedin
-  icon: 'fab fa-linkedin'
-  url:  'https://www.linkedin.com/in/jiafeng-han-15396081/'
+  icon: "fab fa-linkedin"
+  url:  "https://www.linkedin.com/in/jiafeng-han-15396081/"
 
 - type: email
-  icon: 'fas fa-envelope'
-  noblank: true            # open link in current tab
+  icon: "fas fa-envelope"
+  noblank: true # open link in current tab
 
 - type: facebook
-  icon: 'fab fa-facebook'
-  url:  'https://www.facebook.com/profile.php?id=100008173953056'
+  icon: "fab fa-facebook"
+  url:  "https://www.facebook.com/profile.php?id=100008173953056"
 
 # Uncomment and complete the url below to enable more contact options
 #
@@ -30,5 +30,5 @@
 #   url:  ''                  # Fill with your stackoverflow homepage
 #
 # - type: rss
-#   icon: 'fas fa-rss'
+#   icon: "fas fa-rss"
 #   noblank: true
