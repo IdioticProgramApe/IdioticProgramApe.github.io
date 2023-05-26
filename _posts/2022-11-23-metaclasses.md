@@ -4,6 +4,7 @@ author: ipa
 date: 2022-11-23
 categories: [Python Language]
 tags: [coding, python, meta-programming]
+mermaid: true
 img_path: /python/meta-programming/
 ---
 
@@ -198,7 +199,28 @@ class registrar(type):
                 c._add_subclass(cls)
 ```
 
-![metaclass_diagram](metaclasses.png)
+```mermaid
+---
+title: Inheritance Graph
+---
+
+classDiagram
+	direction LR
+
+	class A["class A"]
+	class B["class B"]
+	class C["class C"]
+	class D["class D"]
+	class E["class E"]
+	
+    A <|-- B : Inheritance
+    A <|-- C : Inheritance
+    C <|-- D : Inheritance
+    B <|-- E : Inheritance
+    D <|-- E : Inheritance
+```
+
+
 
 ```python
 class A(metaclass=registrar): ...
