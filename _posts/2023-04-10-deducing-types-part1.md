@@ -1,5 +1,5 @@
 ---
-title: Deducing Types I
+title: Deducing Types (I)
 author: ipa
 date: 2023-04-10
 categories: [C-Cpp Language]
