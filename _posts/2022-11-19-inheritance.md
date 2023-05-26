@@ -4,6 +4,7 @@ author: ipa
 date: 2022-11-19
 categories: [Python Language]
 tags: [coding, python, meta-programming]
+mermaid: true
 img_path: /python/meta-programming/
 ---
 
@@ -33,7 +34,36 @@ class Student(Person):
 
 ### Diagram
 
-![inheritance_diagram](inheritance_diagram.png)
+```mermaid
+---
+title: Single Inheritance Graph
+---
+
+classDiagram
+	direction LR
+	
+	class object{
+		attributes
+		methods()
+	}
+	
+	class Exception{
+		other attributes
+		other methods()
+	}
+
+	class A["class A"]
+	class C["class C"]
+	class D["class D"]
+	class E["class E"]
+	
+	object <|-- Exception
+	object <|-- A
+	Exception <|-- CustomException
+    A <|-- C
+    A <|-- D
+    A <|-- E
+```
 
 ```python
 class A(object): ...
@@ -62,7 +92,34 @@ C -> A -> object
 
 ### Diagram
 
-![multi_inheritance_diagram](multi_inheritance_diagram.png)
+```mermaid
+---
+title: Multiple Inheritance Graph
+---
+
+classDiagram
+	direction LR
+	
+	class O["object"]{
+		attributes
+		methods()
+	}
+
+	class A["class A"]
+	class B["class B"]
+	class C["class C"]
+	class D["class D"]
+	class E["class E"]
+	
+	O <|-- A
+	O <|-- B
+    A <|-- C
+    A <|-- D
+    B <|-- C
+    B <|-- D
+    C <|-- E
+    D <|-- E
+```
 
 ```python
 class A(object): ...
@@ -113,7 +170,24 @@ Notice that in the last example, it explains why our code in [Multiple Inheritan
 
 To make `super()` works as we expected, it takes references from the **mro** and return **the next class from the mro list**, the real question is **whose** mro list.
 
-![super_diagram](super_diagram.png)
+```mermaid
+---
+title: Inheritance Graph
+---
+
+classDiagram
+	direction TB
+
+	class A["class A"]
+	class B["class B"]
+	class C["class C"]
+	class D["class D"]
+	
+    A <|-- B
+    A <|-- D
+    B <|-- C
+    D <|-- C
+```
 
 ```python
 class A:
