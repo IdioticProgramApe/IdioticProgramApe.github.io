@@ -41,9 +41,9 @@ stateDiagram-v2
 	operatorNew: operator new
 	
 	[*] --> newNumber
-	newNumber --> newExpression: invoke
-	newExpression --> operatorNew: invoke
-	operatorNew --> newExpression: Memory address
-	newExpression --> newNumber: initialize/Invoke ctor
-	newNumber --> [*]: data ptr
+	newNumber --> newExpression : Invoke
+	newExpression --> operatorNew : Invoke
+	operatorNew --> newExpression : Memory address
+	newExpression --> newNumber : Initialize/Invoke ctor
+	newNumber --> [*]: Return data ptr
 ```
