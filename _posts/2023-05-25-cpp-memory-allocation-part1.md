@@ -8,7 +8,7 @@ mermaid: true
 img_path: /memory/
 ---
 
-## C++ Allocation Operators (I)
+## C++ Allocation Operators
 
 - **C++** provides only 2 operators for allocating dynamic memory: `new` and `delete`
 
@@ -23,7 +23,7 @@ img_path: /memory/
 
 - these operators should be used in pairs, otherwise it will cause memory issues.
 
-### new Expression & operator new
+## new Expression & operator new
 
 Given the following code for a memory allocation:
 
@@ -72,7 +72,7 @@ The previous allocation statement's disassembly will be something like on a 32-b
 ```
 {: .nolineno }
 
-### new Failure
+## new Failure
 
 There are in total 3 failure cases when use `new` to allocate the memory:
 
@@ -80,7 +80,7 @@ There are in total 3 failure cases when use `new` to allocate the memory:
 - calls a function set by `set_new_handler` function
 - returns `NULL` (if `nothrow` version of `new` is used)
 
-#### Exception
+### Exception
 
 ```c++
 #include <climits>
@@ -109,7 +109,7 @@ int main()
 
 This code will output a message as ***Exception: bad allocation***. If not make the allocation size larger.
 
-#### Handler
+### Handler
 
 ```c++
 #include <climits>
@@ -146,7 +146,7 @@ int main()
 
 Now when the memory allocation fails, it will not throw an exception, instead, it will call this new handler function repeatedly. It will stop calling the handler when the memory is becoming avaiable again.
 
-#### Non-throwing new
+### Non-throwing new
 
 - this `new` does not throw an exception if it fails to allocate the requested memory, but returns a `nullptr`
 - useful when it may not be possible to catch the exception (as in `malloc`)
