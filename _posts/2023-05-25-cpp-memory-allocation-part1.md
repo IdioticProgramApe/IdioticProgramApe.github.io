@@ -55,11 +55,12 @@ The `new[]` expression and `operator new` are working in the same way, and use `
 > - All the functions will return a value in the accumulator register, that register on 32-bit platform is `eax`.
 > - make some local variable to global variable to prevent the code optimization
 > - move the ctor/dtor definition out of class body, prevent compiler inline them
-> - in the project property page, disable the **Inline Function Expansion** (can be found in _C/C++_ -> _Optimizations_)
-> 
->   ![vs disable inline function expansion](vs_disable_inline_expansion.png){: width="392" height="256" }
+> - in the project property page, disable the **Inline Function Expansion**
 >
 {: .prompt-tip }
+
+![vs disable inline function expansion](vs_disable_inline_expansion.png){: width="392" height="256" }
+_Found in C/C++ -> Optimizations_
 
 The previous allocation statement's disassembly will be something like on a 32-bit machine, the same exact order as shown in the workflow graph:
 
