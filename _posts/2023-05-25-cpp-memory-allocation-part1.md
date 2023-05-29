@@ -56,6 +56,7 @@ The `new[]` expression and `operator new` are working in the same way, and use `
 > - make some local variable to global variable to prevent the code optimization
 > - move the ctor/dtor definition out of class body, prevent compiler inline them
 > - in the project property page, disable the **Inline Function Expansion** (can be found in _C/C++_ -> _Optimizations_)
+> 
 >   ![vs disable inline function expansion](vs_disable_inline_expansion.png){: width="392" height="256" }
 >
 {: .prompt-tip }
