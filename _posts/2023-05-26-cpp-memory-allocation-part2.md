@@ -61,7 +61,7 @@ As we want to create a such Example object on the **stackBuf**, the following co
 
 int main()
 {
-    char stackBuf[4];	// allocate some memory on stack
+    char stackBuf[4];    // allocate some memory on stack
     Example* ptr = new(stackBuf) Example{};
     ptr->~Example();
     return 0;
@@ -107,20 +107,20 @@ _string class_
 class String
 {
 public:
-	String(const char* str)
-	{
-		void* ptr = operator new(SIZE + strlen(str) + 1);
-		m_pBuffer = static_cast<char*>(new(ptr) size_t{ strlen(str) });
-		strcpy_s(m_pBuffer + SIZE, strlen(str) + 1, str);
-	}
-	~String() { operator delete(m_pBuffer); }
+    String(const char* str)
+    {
+        void* ptr = operator new(SIZE + strlen(str) + 1);
+        m_pBuffer = static_cast<char*>(new(ptr) size_t{ strlen(str) });
+        strcpy_s(m_pBuffer + SIZE, strlen(str) + 1, str);
+    }
+    ~String() { operator delete(m_pBuffer); }
 
-	size_t getLength() const { return *static_cast<size_t*>(m_pBuffer); }
-	const char* getString() const { return m_pBuffer + SIZE; }
+    size_t getLength() const { return *static_cast<size_t*>(m_pBuffer); }
+    const char* getString() const { return m_pBuffer + SIZE; }
 
 private:
     const static size_t SIZE = sizeof(size_t);
-	char* m_pBuffer; // preserve 4bytes for the length
+    char* m_pBuffer; // preserve 4bytes for the length
 };
 ```
 
