@@ -13,11 +13,26 @@
 | `out`                  | as the output of the shader                                  |
 | `uniform`              | act as the static variable in the rendering pipeline, syntax: `uniform <type> <var_name>` |
 | `sampler2D`            | texture2d sampler type, used to pick the color information from the bounded texture unit and the given texture coordinates |
+| `struct`               | define a customized data type                                |
 
 ### Built-in Functions
 
-| Function  | Note                                                         |
-| --------- | ------------------------------------------------------------ |
-| `clamp`   | clamp the value(s) so that the value(s) fall in the demanded range: `vec (*clamp)(vec, min, max)` |
-| `texture` | function to get the color information: `vec4 (*texture)(sampler2D, vec2)` |
+| Function    | Note                                                         |
+| ----------- | ------------------------------------------------------------ |
+| `clamp`     | clamp the value(s) so that the value(s) fall in the demanded range: `vec (*clamp)(vec, min, max)` |
+| `texture`   | function to get the color information: `vec4 (*texture)(sampler2D, vec2)` |
+| `inverse`   | get the inversed matrix of the given matrix: `mat (*inverse)(mat)` |
+| `transpose` | get the transposed matrix of the give matrix: `mat (*transpose)(mat)` |
+| `reflect`   | get the reflected vector of the incident vector: `vec (*reflect)(vec incident, vec normal)` |
+| `dot`       | get the dot product result from 2 vectors: `float (*dot)(vec, vec)` |
+| `max`       | get the max value from the given values: `float (*max)(float, float, ...)` |
+
+### Useful Techniques
+
+| Name              | Method                                                       |
+| ----------------- | ------------------------------------------------------------ |
+| Model Matrix      | usually composed of translate, rotate and rotate matrices    |
+| Normal Matrix     | the inverse transpose of Model Matrix                        |
+| View Matrix       | usually composed of View Rotation and View Position matrices |
+| Projection Matrix | see `glm::perspective` and `glm::ortho`                      |
 
