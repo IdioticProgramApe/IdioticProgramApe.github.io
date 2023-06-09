@@ -27,6 +27,11 @@
 | `reflect`   | get the reflected vector of the incident vector: `vec (*reflect)(vec incident, vec normal)` |
 | `dot`       | get the dot product result from 2 vectors: `float (*dot)(vec, vec)` |
 | `max`       | get the max value from the given values: `float (*max)(float, float, ...)` |
+| `normalize` | get the normalized vector for the given vector: `vec (*normalize)(vec)` |
+| `length`    | get the norm/length for the given vector: `float (*length)(vec)` |
+| `pow`       | get the exponential value as x^y: `float (*pow)(float x, float y)` |
+
+- should be able to do the vectorization to parallelize the computation, since these functions are run on GPU
 
 ### Useful Techniques
 
