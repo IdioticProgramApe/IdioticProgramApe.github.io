@@ -14,6 +14,7 @@
 | `uniform`              | act as the static variable in the rendering pipeline, syntax: `uniform <type> <var_name>` |
 | `sampler2D`            | texture2d sampler type, used to pick the color information from the bounded texture unit and the given texture coordinates |
 | `struct`               | define a customized data type                                |
+| `flat`                 | stop the interpolation working on those vectors (it's not equivalent to flat shading don't use it to create flat shading) |
 
 ### Built-in Functions
 
