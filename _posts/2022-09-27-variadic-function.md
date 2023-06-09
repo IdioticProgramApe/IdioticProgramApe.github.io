@@ -41,7 +41,7 @@ int main()
     double v1 = 10.5, v2 = 2.5;
     int num1 = 6, num2 = 5;
     long num3 = 12l, num4 = 20l;
-	
+    
     // all doubles
     printf("Average = %.2lf\n", average(v1, 3.5, v2, 4.5, 0.0));
     printf("Average = %.2lf\n", average(1.0, 2.0, 0.0));
@@ -62,14 +62,14 @@ double average(double v1, double v2, ...)
     
     // varidic list process scope
     {
-     	va_start(pArgs, v2);  // initialize pArgs
+         va_start(pArgs, v2);  // initialize pArgs
         while((value = va_arg(pArgs, double)) != 0.0) // get next optional argument value
         {
             sum += value;
             ++count;
         }
-        va_end(pArgs);   	  // reset pArgs, clean up
-	}
+        va_end(pArgs);         // reset pArgs, clean up
+    }
 
     return sum / count;
 }
@@ -112,39 +112,38 @@ int main()
 double sample_stddev(int count, ...)
 {
     double sum = 0.0;
-	
+    
     // initialize variable argument list
     va_list pArgs;
     va_start(pArgs, count);
-	
+
     // after initialization, then copy the list pointer to a new pointer
     va_list pArgs_copy;
     va_copy(pArgs_copy, pArgs);
-	
+
     // looping once for getting the mean value
     for(int i = 0; i < count; ++i)
     {
         double value = va_arg(pArgs, double);
         sum += value;
     }
-	
+
     // reset once finish the usage
     va_end(pArgs);
 
     double mean = sum / count;
     double sum_sq_diff = 0.0;
-	
+
     // looping twice for calculating the squared deviation
     for(int i = 0; i < count; ++i)
     {
         double value = va_arg(pArgs_copy, double);
         sum_sq_diff += pow(value - mean, 2);
     }
-	
+
     // reset the copied pointer
     va_end(pArgs_copy);
 
     return sqrt(sum_sq_diff / count);
 }
 ```
-
