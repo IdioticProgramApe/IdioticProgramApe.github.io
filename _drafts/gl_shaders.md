@@ -18,18 +18,19 @@
 
 ### Built-in Functions
 
-| Function    | Note                                                         |
-| ----------- | ------------------------------------------------------------ |
-| `clamp`     | clamp the value(s) so that the value(s) fall in the demanded range: `vec (*clamp)(vec, min, max)` |
-| `texture`   | function to get the color information: `vec4 (*texture)(sampler2D, vec2)` |
-| `inverse`   | get the inversed matrix of the given matrix: `mat (*inverse)(mat)` |
-| `transpose` | get the transposed matrix of the give matrix: `mat (*transpose)(mat)` |
-| `reflect`   | get the reflected vector of the incident vector: `vec (*reflect)(vec incident, vec normal)` |
-| `dot`       | get the dot product result from 2 vectors: `float (*dot)(vec, vec)` |
-| `max`       | get the max value from the given values: `float (*max)(float, float, ...)` |
-| `normalize` | get the normalized vector for the given vector: `vec (*normalize)(vec)` |
-| `length`    | get the norm/length for the given vector: `float (*length)(vec)` |
-| `pow`       | get the exponential value as x^y: `float (*pow)(float x, float y)` |
+| Function      | Note                                                         |
+| ------------- | ------------------------------------------------------------ |
+| `clamp`       | clamp the value(s) so that the value(s) fall in the demanded range: `vec (*clamp)(vec, min, max)` |
+| `texture`     | function to get the color information: `vec4 (*texture)(sampler2D, vec2)` |
+| `inverse`     | get the inversed matrix of the given matrix: `mat (*inverse)(mat)` |
+| `transpose`   | get the transposed matrix of the give matrix: `mat (*transpose)(mat)` |
+| `reflect`     | get the reflected vector of the incident vector: `vec (*reflect)(vec incident, vec normal)` |
+| `dot`         | get the dot product result from 2 vectors: `float (*dot)(vec, vec)` |
+| `max`         | get the max value from the given values: `float (*max)(float, float, ...)` |
+| `normalize`   | get the normalized vector for the given vector: `vec (*normalize)(vec)` |
+| `length`      | get the norm/length for the given vector: `float (*length)(vec)` |
+| `pow`         | get the exponential value as x^y: `float (*pow)(float x, float y)` |
+| `textureSize` | get the size of the chosen mip of the given texture: `vec2 (*textureSize)(sampler2D, int)` |
 
 - should be able to do the vectorization to parallelize the computation, since these functions are run on GPU
 
