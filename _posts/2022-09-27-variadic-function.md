@@ -62,7 +62,7 @@ double average(double v1, double v2, ...)
     
     // varidic list process scope
     {
-         va_start(pArgs, v2);  // initialize pArgs
+        va_start(pArgs, v2);  // initialize pArgs
         while((value = va_arg(pArgs, double)) != 0.0) // get next optional argument value
         {
             sum += value;
