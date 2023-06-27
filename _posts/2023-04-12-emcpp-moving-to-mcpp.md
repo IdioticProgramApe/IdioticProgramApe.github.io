@@ -297,7 +297,7 @@ tags: [coding, modern cpp, cpp]
       constexpr double xValue() const noexcept { return x; }
       constexpr double yValue() const noexcept { return y; }
       
-      constexpr void setX(double newX) noexcept { x = newX; }	// constexpr for void allowed in c++14
+      constexpr void setX(double newX) noexcept { x = newX; } // constexpr for void allowed in c++14
       constexpr void setY(double newY) noexcept { y = newY; } // constexpr for void allowed in c++14
   private:
       double x, y;
