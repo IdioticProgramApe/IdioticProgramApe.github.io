@@ -6,7 +6,7 @@ categories: [C-Cpp Language]
 tags: [coding, modern cpp, cpp]
 ---
 
-## Understand template type deduction
+## Item 1: Understand template type deduction
 
 ### Snippets
 
@@ -30,7 +30,7 @@ tags: [coding, modern cpp, cpp]
 - When deducing types for by-value parameters, `const` and/or `volatile` arguments are treated as **non-const** and **non-volatile**
 - During template type deduction, arguments that are array or function names **decay to pointers, unless** they’re used to initialize references
 
-## Understand auto type deduction
+## Item 2: Understand auto type deduction
 
 ### Snippets
 
@@ -48,7 +48,7 @@ tags: [coding, modern cpp, cpp]
 - `auto` type deduction is usually the same as `template` type deduction, but `auto` type deduction assumes that a **braced initializer** represents a `std::initializer_list`, and `template` type deduction doesn’t.
 - `auto` in a function return type or a lambda parameter implies `template` type deduction, not `auto` type deduction.
 
-## Understand decltype
+## Item 3: Understand decltype
 
 ### Snippets
 
@@ -95,7 +95,7 @@ tags: [coding, modern cpp, cpp]
 - For lvalue expressions of type **T** other than names, `decltype` always reports a type of **T&**.
 - **C++14** supports `decltype(auto)`, which, like `auto`, deduces a type from its initializer, but it performs the type deduction using the `decltype` rules.
 
-## Know how to view deduced types
+## Item 4: Know how to view deduced types
 
 ### Snippets
 
