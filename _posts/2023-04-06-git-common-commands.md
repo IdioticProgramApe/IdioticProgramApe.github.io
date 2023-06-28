@@ -18,11 +18,11 @@ Other parameters can get from the `.gitconfig` files, use the same pattern to ov
 
 ## Setup Repository
 
-| Command                         | Description                                                  |
-| ------------------------------- | ------------------------------------------------------------ |
-| `git init`                      | initialize a git repo, will create a .git folder in the cwd  |
-| `git clone <url> [path]`        | clone a remote git repo to cwd or the given path if provided |
-| `git push origin <branch name>` | push the local content to the remote repo's branch           |
+| Command                                | Description                                                  |
+| -------------------------------------- | ------------------------------------------------------------ |
+| `git init`                             | initialize a git repo, will create a .git folder in the cwd  |
+| `git clone [--recursive] <url> [path]` | clone a remote git repo to cwd or the given path if provided |
+| `git push origin <branch name>`        | push the local content to the remote repo's branch           |
 
 ## Helpers
 
@@ -84,3 +84,21 @@ Other parameters can get from the `.gitconfig` files, use the same pattern to ov
 | `git fetch` | fetch the remote repo's most recent information, no change to local files |
 | `git pull`  | pull/synchronize the local repo up to the remote repo        |
 
+### Submodule Management
+
+| Command                                       | Description                                                  |
+| --------------------------------------------- | ------------------------------------------------------------ |
+| `git submodule add <repo-url> [path]`         | add a new git repo as a submodule at the given location      |
+| `git submodule init [path]`                   | init the (specific) submodule when first clone a repo with submodule(s) |
+| `git submodule update [--init] [--recursive]` | clones the missing submodules, fetches any new remote commits, and updates the directory tree |
+| `git submodule status [--recursive]`          | check the status of the submodules                           |
+| `git submodule foreach '[git command]'`       | allows executing a git command on each submodule             |
+| `git submodule deinit <path> [--force]`       | unregister a submodule, the submodule information should be in **.gitmodules** and **.git/config** |
+
+>The SHA-1 string of the submodules can have three different prefixes.
+>
+>- The **`-`** prefix marks an uninitialized submodule.
+>- The **`+`** sign shows that the checked-out submodule commit differs from the state of the original submodule repository.
+>- The **`U`** prefix alerts to merge conflicts.
+>
+{: .prompt-tip }
