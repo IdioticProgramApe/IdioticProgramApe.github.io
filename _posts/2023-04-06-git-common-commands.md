@@ -94,6 +94,7 @@ Other parameters can get from the `.gitconfig` files, use the same pattern to ov
 | `git submodule status [--recursive]`          | check the status of the submodules                           |
 | `git submodule foreach '[git command]'`       | allows executing a git command on each submodule             |
 | `git submodule deinit <path> [--force]`       | unregister a submodule, the submodule information should be in **.gitmodules** and **.git/config** |
+| `git submodule set-branch -b <branch> <path>` | set the branch to update for a submodule                     |
 
 >The SHA-1 string of the submodules can have three different prefixes.
 >
