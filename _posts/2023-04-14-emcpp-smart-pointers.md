@@ -37,15 +37,15 @@ img_path: /moderncpp/
       };
       
       std::unique_ptr<Investment, decltype(delInvmt)> pInv(nullptr, delInvmt);
-      if ( … )
+      if ( ... )
       {
           pInv.reset(new Stock(std::forward<Ts>(params)...));
       }
-      else if ( … )
+      else if ( ... )
       {
           pInv.reset(new Bond(std::forward<Ts>(params)...));
       }
-      else if ( … )
+      else if ( ... )
       {
           pInv.reset(new RealEstate(std::forward<Ts>(params)...));
       }
@@ -64,7 +64,7 @@ img_path: /moderncpp/
 ### Reference count
 
 - **std::shared_ptrs are twice the size of a raw pointer**, because they internally contain a raw pointer to the resource as well as a raw pointer to the resource's reference count
-- **Memory for the reference count must be dynamically allocated**. Conceptually, the reference count is associated with the object being pointed to, but pointed-to objects know nothing about this. They thus have no place to store a reference count. (A pleasant implication is that any object even those of built-in types may be managed by std::shared_ptrs.) The cost of the dynamic allocation is avoided when the std::shared_ptr is created by std::make_shared, but there are situations where std::make_shared can’t be used. Either way, the reference count is stored as dynamically allocated data
+- **Memory for the reference count must be dynamically allocated**. Conceptually, the reference count is associated with the object being pointed to, but pointed-to objects know nothing about this. They thus have no place to store a reference count. (A pleasant implication is that any object even those of built-in types may be managed by std::shared_ptrs.) The cost of the dynamic allocation is avoided when the std::shared_ptr is created by std::make_shared, but there are situations where std::make_shared can't be used. Either way, the reference count is stored as dynamically allocated data
 - **Increments and decrements of the reference count must be atomic**, because there can be simultaneous readers and writers in different threads. For example, a std::shared_ptr pointing to a resource in one thread could be executing its destructor (hence decrementing the reference count for the resource it points to), while, in a different thread, a std::shared_ptr to the same object could be copied (and therefore incrementing the same reference count). Atomic operations are typically slower than non-atomic operations, so even though reference counts are usually only a word in size, you should assume that reading and writing them is comparatively costly
 
 ### Memory Management
@@ -92,8 +92,8 @@ img_path: /moderncpp/
 ### Control block
 
 - **std::make_shared always creates a control block**. It manufactures a new object to point to, so there is certainly no control block for that object at the time `std::make_shared` is called
-- **A control block is created when a std::shared_ptr is constructed from a unique-ownership pointer** (i.e., a `std::unique_ptr` or `std::auto_ptr`). Unique-ownership pointers don’t use control blocks, so there should be no control block for the pointed-to object. (As part of its construction, the `std::shared_ptr` assumes ownership of the pointed-to object, so the uniqueownership pointer is set to null.)
-- **When a std::shared_ptr constructor is called with a raw pointer, it creates a control block**. If you wanted to create a `std::shared_ptr` from an object that already had a control block, you'd presumably pass a `std::shared_ptr` or a `std::weak_ptr` as a constructor argument, not a raw pointer. `std::shared_ptr` constructors taking std::shared_ptrs or std::weak_ptrs as constructor arguments don’t create new control blocks, because they can rely on the smart pointers passed to them to point to any necessary control blocks
+- **A control block is created when a std::shared_ptr is constructed from a unique-ownership pointer** (i.e., a `std::unique_ptr` or `std::auto_ptr`). Unique-ownership pointers don't use control blocks, so there should be no control block for the pointed-to object. (As part of its construction, the `std::shared_ptr` assumes ownership of the pointed-to object, so the uniqueownership pointer is set to null.)
+- **When a std::shared_ptr constructor is called with a raw pointer, it creates a control block**. If you wanted to create a `std::shared_ptr` from an object that already had a control block, you'd presumably pass a `std::shared_ptr` or a `std::weak_ptr` as a constructor argument, not a raw pointer. `std::shared_ptr` constructors taking std::shared_ptrs or std::weak_ptrs as constructor arguments don't create new control blocks, because they can rely on the smart pointers passed to them to point to any necessary control blocks
 
 ### Snippets
 
@@ -116,7 +116,7 @@ img_path: /moderncpp/
       }
       
   private:
-      … // ctors
+      ...  // ctors
   };
   ```
 
@@ -155,7 +155,7 @@ img_path: /moderncpp/
       std::shared_ptr<Widget> spw1 = wpw.lock();    // get the shared_ptr to dereference the obj
       if(spw1 != nullptr)
       {
-          ...    // process the Widget
+          ...   // process the Widget
       }
   }
   ```
@@ -199,7 +199,7 @@ img_path: /moderncpp/
   }
   ```
 
-- use braced initializers to create a shared_ptr, braced initializers can’t be perfect-forwarded:
+- use braced initializers to create a shared_ptr, braced initializers can't be perfect-forwarded:
 
   ```c++
   // create std::initializer_list
@@ -223,3 +223,4 @@ img_path: /moderncpp/
 - The Pimpl Idiom decreases build times by reducing compilation dependencies between class clients and class implementations
 - For `std::unique_ptr` pImpl pointers, declare special member functions in the class header, but implement them in the implementation file. Do this even if the default function implementations are acceptable
 - The above advice applies to `std::unique_ptr`, but not to `std::shared_ptr`
+
