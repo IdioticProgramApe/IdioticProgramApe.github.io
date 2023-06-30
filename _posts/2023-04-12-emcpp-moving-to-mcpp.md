@@ -10,7 +10,7 @@ tags: [coding, modern cpp, cpp]
 
 ### Key points
 
-- Braced initialization is the most widely usable initialization syntax, it prevents narrowing conversions, and it’s immune to C++’s most vexing parse.
+- Braced initialization is the most widely usable initialization syntax, it prevents narrowing conversions, and it's immune to C++'s most vexing parse.
 - During constructor overload resolution, braced initializers are matched to `std::initializer_list` parameters if at all possible, even if other constructors offer seemingly better matches.
 - An example of where the choice between parentheses and braces can make a significant difference is creating a `std::vector<numeric type>` with two arguments
 - Choosing between parentheses and braces for object creation inside templates can be challenging.
@@ -87,7 +87,7 @@ tags: [coding, modern cpp, cpp]
 
 ### Key points
 
-- typedefs don’t support templatization, but alias declarations do
+- typedefs don't support templatization, but alias declarations do
 - Alias templates avoid the **::type** suffix and, in templates, the **typename** prefix often required to refer to typedefs.
 - **C++14** offers alias templates for all the **C++11** type traits transformations  
 
@@ -146,7 +146,7 @@ tags: [coding, modern cpp, cpp]
   void Widget::processPointer<const void>(const void*) = delete;
   ```
 
-  this cannot done by partially declare them as private, because it’s not possible to give a member function template specialization a different access level from that of the main template.   
+  this cannot done by partially declare them as private, because it's not possible to give a member function template specialization a different access level from that of the main template.   
 
 ### Key points
 
@@ -320,7 +320,7 @@ tags: [coding, modern cpp, cpp]
 ### Key points
 
 - Make `const` member functions thread safe unless it's certain they'll never be used in a concurrent context
-- Use of `std::atomic` variables may offer better performance than a mutex, but they’re suited for manipulation of only a single variable or memory location
+- Use of `std::atomic` variables may offer better performance than a mutex, but they're suited for manipulation of only a single variable or memory location
 
 ## Item 17: Understand special member function generation
 
