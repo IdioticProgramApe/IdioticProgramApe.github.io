@@ -28,7 +28,7 @@ tags: [coding, modern cpp, cpp]
 - During template type deduction, arguments that are references are treated as non-references, i.e., their reference-ness is ignored.
 - When deducing types for universal reference parameters, lvalue arguments get special treatment.
 - When deducing types for by-value parameters, `const` and/or `volatile` arguments are treated as **non-const** and **non-volatile**
-- During template type deduction, arguments that are array or function names **decay to pointers, unless** they’re used to initialize references
+- During template type deduction, arguments that are array or function names **decay to pointers, unless** they're used to initialize references
 
 ## Item 2: Understand auto type deduction
 
@@ -45,7 +45,7 @@ tags: [coding, modern cpp, cpp]
 
 ### Key points
 
-- `auto` type deduction is usually the same as `template` type deduction, but `auto` type deduction assumes that a **braced initializer** represents a `std::initializer_list`, and `template` type deduction doesn’t.
+- `auto` type deduction is usually the same as `template` type deduction, but `auto` type deduction assumes that a **braced initializer** represents a `std::initializer_list`, and `template` type deduction doesn't.
 - `auto` in a function return type or a lambda parameter implies `template` type deduction, not `auto` type deduction.
 
 ## Item 3: Understand decltype
@@ -140,4 +140,4 @@ tags: [coding, modern cpp, cpp]
 ### Key points
 
 - Deduced types can often be seen using IDE editors, compiler error messages, and the Boost TypeIndex library.
-- The results of some tools may be neither helpful nor accurate, so an understanding of C++’s type deduction rules remains essential.
+- The results of some tools may be neither helpful nor accurate, so an understanding of C++'s type deduction rules remains essential.
