@@ -1,9 +1,10 @@
 ---
-title: Commonly Used Commands in Git
+title: Git Commands
 author: ipa
 date: 2023-04-06
 categories: [Version Control]
 tags: [code management, ci/cd, git]
+img_path: /tools/
 ---
 
 ## First-Time Git Setup
@@ -103,3 +104,10 @@ Other parameters can get from the `.gitconfig` files, use the same pattern to ov
 >- The **`U`** prefix alerts to merge conflicts.
 >
 {: .prompt-tip }
+
+## Git Branching Model
+
+Here is general git branching model as ref:
+
+![git branching model](git_branching_model.png)
+_orginally from: [Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)_
