@@ -86,7 +86,6 @@ img_path: /moderncpp/
 - pointer structure:
 
   ![shared_ptr_memory_management](shared_ptr_memory_management.png){: width="413" height="262" }
-
   _shared pointer memory management_
 
 ### Control block
