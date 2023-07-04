@@ -1,7 +1,7 @@
 ---
 title: Prefix Multipliers
 author: ipa
-date: 2023-05-21
+date: 2023-05-22
 categories: [Miscellaneous]
 tags: [definitions]
 math: true
