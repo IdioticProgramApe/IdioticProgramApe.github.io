@@ -260,7 +260,7 @@ std::vector<std::regex> regexes;
 > Good practice
 >
 > Copy initialization is not permitted to use explicit constructors. Direct initialization is. when use an emplacement function, be especially careful to make sure the correct arguments are passed in, because even explicit constructors will be considered by compilers as they try to find a way to interpret the code as valid.
-> {: .prompt-info }
+{: .prompt-info }
 
 ### Key points
 
