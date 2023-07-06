@@ -14,6 +14,7 @@ img_path: /tools/
 | `git config --list --show-origin [param name]` | used to view all/given param name the existing git settings and their setting files' whereabouts |
 | `git config [--global] user.name <username>`   | used to setup the submitter's username for current repo without `--global`, otherwise for all repos |
 | `git config [--global] user.email <email>`     | used to setup the submitter's email for current repo without `--global`, otherwise for all repos |
+| `git config [--global] submodule.recurse true` | used to make local git automatically update the submodules   |
 
 Other parameters can get from the `.gitconfig` files, use the same pattern to overwrite it.
 
