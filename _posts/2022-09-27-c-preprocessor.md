@@ -138,7 +138,7 @@ int main()
   - `#pragma` is usually followed by a single token, and there are only a limited list of supported tokens for each standard/compiler
 
     - need to reference the compiler documentation: 
-      - `MSBuild`: [Pragma directives and the __pragma and _Pragma keywords | Microsoft Learn](https://learn.microsoft.com/en-us/cpp/preprocessor/pragma-directives-and-the-pragma-keyword?view=msvc-170)
+      - `MSBuild`: [Pragma directives and the __pragma and _Pragma keywords \| Microsoft Learn](https://learn.microsoft.com/en-us/cpp/preprocessor/pragma-directives-and-the-pragma-keyword?view=msvc-170)
       - `GCC`: [Pragmas (The C Preprocessor) (gnu.org)](https://gcc.gnu.org/onlinedocs/cpp/Pragmas.html)
 
 
