@@ -1,7 +1,7 @@
 ---
 title: Recursion
 author: ipa
-date: 2022-09-27
+date: 2022-10-01
 categories: [C-Cpp Language]
 tags: [coding, c, theory]
 ---
