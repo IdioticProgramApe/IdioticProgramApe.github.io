@@ -3,7 +3,7 @@ title: Variadic Functions
 author: ipa
 date: 2022-10-03
 categories: [C-Cpp Language]
-tags: [coding, c, theory]
+tags: [coding, c, cpp]
 ---
 
 ## Basics

@@ -3,7 +3,7 @@ title: Inline Functions
 author: ipa
 date: 2022-09-30
 categories: [C-Cpp Language]
-tags: [coding, c, c11, theory]
+tags: [coding, c, c11, cpp]
 ---
 
 ## Declarations

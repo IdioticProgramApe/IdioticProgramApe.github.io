@@ -3,7 +3,7 @@ title: C Preprocessor
 author: ipa
 date: 2022-09-27
 categories: [C-Cpp Language]
-tags: [coding, c, theory]
+tags: [coding, c, cpp]
 ---
 
 ## Overview
