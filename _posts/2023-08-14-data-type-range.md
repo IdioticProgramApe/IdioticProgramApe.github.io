@@ -24,7 +24,7 @@ math: true
 | `long long`          | 8      | -                               | $$ \{ n \vert -9 223 372 036 854 775 808 \leqslant n \leqslant 9 223 372 036 854 775 807, n \in \mathbb{Z} \} $$ |                                                |
 | `unsigned long long` | 8      | -                               | $$ \{ n \vert 0 \leqslant n \leqslant 18 446 744 073 709 551 615, n \in \mathbb{Z} \} $$ |                                                |
 | `enum`               | varies | -                               | -                                                            |                                                |
-| `float`              | 4      | -                               | $$ [-3.4\times10^{38}, -1.18\times10^{-38}] \cup [1.18\times10^{-38}, 3.4\times10^{38}] \cup { 0.0  \} $$ | **6-9** significant digits, typically **7**    |
+| `float`              | 4      | -                               | $$ [-3.4\times10^{38}, -1.18\times10^{-38}] \cup [1.18\times10^{-38}, 3.4\times10^{38}] \cup \{ 0.0 \} $$ | **6-9** significant digits, typically **7**    |
 | `double`             | 8      | -                               | $$ [-1.80\times10^{308}, -2.23\times10^{-308}] \cup [2.23\times10^{-308}, 1.80\times10^{308}] \cup \{ 0.0 \} $$ | **15-18** significant digits, typically **16** |
 | `long double`        | 8      | -                               | $$ [-1.80\times10^{308}, -2.23\times10^{-308}] \cup [2.23\times10^{-308}, 1.80\times10^{308}] \cup \{ 0.0 \} $$ | same as `double`                               |
 | `wchar_t`            | 2      | -                               | $$ \{ n \vert 0 \leqslant n \leqslant 65 535, n \in \mathbb{Z} \} $$ |                                                |
