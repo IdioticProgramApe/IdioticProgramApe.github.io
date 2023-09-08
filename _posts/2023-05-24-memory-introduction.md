@@ -22,7 +22,7 @@ img_path: /memory/
 
   | Section      | Purpose                                                      |
   | ------------ | ------------------------------------------------------------ |
-  | Coda Segment | Program executable code, i.e. the statements in the code     |
+  | Code Segment | Program executable code, i.e. the statements in the code     |
   | Data Segment | Global & static variables in the code                        |
   | Heap         | Dynamically allocated memory                                 |
   | Stack        | Local variables, which are stored from high memory address to low memory address (stack grows from top to bottom) |
