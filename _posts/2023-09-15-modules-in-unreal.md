@@ -38,14 +38,14 @@ For each one of the modules reside inside of a plugin, there are 2 properties to
 
 ```json
 {
-	//...
-	"Modules": [
-		{
-			"Name": "UnrealEdExtension",
-			"Type": "Editor",
-			"LoadingPhase": "PreDefault"
-		}
-	]
+    //...
+    "Modules": [
+        {
+            "Name": "UnrealEdExtension",
+            "Type": "Editor",
+            "LoadingPhase": "PreDefault"
+        }
+    ]
 }
 ```
 
@@ -57,55 +57,55 @@ For each one of the modules reside inside of a plugin, there are 2 properties to
  */
 namespace EHostType
 {
-	enum Type
-	{
-		// Loads on all targets, except programs.
-		Runtime,
-		
-		// Loads on all targets, except programs and the editor running commandlets.
-		RuntimeNoCommandlet,
-		
-		// Loads on all targets, including supported programs.
-		RuntimeAndProgram,
-		
-		// Loads only in cooked games.
-		CookedOnly,
+    enum Type
+    {
+        // Loads on all targets, except programs.
+        Runtime,
+        
+        // Loads on all targets, except programs and the editor running commandlets.
+        RuntimeNoCommandlet,
+        
+        // Loads on all targets, including supported programs.
+        RuntimeAndProgram,
+        
+        // Loads only in cooked games.
+        CookedOnly,
 
-		// Only loads in uncooked games.
-		UncookedOnly,
+        // Only loads in uncooked games.
+        UncookedOnly,
 
-		// Deprecated due to ambiguities. Only loads in editor and program targets, but loads in any editor mode (eg. -game, -server).
-		// Use UncookedOnly for the same behavior (eg. for editor blueprint nodes needed in uncooked games), or DeveloperTool for modules
-		// that can also be loaded in cooked games but should not be shipped (eg. debugging utilities).
-		Developer,
+        // Deprecated due to ambiguities. Only loads in editor and program targets, but loads in any editor mode (eg. -game, -server).
+        // Use UncookedOnly for the same behavior (eg. for editor blueprint nodes needed in uncooked games), or DeveloperTool for modules
+        // that can also be loaded in cooked games but should not be shipped (eg. debugging utilities).
+        Developer,
 
-		// Loads on any targets where bBuildDeveloperTools is enabled.
-		DeveloperTool,
+        // Loads on any targets where bBuildDeveloperTools is enabled.
+        DeveloperTool,
 
-		// Loads only when the editor is starting up.
-		Editor,
-		
-		// Loads only when the editor is starting up, but not in commandlet mode.
-		EditorNoCommandlet,
+        // Loads only when the editor is starting up.
+        Editor,
+        
+        // Loads only when the editor is starting up, but not in commandlet mode.
+        EditorNoCommandlet,
 
-		// Loads only on editor and program targets
-		EditorAndProgram,
+        // Loads only on editor and program targets
+        EditorAndProgram,
 
-		// Only loads on program targets.
-		Program,
-		
-		// Loads on all targets except dedicated clients.
-		ServerOnly,
-		
-		// Loads on all targets except dedicated servers.
-		ClientOnly,
+        // Only loads on program targets.
+        Program,
+        
+        // Loads on all targets except dedicated clients.
+        ServerOnly,
+        
+        // Loads on all targets except dedicated servers.
+        ClientOnly,
 
-		// Loads in editor and client but not in commandlets.
-		ClientOnlyNoCommandlet,
-		
-		//~ NOTE: If you add a new value, make sure to update the ToString() method below!
-		Max
-	};
+        // Loads in editor and client but not in commandlets.
+        ClientOnlyNoCommandlet,
+        
+        //~ NOTE: If you add a new value, make sure to update the ToString() method below!
+        Max
+    };
 };
 ```
 
@@ -119,41 +119,41 @@ For the most of the time, `Runtime` is for Game and `Editor` is for the unreal e
  */
 namespace ELoadingPhase
 {
-	enum Type
-	{
-		/** As soon as possible - in other words, uplugin files are loadable from a pak file (as well as right after PlatformFile is set up in case pak files aren't used) Used for plugins needed to read files (compression formats, etc) */
-		EarliestPossible,
+    enum Type
+    {
+        /** As soon as possible - in other words, uplugin files are loadable from a pak file (as well as right after PlatformFile is set up in case pak files aren't used) Used for plugins needed to read files (compression formats, etc) */
+        EarliestPossible,
 
-		/** Loaded before the engine is fully initialized, immediately after the config system has been initialized.  Necessary only for very low-level hooks */
-		PostConfigInit,
+        /** Loaded before the engine is fully initialized, immediately after the config system has been initialized.  Necessary only for very low-level hooks */
+        PostConfigInit,
 
-		/** The first screen to be rendered after system splash screen */
-		PostSplashScreen,
+        /** The first screen to be rendered after system splash screen */
+        PostSplashScreen,
 
-		/** Loaded before coreUObject for setting up manual loading screens, used for our chunk patching system */
-		PreEarlyLoadingScreen,
+        /** Loaded before coreUObject for setting up manual loading screens, used for our chunk patching system */
+        PreEarlyLoadingScreen,
 
-		/** Loaded before the engine is fully initialized for modules that need to hook into the loading screen before it triggers */
-		PreLoadingScreen,
+        /** Loaded before the engine is fully initialized for modules that need to hook into the loading screen before it triggers */
+        PreLoadingScreen,
 
-		/** Right before the default phase */
-		PreDefault,
+        /** Right before the default phase */
+        PreDefault,
 
-		/** Loaded at the default loading point during startup (during engine init, after game modules are loaded.) */
-		Default,
+        /** Loaded at the default loading point during startup (during engine init, after game modules are loaded.) */
+        Default,
 
-		/** Right after the default phase */
-		PostDefault,
+        /** Right after the default phase */
+        PostDefault,
 
-		/** After the engine has been initialized */
-		PostEngineInit,
+        /** After the engine has been initialized */
+        PostEngineInit,
 
-		/** Do not automatically load this module */
-		None,
+        /** Do not automatically load this module */
+        None,
 
-		// NOTE: If you add a new value, make sure to update the ToString() method below!
-		Max
-	};
+        // NOTE: If you add a new value, make sure to update the ToString() method below!
+        Max
+    };
 };
 ```
 
