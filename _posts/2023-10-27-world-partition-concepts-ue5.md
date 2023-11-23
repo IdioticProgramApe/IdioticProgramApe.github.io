@@ -1,5 +1,5 @@
 ---
-title: UE5: World Partition System Concepts
+title: World Partition System Concepts
 author: ipa
 date: 2023-10-27
 categories: [Unreal Engine]
