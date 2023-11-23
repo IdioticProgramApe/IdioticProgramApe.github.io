@@ -144,7 +144,6 @@ img_path: /unrealengine/worldpartition/
   - attempting to create a minimap texture larger than 16k with standard textures results in the following log error
 
     ![too_large_minimap_texture](world_partition_02.png)
-
     _oversized minimap log errors_
 
   - if **virtual texture are enabled** in the project properties then larger minimaps can be created such as for a 32km x 32km world
