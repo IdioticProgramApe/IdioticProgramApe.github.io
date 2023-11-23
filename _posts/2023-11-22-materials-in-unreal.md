@@ -44,8 +44,8 @@ PBR, aka Physically Based Rendering is a rendering technique commonly used in mo
 
 |          | Incoming Light                                               | Outgoing Light                                               |          |
 | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
-| Direct   | ![Direct Light](pbr_light_categories_1.png){: width="350" height="150" } | ![Specular Light](pbr_light_categories_3.png){: width="350" height="150" } | Specular |
-| Indirect | ![Indirect Light](pbr_light_categories_2.png){: width="350" height="150" } | ![Diffuse Light](pbr_light_categories_4.png){: width="350" height="150" } | Diffuse  |
+| Direct   | ![Direct Light](pbr_light_categories_1.png){: height="150" } | ![Specular Light](pbr_light_categories_3.png){: height="150" } | Specular |
+| Indirect | ![Indirect Light](pbr_light_categories_2.png){: height="150" } | ![Diffuse Light](pbr_light_categories_4.png){: height="150" } | Diffuse  |
 
 if we combine the incoming and outgoing light behaviors together, we end up with 4 different main light surface interactions in computer graphics:
 
@@ -104,7 +104,7 @@ if we combine the incoming and outgoing light behaviors together, we end up with
 - Grayscale values are weird, best to use solid white and black:
   - metallic maps only consist of black and white color
   - when metallic is white, be sure to use correct base color values for metal
-  - all metals are 180 sRGB or bri
+  - all metals are 180 sRGB or brighter
 
 ## References
 
