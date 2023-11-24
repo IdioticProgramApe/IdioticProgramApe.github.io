@@ -1,5 +1,5 @@
 ---
-title: Unreal Engine Materials (Shaders)
+title: Unreal Engine Material (Shader) Concepts 
 author: ipa
 date: 2023-11-22
 categories: [Unreal Engine]
@@ -7,7 +7,7 @@ tags: [ue, ue-editor]
 img_path: /unrealengine/shaders/
 ---
 
-## Concepts
+## Introduction
 
 A **shader** is a piece of code that controls the color of each pixel on the screen and usually runs on the graphics processor. Nowadays:
 
@@ -105,6 +105,13 @@ if we combine the incoming and outgoing light behaviors together, we end up with
   - metallic maps only consist of black and white color
   - when metallic is white, be sure to use correct base color values for metal
   - all metals are 180 sRGB or brighter
+
+## Data Types
+
+- use `Mask` or `SplitComponents` nodes to get specific channels for vectors (float2, float3...)
+- math operations use [vectorizations](https://www.pythonlikeyoumeanit.com/Module3_IntroducingNumpy/VectorizedOperations.html)
+- use `Append` or `AppendMany` nodes to concatenate multiple vectors together and get a higher dimensional one
+- use `Swizzle` to rearrange the values inside of a vector
 
 ## References
 
