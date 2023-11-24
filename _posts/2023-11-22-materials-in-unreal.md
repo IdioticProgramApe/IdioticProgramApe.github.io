@@ -3,7 +3,7 @@ title: Unreal Engine Material (Shader) Concepts
 author: ipa
 date: 2023-11-22
 categories: [Unreal Engine]
-tags: [ue, ue-editor]
+tags: [ue, ue-editor, shader]
 img_path: /unrealengine/shaders/
 ---
 
