@@ -5,6 +5,7 @@ date: 2023-11-22
 categories: [Unreal Engine]
 tags: [ue, ue-editor, shader]
 img_path: /unrealengine/shaders/
+mermaid: true
 ---
 
 ## Introduction
@@ -21,7 +22,7 @@ A **shader** is a piece of code that controls the color of each pixel on the scr
 
 - most engines have a built-in shader editor
 
-- shaders control material properties of 2 catergories:
+- shaders control material properties of 2 categories:
 
   | Surface Properties | Light Properties        |
   | ------------------ | ----------------------- |
@@ -112,6 +113,43 @@ if we combine the incoming and outgoing light behaviors together, we end up with
 - math operations use [vectorizations](https://www.pythonlikeyoumeanit.com/Module3_IntroducingNumpy/VectorizedOperations.html)
 - use `Append` or `AppendMany` nodes to concatenate multiple vectors together and get a higher dimensional one
 - use `Swizzle` to rearrange the values inside of a vector
+
+## Performance Optimization
+
+
+```mermaid
+stateDiagram-v2
+direction LR
+	ShaderGraph: Shader Graph
+	HLSLCode: HLSL Code
+	AssemblyInstructions: Assembly Instructions
+	GraphicsDriver: Graphics Driver
+
+[*] --> ShaderGraph
+ShaderGraph --> HLSLCode
+HLSLCode --> AssemblyInstructions
+AssemblyInstructions --> GraphicsDriver
+GraphicsDriver --> [*]
+```
+
+### Measurements
+
+| Method                                           | Notes                                                        |
+| ------------------------------------------------ | ------------------------------------------------------------ |
+| UE viewport: **Shader complexity view mode**     | Drawbacks:<br>- Only a very general indication of what is costly<br>- Based on instruction count which is not perfect |
+| UE material editor: **Shader instruction count** | Drawbacks:<br>- Not all instructions execute in the same amount of time<br>- Each platform compiles to different instruction counts |
+| **Test on the target platform**                  | Drawbacks:<br>- Hard, requires a lot of setup<br>- Every hardware platform has different performance characteristics |
+
+The most accurate method would be the last one, however given to the set-up complexity, the second method is more or less a good indication.
+
+### Optimization
+
+| Method                                                       |
+| ------------------------------------------------------------ |
+| Get rid of anything not in use / contributing                |
+| Refactor the math formulas                                   |
+| "Pipelining" - Combining components into float4s to do less math |
+| Texture channel packing                                      |
 
 ## References
 
