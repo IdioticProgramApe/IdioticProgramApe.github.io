@@ -151,6 +151,34 @@ The most accurate method would be the last one, however given to the set-up comp
 | "Pipelining" - Combining components into float4s to do less math |
 | Texture channel packing                                      |
 
+## Texture Settings
+
+### Overview
+
+| Setting Name          | Description                                                  |
+| --------------------- | ------------------------------------------------------------ |
+| Imported              | the size of the original texture before imported into unreal |
+| Displayed/Max In-Game | the size the texture in the engine/editor                    |
+| Resource Size         | the memory needed for the current texture at a specific compression setting |
+| Has Alpha Channel     | the format of the texture: RGB or RGBA                       |
+| Method                | streamed(texture will be dynamically loaded with proper res) or not streamed |
+| Format                | the texture compression format                               |
+| Combined LOD Bias     | the offset value which add to the streaming start point      |
+| Number of Mips        | for the streaming, the smallest mip should be 4x4            |
+
+### Compression
+
+| Setting Name           | Description                                                  |
+| ---------------------- | ------------------------------------------------------------ |
+| Compress Without Alpha | for the texture's alpha channel not needed in the game       |
+| Compression Settings   | - DXT1 (default, 8:1 ratio, compression artefacts)<br>- BC7 (support dx11 or higher, 4:1 ratio, less artefacts)<br/>- DXT5 (for normal maps, 4:1 ratio)<br>- DXT5 (for masks, 4:1 ratio)<br>- R8 (for single channel information, uncompressed)<br>- Alpha (only use alpha channel) |
+
+- store the most important information to the alpha channel, the channel gets least compression
+- sRGB is used mostly for the base color diffuse map, for other maps, it should not be used
+  - sRGB is corrected with Gamma, therefore in the **Gamma space**
+  - non sRGB is in the **linear space**
+- make sure the compression settings are coherent with those in the texture sample node
+
 ## References
 
 - Video: [UE4 Material Editor - Shader Creation](https://www.youtube.com/playlist?list=PL78XDi0TS4lFlOVKsNC6LR4sCQhetKJqs)
