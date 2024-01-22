@@ -47,10 +47,9 @@ In computer science, there are 2 common types of floating-point number, which is
 
 #### Single Precision: `Float`
 
-We will first consider the single-precision floating numbers with **32-bit** structure showed in the following image:
+We will first consider the single-precision floating numbers with **32-bit** structure showed in the following image (source: [https://en.wikipedia.org/wiki/Single-precision_floating-point_format](https://en.wikipedia.org/wiki/Single-precision_floating-point_format)):
 
-![float-bits](float-bits.png)
-_[single-precision floating number in bits](https://en.wikipedia.org/wiki/Single-precision_floating-point_format)_
+![float-bits](float-bits.png){: width="600" height="76" }
 
 All the bits can be categorized into 3 groups:
 
