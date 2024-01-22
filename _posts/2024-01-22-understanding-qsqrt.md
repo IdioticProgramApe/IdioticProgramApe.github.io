@@ -49,7 +49,7 @@ In computer science, there are 2 common types of floating-point number, which is
 
 We will first consider the single-precision floating numbers with **32-bit** structure showed in the following image:
 
-![float-bits](float-bits.png){: width="600" height="76" }
+![float-bits](float-bits.png)
 _[single-precision floating number in bits](https://en.wikipedia.org/wiki/Single-precision_floating-point_format)_
 
 All the bits can be categorized into 3 groups:
@@ -114,13 +114,13 @@ $$
 
 ### `0x5f3759df` ?
 
-According to Newton's Method, we will first to provide a initial value, which should be close to the real root value to reduce the number of recursion iterations. To do so, we can start with calculating the log 2 of $ \frac{1}{\sqrt{F_{10}}} $:
+According to Newton's Method, we will first to provide a initial value, which should be close to the real root value to reduce the number of recursion iterations. To do so, we can start with calculating the $ log_2 $ of $ \frac{1}{\sqrt{F_{10}}} $:
 
 $$
 \log_2 \frac{1}{\sqrt{F_{10}}} = -\frac{1}{2} \log_2 F_{10}
 $$
 
-if we define $ Z_{10} = \frac{1}{\sqrt{F_{10}}} $, and apply equation (1), we have:
+if we let $ Z_{10} = \frac{1}{\sqrt{F_{10}}} $, we have:
 
 $$
 \begin{align}
@@ -145,13 +145,15 @@ $$
 f(x) = \frac{1}{x^2} - C, \forall  C > 0
 $$
 
-combine it with the equation (2), we have:
+combine it with the Newton's Method equation, we have:
 
 $$
 x_{n+1} = x_{n}(\frac{3}{2} - \frac{1}{2}Cx^2_{n})
 $$
 
+This last equation explains what we have as the last statement in in the `Q_rsqrt` function.
 
-### Closure
+## Remarks
 
-With equations (3) and (5), and the bit manipulations, we can pretty much understand the entire function. 
+1. The key point in this algorithm is, the $ \log_2 $ value of float $ F_10 $ is affine itself in its binary representation $ F_2 $. From the memory perspective, the bits stay the same.
+2. The trick here to convert a float value to its binary representation is using a c-style cast on it's address, and then dereference it. (ref: `reinterpret_cast`)
