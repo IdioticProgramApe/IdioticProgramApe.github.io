@@ -52,6 +52,7 @@ We will first consider the single-precision floating numbers with **32-bit** str
 ![float-bits](float-bits.png){: width="600" height="76" }
 _[single-precision floating number in bits](https://en.wikipedia.org/wiki/Single-precision_floating-point_format)_
 
+
 All the bits can be categorized into 3 groups:
 
 - S -> sign (1 bit): $ b_{31} $, with 1 -> negative and 0 -> positive
@@ -60,10 +61,12 @@ All the bits can be categorized into 3 groups:
 
 Overall the value of the 32-bit float can be evaluated as:
 
-<div>$$
-  Val_{2} = S \times 2^{31} + E \times 2^{23} + M\\
-  Val_{10} = (-1)^S \times 2^{E-127} \times (1 + \frac{M}{2^{23}})
-  $$</div>
+$$
+\begin{align}
+   F_{2} & = S \times 2^{31} + E \times 2^{23} + M\\
+   F_{10} & = (-1)^S \times 2^{E-127} \times (1 + \frac{M}{2^{23}})
+\end{align}
+$$
 
 #### Double Precision: `Double`
 
@@ -77,32 +80,36 @@ Similarly, the double-precision floating point number `double` has the same form
 
 In this section, we will first calculate the logarithmical value of a regular **positive** float number ($ F_{10} $) with base of 2:
 
-<div>$$
-  \begin{equation} \label{eq1}
-  	\log_2 F_{10} & = \log_2 (-1)^S \times 2^{E-127} \times (1 + \frac{M}{2^{23}}) \
-                  & = (E-127) + \log_2 (1 + \frac{M}{2^{23}}) \
-                  & \approx \frac{M}{2^{23} + \mu + E - 127 \
-                  & = \frac{1}{2^{23}} \times (E \times 2^{23} + M) + \mu - 127 \
+$$
+\begin{equation}
+  \begin{split}
+    \log_2 F_{10} & = \log_2 (-1)^S \times 2^{E-127} \times (1 + \frac{M}{2^{23}})\\
+                  & = (E-127) + \log_2 (1 + \frac{M}{2^{23}})\\
+                  & \approx \frac{M}{2^{23}} + \mu + E - 127\\
+                  & = \frac{1}{2^{23}} \times (E \times 2^{23} + M) + \mu - 127\\
                   & = \frac{1}{2^{23}} \times F_{2} + \mu - 127
-  \end{equation}
-  $$</div>
+  \end{split}
+\end{equation}
+$$
+
 The approximation is valid only when $ \frac{M}{2^{23}} $ is around 0, according to [Taylor Expansion](https://en.wikipedia.org/wiki/Taylor_series) for the [**Mercator series**](https://en.wikipedia.org/wiki/Mercator_series), $ \mu $ is a small value to reduce the error coming from this approximation.
 
 ### Newton's Method
 
 In numerical analysis, [Newton's Method](https://en.wikipedia.org/wiki/Newton's_method) is the most commonly method used to find a real-value function($ f(x) $)'s roots. The core mechanism for this method is recursion, given a initial value $ x_{0} $ and a tolerance $ \epsilon $, using the following equation to get the next $ x $:
 
-<div>$$
-  \begin{equation} \label{eq2}
+$$
+\begin{equation}
   x_{n+1} = x_{n} - \frac{f(x_n)}{f'(x_n)}
-  \end{equation}
-  $$</div>
+\end{equation}
+$$
 
 with the condition of termination:
 
-<div>$$
-  \Delta x \< \frac{f(x_n)}{f'(x_n)}
-  $$</div>
+$$
+\Delta x = -\frac{f(x_n)}{f'(x_n)} < \epsilon
+$$
+
 
 ## `Q_rsqrt` Interpretation
 
@@ -110,45 +117,41 @@ with the condition of termination:
 
 According to Newton's Method, we will first to provide a initial value, which should be close to the real root value to reduce the number of recursion iterations. To do so, we can start with calculating the log 2 of $ \frac{1}{\sqrt{F_{10}}} $:
 
-<div>$$
-  \log_2 \frac{1}{\sqrt{F_{10}}} = -\frac{1}{2} \log_2 F_{10}
-  $$</div>
+$$
+\log_2 \frac{1}{\sqrt{F_{10}}} = -\frac{1}{2} \log_2 F_{10}
+$$
 
 if we define $ Z_{10} = \frac{1}{\sqrt{F_{10}}} $, and apply equation (1), we have:
 
-<div>$$
-  \begin{equation}
-  	\frac{1}{2^{23}} \times Z_{2} + \mu - 127 = -\frac{1}{2} (\frac{1}{2^{23}} \times F_{2} + \mu - 127) \Rightarrow \\
-  \end{equation}
-  \begin{equation} \label{eq3}
-    Z_{2} = -\frac{3}{2} \times 2^{23} \times(\mu - 127) - \frac{1}{2} \times F_{2}
-  \end{equation}
-  $$</div>
+$$
+\begin{align}
+  	\frac{1}{2^{23}} \times Z_{2} + \mu - 127 &= -\frac{1}{2} (\frac{1}{2^{23}} \times F_{2} + \mu - 127) \\
+    \Longrightarrow Z_{2} &= -\frac{3}{2} \times 2^{23} \times(\mu - 127) - \frac{1}{2} \times F_{2}
+\end{align}
+$$
 
 
 with $ \mu \approx 0.0450 $, we can have this WTF value:
 
-<div>$$
-    -\frac{3}{2} \times 2^{23} \times(\mu - 127) = 0x5f3759df
-  $$</div>
+$$
+-\frac{3}{2} \times 2^{23} \times(\mu - 127) = \text{0x5f3759df}
+$$
+
 
 ### Recursion
 
 The equation we try to find its root here is defined as follows:
 
-<div>$$
-  \begin{equation} \label{eq4}
-  f(x) = \frac{1}{x^2} - C, where C > 0
-  \end{equation}
-  $$</div>
+$$
+f(x) = \frac{1}{x^2} - C, \forall  C > 0
+$$
 
 combine it with the equation (2), we have:
 
-<div>$$
-  \begin{equation} \label{eq5}
-  x_{n+1} = x_{n}(\frac{3}{2} - \frac{1}{2}Cx^2_{n})
-  \end{equation}
-  $$</div>
+$$
+x_{n+1} = x_{n}(\frac{3}{2} - \frac{1}{2}Cx^2_{n})
+$$
+
 
 ### Closure
 
