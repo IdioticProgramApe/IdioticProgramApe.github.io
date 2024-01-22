@@ -52,7 +52,6 @@ We will first consider the single-precision floating numbers with **32-bit** str
 ![float-bits](float-bits.png){: width="600" height="76" }
 _[single-precision floating number in bits](https://en.wikipedia.org/wiki/Single-precision_floating-point_format)_
 
-
 All the bits can be categorized into 3 groups:
 
 - S -> sign (1 bit): $ b_{31} $, with 1 -> negative and 0 -> positive
