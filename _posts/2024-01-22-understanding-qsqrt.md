@@ -79,15 +79,14 @@ In this section, we will first calculate the logarithmical value of a regular **
 
 <div>$$
   \begin{equation} \label{eq1}
-  \begin{split}
   	\log_2 F_{10} & = \log_2 (-1)^S \times 2^{E-127} \times (1 + \frac{M}{2^{23}}) \\
                   & = (E-127) + \log_2 (1 + \frac{M}{2^{23}}) \\
                   & \approx \frac{M}{2^{23} + \mu + E - 127 \\
                   & = \frac{1}{2^{23}} \times (E \times 2^{23} + M) + \mu - 127 \\
                   & = \frac{1}{2^{23}} \times F_{2} + \mu - 127
-  \end{split}  
   \end{equation}
   $$</div>
+
 
 The approximation is valid only when $ \frac{M}{2^{23}} $ is around 0, according to [Taylor Expansion](https://en.wikipedia.org/wiki/Taylor_series) for the [**Mercator series**](https://en.wikipedia.org/wiki/Mercator_series), $ \mu $ is a small value to reduce the error coming from this approximation.
 
@@ -121,12 +120,13 @@ if we define $ Z_{10} = \frac{1}{\sqrt{F_{10}}} $, and apply equation (1), we ha
 
 <div>$$
   \begin{equation}
-  	\frac{1}{2^{23}} \times Z_{2} + \mu - 127 & = -\frac{1}{2} (\frac{1}{2^{23}} \times F_{2} + \mu - 127) \Rightarrow \\
+  	\frac{1}{2^{23}} \times Z_{2} + \mu - 127 = -\frac{1}{2} (\frac{1}{2^{23}} \times F_{2} + \mu - 127) \Rightarrow \\
   \end{equation}
   \begin{equation} \label{eq3}
-    Z_{2} & = -\frac{3}{2} \times 2^{23} \times(\mu - 127) - \frac{1}{2} \times F_{2}
+    Z_{2} = -\frac{3}{2} \times 2^{23} \times(\mu - 127) - \frac{1}{2} \times F_{2}
   \end{equation}
   $$</div>
+
 
 with $ \mu \approx 0.0450 $, we can have this WTF value:
 
