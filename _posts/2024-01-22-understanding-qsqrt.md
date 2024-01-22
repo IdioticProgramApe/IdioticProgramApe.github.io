@@ -147,7 +147,12 @@ $$
 combine it with the Newton's Method equation, we have:
 
 $$
-x_{n+1} = x_{n}(\frac{3}{2} - \frac{1}{2}Cx^2_{n})
+\begin{equation}
+\begin{cases}
+x_{n+1} &= x_{n}(\frac{3}{2} - \frac{1}{2}Cx^2_{n})\\
+x_0 &= Z_{10}
+\end{cases}
+\end{equation}
 $$
 
 This last equation explains what we have as the last statement in in the `Q_rsqrt` function.
