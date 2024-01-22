@@ -103,7 +103,7 @@ In numerical analysis, [Newton's Method](https://en.wikipedia.org/wiki/Newton's_
 with the condition of termination:
 
 <div>$$
-  \Delta x \ \frac{f(x_n)}{f'(x_n)}
+  \Delta x < \frac{f(x_n)}{f'(x_n)}
   $$</div>
 
 ## `Q_rsqrt` Interpretation
