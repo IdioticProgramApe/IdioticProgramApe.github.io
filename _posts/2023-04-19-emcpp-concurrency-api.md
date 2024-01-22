@@ -367,7 +367,7 @@ The `std::promise` and `std::future`/`std::shared_future` pair can be used on an
   }
   ```
   
-- ref: [http://scottmeyers.blogspot.com/2013/12/threadraii-thread-suspension-trouble.html](http://scottmeyers.blogspot.com/2013/12/threadraii-thread-suspension-trouble.html)
+- ref: [https://scottmeyers.blogspot.com/2013/12/threadraii-thread-suspension-trouble.html](https://scottmeyers.blogspot.com/2013/12/threadraii-thread-suspension-trouble.html)
 
 ### Key points
 
