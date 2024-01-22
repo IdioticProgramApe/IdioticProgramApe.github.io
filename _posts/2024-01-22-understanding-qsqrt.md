@@ -79,15 +79,13 @@ In this section, we will first calculate the logarithmical value of a regular **
 
 <div>$$
   \begin{equation} \label{eq1}
-  	\log_2 F_{10} & = \log_2 (-1)^S \times 2^{E-127} \times (1 + \frac{M}{2^{23}}) \\
-                  & = (E-127) + \log_2 (1 + \frac{M}{2^{23}}) \\
-                  & \approx \frac{M}{2^{23} + \mu + E - 127 \\
-                  & = \frac{1}{2^{23}} \times (E \times 2^{23} + M) + \mu - 127 \\
+  	\log_2 F_{10} & = \log_2 (-1)^S \times 2^{E-127} \times (1 + \frac{M}{2^{23}}) \
+                  & = (E-127) + \log_2 (1 + \frac{M}{2^{23}}) \
+                  & \approx \frac{M}{2^{23} + \mu + E - 127 \
+                  & = \frac{1}{2^{23}} \times (E \times 2^{23} + M) + \mu - 127 \
                   & = \frac{1}{2^{23}} \times F_{2} + \mu - 127
   \end{equation}
   $$</div>
-
-
 The approximation is valid only when $ \frac{M}{2^{23}} $ is around 0, according to [Taylor Expansion](https://en.wikipedia.org/wiki/Taylor_series) for the [**Mercator series**](https://en.wikipedia.org/wiki/Mercator_series), $ \mu $ is a small value to reduce the error coming from this approximation.
 
 ### Newton's Method
@@ -103,7 +101,7 @@ In numerical analysis, [Newton's Method](https://en.wikipedia.org/wiki/Newton's_
 with the condition of termination:
 
 <div>$$
-  \Delta x < \frac{f(x_n)}{f'(x_n)}
+  \Delta x \< \frac{f(x_n)}{f'(x_n)}
   $$</div>
 
 ## `Q_rsqrt` Interpretation
