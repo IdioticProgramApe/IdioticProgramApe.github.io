@@ -123,10 +123,10 @@ tail_includes:
         {% if 0 > 1 %}
           {% if site.data.locales[lang].copyright.license.template %}
             {% capture _replacement %}
-          <a href="{{ site.data.locales[lang].copyright.license.link }}">
-            {{ site.data.locales[lang].copyright.license.name }}
-          </a>
-          {% endcapture %}
+              <a href="{{ site.data.locales[lang].copyright.license.link }}">
+                {{ site.data.locales[lang].copyright.license.name }}
+              </a>
+            {% endcapture %}
 
             {{ site.data.locales[lang].copyright.license.template | replace: ':LICENSE_NAME', _replacement }}
           {% endif %}
