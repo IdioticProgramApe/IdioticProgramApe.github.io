@@ -94,7 +94,7 @@ The approximation is valid only when $ \frac{M}{2^{23}} $ is around 0, according
 
 ### Newton's Method
 
-In numerical analysis, [Newton's Method](https://en.wikipedia.org/wiki/Newton's_method) is the most commonly method used to find a real-value function($ f(x) $)'s roots. The core mechanism for this method is recursion, given a initial value $ x_{0} $ and a tolerance $ \epsilon $, using the following equation to get the next $ x $:
+In numerical analysis, [Newton's Method](https://en.wikipedia.org/wiki/Newton's_method) is the most commonly method used to find a real-value function($ f(x) $)'s roots. The core mechanism for this method is recursion, given a initial value $ x_{0} $ and a tolerance value $ \epsilon $, using the following equation to get the next $ x $:
 
 $$
 \begin{equation}
@@ -105,7 +105,7 @@ $$
 with the condition of termination:
 
 $$
-\Delta x = -\frac{f(x_n)}{f'(x_n)} < \epsilon
+\|\Delta x\| = \|\frac{f(x_n)}{f'(x_n)}\| < \epsilon
 $$
 
 
@@ -159,5 +159,5 @@ This last equation explains what we have as the last statement in in the `Q_rsqr
 
 ## Remarks
 
-1. The key point in this algorithm is, the $ \log_2 $ value of float $ F_10 $ is affine itself in its binary representation $ F_2 $. From the memory perspective, the bits stay the same.
+1. The key point in this algorithm is, the $ \log_2 $ value of float $ F_{10} $ is affine itself in its binary representation $ F_2 $. From the memory perspective, the bits stay the same.
 2. The trick here to convert a float value to its binary representation is using a c-style cast on it's address, and then dereference it. (ref: `reinterpret_cast`)
