@@ -160,4 +160,4 @@ This last equation explains what we have as the last statement in the `Q_rsqrt` 
 ## Remarks
 
 1. The key point in this algorithm is, the $ \log_2 $ value of float $ F_{10} $ is affine itself in its binary representation $ F_2 $. From the memory perspective, the bits stay the same.
-2. The trick here to convert a float value to its binary representation is using a c-style cast on it's address, and then dereference it. (ref: `reinterpret_cast`)
+2. The trick here to convert a float value to its binary representation is using a c-style cast on its address, and then dereference from that address. (ref: `reinterpret_cast`)
