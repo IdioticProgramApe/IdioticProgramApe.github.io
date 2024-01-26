@@ -53,9 +53,9 @@ We will first consider the single-precision floating numbers with **32-bit** str
 
 All the bits can be categorized into 3 groups:
 
-- S -> sign (1 bit): $ b_{31} $, with 1 -> negative and 0 -> positive
-- E -> biased exponent (8 bits): $ b_{30}...b_{23} $, with bias -127
-- M -> mantissa (23 bits): $ b_{22}...b_{0} $
+- `S` -> sign (1 bit): $ b_{31} $, with 1 -> negative and 0 -> positive
+- `E` -> biased exponent (8 bits): $ b_{30}...b_{23} $, with bias -127
+- `M` -> mantissa (23 bits): $ b_{22}...b_{0} $
 
 Overall the value of the 32-bit float can be evaluated as:
 
@@ -70,9 +70,9 @@ $$
 
 Similarly, the double-precision floating point number `double` has the same formula for the calculation with the following bit arrangement:
 
-- S -> sign (1 bit): $ b_{63} $, with 1 -> negative and 0 -> positive
-- E -> biased exponent (11 bits): $ b_{62}...b_{52} $, with bias -1023
-- M -> mantissa (52 bits): $ b_{51}...b_{0} $
+- `S` -> sign (1 bit): $ b_{63} $, with 1 -> negative and 0 -> positive
+- `E` -> biased exponent (11 bits): $ b_{62}...b_{52} $, with bias -1023
+- `M` -> mantissa (52 bits): $ b_{51}...b_{0} $
 
 ### Logarithmical Value Approximation
 
@@ -155,9 +155,9 @@ x_0 &= Z_{10}
 \end{equation}
 $$
 
-This last equation explains what we have as the last statement in in the `Q_rsqrt` function.
+This last equation explains what we have as the last statement in the `Q_rsqrt` function.
 
 ## Remarks
 
 1. The key point in this algorithm is, the $ \log_2 $ value of float $ F_{10} $ is affine itself in its binary representation $ F_2 $. From the memory perspective, the bits stay the same.
-2. The trick here to convert a float value to its binary representation is using a c-style cast on it's address, and then dereference it. (ref: `reinterpret_cast`)
+2. The trick here to convert a float value to its binary representation is using a c-style cast on its address, and then dereference from that address. (ref: `reinterpret_cast`)
