@@ -51,117 +51,49 @@ For each one of the modules reside inside of a plugin, there are 2 properties to
 
 #### Module Type
 
-```c++
-/**
- * Environment that can load a module.
- */
-namespace EHostType
-{
-    enum Type
-    {
-        // Loads on all targets, except programs.
-        Runtime,
-        
-        // Loads on all targets, except programs and the editor running commandlets.
-        RuntimeNoCommandlet,
-        
-        // Loads on all targets, including supported programs.
-        RuntimeAndProgram,
-        
-        // Loads only in cooked games.
-        CookedOnly,
+Here is list of module types available to choose from for the module configuration:
 
-        // Only loads in uncooked games.
-        UncookedOnly,
-
-        // Deprecated due to ambiguities. Only loads in editor and program targets, but loads in any editor mode (eg. -game, -server).
-        // Use UncookedOnly for the same behavior (eg. for editor blueprint nodes needed in uncooked games), or DeveloperTool for modules
-        // that can also be loaded in cooked games but should not be shipped (eg. debugging utilities).
-        Developer,
-
-        // Loads on any targets where bBuildDeveloperTools is enabled.
-        DeveloperTool,
-
-        // Loads only when the editor is starting up.
-        Editor,
-        
-        // Loads only when the editor is starting up, but not in commandlet mode.
-        EditorNoCommandlet,
-
-        // Loads only on editor and program targets
-        EditorAndProgram,
-
-        // Only loads on program targets.
-        Program,
-        
-        // Loads on all targets except dedicated clients.
-        ServerOnly,
-        
-        // Loads on all targets except dedicated servers.
-        ClientOnly,
-
-        // Loads in editor and client but not in commandlets.
-        ClientOnlyNoCommandlet,
-        
-        //~ NOTE: If you add a new value, make sure to update the ToString() method below!
-        Max
-    };
-};
-```
+| Type Name                | Description                                                  |
+| ------------------------ | ------------------------------------------------------------ |
+| `Runtime`                | Loads on all targets, except programs.                       |
+| `RuntimeNoCommandlet`    | Loads on all targets, except programs and the editor running commandlets. |
+| `RuntimeAndProgram`      | Loads on all targets, including supported programs.          |
+| `CookedOnly`             | Loads only in cooked games.                                  |
+| `UncookedOnly`           | Only loads in uncooked games.                                |
+| `Developer`              | Deprecated due to ambiguities. Only loads in editor and program targets, but loads in any editor mode (eg. -game, -server). Use `UncookedOnly` for the same behavior (eg. for editor blueprint nodes needed in uncooked games), or `DeveloperTool` for modules that can also be loaded in cooked games but should not be shipped (eg. debugging utilities). |
+| `DeveloperTool`          | Loads on any targets where bBuildDeveloperTools is enabled.  |
+| `Editor`                 | Loads only when the editor is starting up.                   |
+| `EditorNoCommandlet`     | Loads only when the editor is starting up, but not in commandlet mode. |
+| `EditorAndProgram`       | Loads only on editor and program targets                     |
+| `Program`                | Only loads on program targets.                               |
+| `ServerOnly`             | Loads on all targets except dedicated clients.               |
+| `ClientOnly`             | Loads on all targets except dedicated servers.               |
+| `ClientOnlyNoCommandlet` | Loads in editor and client but not in commandlets.           |
 
 For the most of the time, `Runtime` is for Game and `Editor` is for the unreal editor.
 
 #### Module Loading Phase
 
-```c++
-/**
- * Phase at which this module should be loaded during startup.
- */
-namespace ELoadingPhase
-{
-    enum Type
-    {
-        /** As soon as possible - in other words, uplugin files are loadable from a pak file (as well as right after PlatformFile is set up in case pak files aren't used) Used for plugins needed to read files (compression formats, etc) */
-        EarliestPossible,
+Here is list of module loading phase available to choose from for the module configuration:
 
-        /** Loaded before the engine is fully initialized, immediately after the config system has been initialized.  Necessary only for very low-level hooks */
-        PostConfigInit,
-
-        /** The first screen to be rendered after system splash screen */
-        PostSplashScreen,
-
-        /** Loaded before coreUObject for setting up manual loading screens, used for our chunk patching system */
-        PreEarlyLoadingScreen,
-
-        /** Loaded before the engine is fully initialized for modules that need to hook into the loading screen before it triggers */
-        PreLoadingScreen,
-
-        /** Right before the default phase */
-        PreDefault,
-
-        /** Loaded at the default loading point during startup (during engine init, after game modules are loaded.) */
-        Default,
-
-        /** Right after the default phase */
-        PostDefault,
-
-        /** After the engine has been initialized */
-        PostEngineInit,
-
-        /** Do not automatically load this module */
-        None,
-
-        // NOTE: If you add a new value, make sure to update the ToString() method below!
-        Max
-    };
-};
-```
+| Loading Phase         | Description                                                  |
+| --------------------- | ------------------------------------------------------------ |
+| EarliestPossible      | As soon as possible - in other words, uplugin files are loadable from a pak file (as well as right after PlatformFile is set up in case pak files aren't used) Used for plugins needed to read files (compression formats, etc) |
+| PostConfigInit        | Loaded before the engine is fully initialized, immediately after the config system has been initialized.  Necessary only for very low-level hooks |
+| PostSplashScreen      | The first screen to be rendered after system splash screen   |
+| PreEarlyLoadingScreen | Loaded before core UObject for setting up manual loading screens, used for our chunk patching system |
+| PreLoadingScreen      | Loaded before the engine is fully initialized for modules that need to hook into the loading screen before it triggers |
+| PreDefault            | Right before the default phase                               |
+| Default               | Loaded at the default loading point during startup (during engine init, after game modules are loaded.) |
+| PostDefault           | Right after the default phase                                |
+| PostEngineInit        | After the engine has been initialized                        |
+| None                  | Do not automatically load this module                        |
 
 Similarly, most of the time, `Default` for game and `PreDefault` for the editor.
 
 ### References
 
-More details can be found on Unreal's official documentation:
+More details can be found on UE's official documentation:
 
 - [Unreal Engine Build Tool Target Reference](https://docs.unrealengine.com/5.2/en-US/unreal-engine-build-tool-target-reference/)
 - [Unreal Engine Modules](https://docs.unrealengine.com/5.2/en-US/unreal-engine-modules/)
