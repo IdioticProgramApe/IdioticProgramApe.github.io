@@ -76,18 +76,18 @@ For the most of the time, `Runtime` is for Game and `Editor` is for the unreal e
 
 Here is list of module loading phase available to choose from for the module configuration:
 
-| Loading Phase         | Description                                                  |
-| --------------------- | ------------------------------------------------------------ |
-| EarliestPossible      | As soon as possible - in other words, uplugin files are loadable from a pak file (as well as right after PlatformFile is set up in case pak files aren't used) Used for plugins needed to read files (compression formats, etc) |
-| PostConfigInit        | Loaded before the engine is fully initialized, immediately after the config system has been initialized.  Necessary only for very low-level hooks |
-| PostSplashScreen      | The first screen to be rendered after system splash screen   |
-| PreEarlyLoadingScreen | Loaded before core UObject for setting up manual loading screens, used for our chunk patching system |
-| PreLoadingScreen      | Loaded before the engine is fully initialized for modules that need to hook into the loading screen before it triggers |
-| PreDefault            | Right before the default phase                               |
-| Default               | Loaded at the default loading point during startup (during engine init, after game modules are loaded.) |
-| PostDefault           | Right after the default phase                                |
-| PostEngineInit        | After the engine has been initialized                        |
-| None                  | Do not automatically load this module                        |
+| Loading Phase           | Description                                                  |
+| ----------------------- | ------------------------------------------------------------ |
+| `EarliestPossible`      | As soon as possible - in other words, uplugin files are loadable from a pak file (as well as right after PlatformFile is set up in case pak files aren't used) Used for plugins needed to read files (compression formats, etc) |
+| `PostConfigInit`        | Loaded before the engine is fully initialized, immediately after the config system has been initialized.  Necessary only for very low-level hooks |
+| `PostSplashScreen`      | The first screen to be rendered after system splash screen   |
+| `PreEarlyLoadingScreen` | Loaded before core UObject for setting up manual loading screens, used for our chunk patching system |
+| `PreLoadingScreen`      | Loaded before the engine is fully initialized for modules that need to hook into the loading screen before it triggers |
+| `PreDefault`            | Right before the default phase                               |
+| `Default`               | Loaded at the default loading point during startup (during engine init, after game modules are loaded.) |
+| `PostDefault`           | Right after the default phase                                |
+| `PostEngineInit`        | After the engine has been initialized                        |
+| `None`                  | Do not automatically load this module                        |
 
 Similarly, most of the time, `Default` for game and `PreDefault` for the editor.
 
