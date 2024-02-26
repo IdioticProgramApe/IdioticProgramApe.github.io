@@ -64,8 +64,6 @@ $$
 x^3 + (-\frac{1}{3}a^2+b)x+(\frac{2}{27}a^3-\frac{1}{3}ab+c) = 0
 $$
 
-### Regular Form
-
 For the simplicity, let:
 
 $$
@@ -75,8 +73,9 @@ $$
 \end{align}
 $$
 
-The discriminant $\Delta$ of a cubic polynomial is given by (TODO):
+### Regular Form
 
+The discriminant $\Delta$ of a cubic polynomial is given by (TODO):
 $$
 \Delta = -4p^3 - 27q^2
 $$
@@ -125,3 +124,73 @@ $$
 	s = \sqrt[3]{-q' - \sqrt{-\Delta'}}
 \end{align}
 $$
+
+The 3 roots can be expressed as:
+
+$$
+\begin{align}
+x_1 &= r + s\\
+x_2 &= \rho r + \rho^2 s\\
+x_3 &= \rho^2 r + \rho s
+\end{align}
+$$
+
+#### Discriminant
+
+As with quadratic equations, the discriminant gives us information about how many REAL roots exist:
+
+- case $\Delta' < 0$:
+
+  - there is only 1 real solution to the cubic equation, which is the $x_1$
+
+- case $\Delta' = 0$:
+
+  - we have $r = s$, so there are 2 real solutions:
+  
+    $$
+    \begin{align}
+    x_1 &= 2r\\
+    x_2, x_3 &= (\rho + \rho^2)r = -r
+    \end{align}
+    $$
+  
+- case $\Delta/ > 0$, which implies $p < 0$ and $q'^2 < -p'^3$:
+
+  - there are 3 distinct real solutions, by using trigonometric manipulations, we can avoid complex numbers to get the solution representations:
+    $$
+    4\cos^3\theta - 3\cos\theta = \cos3\theta
+    $$
+    
+  - the issued equation mentioned above can be rewritten as:
+  
+    $$
+    8m^3\cos^3\theta + 2pm\cos\theta + q = 0
+    $$
+    
+    where $x=2m\cos\theta$ and $m=\sqrt{-p/3}$, this formula can be further simplified as:
+    
+    $$
+    2m^3(4\cos^3\theta-3\cos\theta) + q = 0
+    $$
+    
+    therefore, we have:
+    
+    $$
+    \cos3\theta = \frac{-q}{2m^3} = \frac{-q/2}{\sqrt{-p^3/27}} = \frac{-q'}{\sqrt{-p'^3}}
+    $$
+    
+    which introduce the value of $\theta$:
+    
+    $$
+    \theta_k = \frac{1}{3}\arccos(\frac{-q'}{\sqrt{-p'^3}}) - \frac{2\pi}{3}k
+    $$
+    
+    where $k$ picks 0, 1, 2, responding to our 3 real solutions, we define $\theta = \theta_0$:
+    
+    $$
+    \begin{align}
+    x_1 &= 2\sqrt{-p'}\cos\theta\\
+    x_2 &= 2\sqrt{-p'}\cos(\theta + \frac{2\pi}{3})\\
+    x_3 &= 2\sqrt{-p'}\cos(\theta - \frac{2\pi}{3})
+    \end{align}
+    $$
