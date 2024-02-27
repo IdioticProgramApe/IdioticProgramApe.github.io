@@ -6,3 +6,4 @@
 - [UE4 Create a Third-Party Library to Plugin](https://unrealcommunity.wiki/adding-custom-third-party-library-to-plugin-from-scratch-867b28)
 - [Render graphs (apoorvaj.io)](https://apoorvaj.io/render-graphs-1/)
 - [Vulkan Game Engine Series Written in C (Kohi Game Engine) - YouTube](https://www.youtube.com/playlist?list=PLv8Ddw9K0JPg1BEO-RS-0MYs423cvLVtj)
+- [New shading models and changing the GBuffer](https://dev.epicgames.com/community/learning/tutorials/2R5x/unreal-engine-new-shading-models-and-changing-the-gbuffer)
