@@ -195,3 +195,64 @@ As with quadratic equations, the discriminant gives us information about how man
     x_3 &= 2\sqrt{-p'}\cos(\theta - \frac{2\pi}{3})
     \end{align}
     $$
+
+## Quartic Polynomials
+
+Similarly, a quartic equation has the form:
+
+$$
+t^4 + at^3 + bt^2 + ct + d = 0
+$$
+
+As we did for solving the cubic equations, we can doing such a substitution to eliminate the cubic term:
+
+$$
+t = x - \frac{a}{4}
+$$
+
+the equation now becomes: 
+
+$$
+x^4 + px^2 + qx + r = 0
+$$
+
+where:
+
+$$
+\begin{align}
+p &= -\frac{3}{8}a^2 + b\\
+q &= \frac{1}{8}a^3 - \frac{1}{2}ab + c\\
+r &= -\frac{3}{256}a^4 + \frac{1}{16}a^2b - \frac{1}{4}ab + d
+\end{align}
+$$
+
+### Sub-equation
+
+To solve a quartic equation, we need to first solve a cubic sub-equation as shown below:
+
+$$
+y^3 - \frac{p}{2}y^2 - ry + \frac{4rp-q^2}{8} = 0
+$$
+
+$y$ can be any **real** solution to this equation.
+
+Now we discuss about $q$'s positivity:
+
+- $q \geqslant 0$, then we have solutions to quartic equation are equal to the solutions to the 2 quadratic equations:
+
+  $$
+  \begin{align}
+  x^2 + x\sqrt{2y - p} + y - \sqrt{y^2 - r} &= 0\\
+  x^2 - x\sqrt{2y - p} + y + \sqrt{y^2 - r} &= 0
+  \end{align}
+  $$
+
+- $q < 0$, then we have solutions to quartic equation are equal to the solutions to the 2 quadratic equations:
+
+  $$
+  \begin{align}
+  x^2 + x\sqrt{2y - p} + y + \sqrt{y^2 - r} &= 0\\
+  x^2 - x\sqrt{2y - p} + y - \sqrt{y^2 - r} &= 0
+  \end{align}
+  $$
+
