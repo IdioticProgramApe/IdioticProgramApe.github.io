@@ -154,7 +154,7 @@ As with quadratic equations, the discriminant gives us information about how man
     \end{align}
     $$
   
-- case $\Delta/ > 0$, which implies $p < 0$ and $q'^2 < -p'^3$:
+- case $\Delta' > 0$, which implies $p < 0$ and $q'^2 < -p'^3$:
 
   - there are 3 distinct real solutions, by using trigonometric manipulations, we can avoid complex numbers to get the solution representations:
   
