@@ -94,3 +94,15 @@
     ```
   
   -  there is a transient member variable which may come into handy: `UWorld::PerModuleDataObjects`, can start searching from there.
+  
+- Useful commands in UE to get a gameplay profiling data:
+
+  - before: 
+    - `t.FSPChart.DoCsvProfile 1`: enable csv profile recording along with fps chart
+    - `stat fps`: add fps info into the profiling data
+    - `stat unitmax`: add other frametime and memory info from a global perspective into the profiling data
+  - start/stop:
+    - `StartFPSChart`: before the gameplay
+    - `StopFPSChart`: after the gameplay
+  - collect the data:
+    - the output folder will be: *<project_dir>/Saved/Profiling/FPSChartStats*

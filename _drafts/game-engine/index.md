@@ -22,3 +22,7 @@ has_children: true
 - "Scripting" support via hot-reloading
 - Physics system
 - ...
+
+## Engine Architecture
+
+![game architecture](.\images\game_architecture.png)
