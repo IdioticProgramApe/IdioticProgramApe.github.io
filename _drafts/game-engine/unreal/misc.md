@@ -33,6 +33,14 @@ The file hierarchy of these files are (sorted by load order), taking **Engine** 
 * <ProjectDir>/Saved/Config/<Platform>/Engine.ini
 ```
 
+## Main Menu & Settings
+
+[Make A Professional MainMenu And A Settings Menu In Unreal Engine 5 (youtube.com)](https://www.youtube.com/watch?v=NOEM8mVk2r0)
+
+## Modular Game Character
+
+[My Workflow for Creating Modular Game Character for Unreal Engine (youtube.com)](https://www.youtube.com/watch?v=BIHvCA7BmbA)
+
 ## Light Baking
 
 Simply speaking, the baking is **the editor just takes the textures of everything around the light, calculates the effect of the light on those textures (brightens them, perhaps colors them, shadows, etc.), and saves them as replacement textures to use**. It has some limitations, a light needs to be static for this to work (can't be moved it during gameplay) same for the objects which have interactions with the light.
@@ -54,4 +62,8 @@ In Unreal4, the tool used to precompute the lighting, is called **Lightmass**, c
 ![ActorLifeCycle](assets/ActorLifeCycle_426.jpg)
 
 Check more details at [Actor Lifecycle \| Unreal Engine Documentation](https://docs.unrealengine.com/4.26/en-US/ProgrammingAndScripting/ProgrammingWithCPP/UnrealArchitecture/Actors/ActorLifecycle/)
+
+## DLSS Presets
+
+[DLSS 3.7 - All Presets Compared - Star Wars Jedi Survivor - RTX 3070 - 1440p (youtube.com)](https://www.youtube.com/watch?v=DKveWcAGqHo)
 
