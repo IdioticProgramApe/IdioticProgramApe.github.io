@@ -10,5 +10,11 @@
 
 - [So You Think You Know Git - FOSDEM 2024](https://www.youtube.com/watch?v=aolI_Rz0ZqY)
 
+### Steamworks API
+
+- [Steamworks Tutorials - YouTube](https://www.youtube.com/playlist?list=PLckFgM6dUP2jBeskIPG-7BVJR-I0vcSGJ)
+
+
+
 
 
