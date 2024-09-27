@@ -33,6 +33,21 @@ img_path: /unrealengine/worldpartition/
 
       ```bat
       UnrealEditor.exe ProjetName -run=WorldPartitionConvertCommandlet MapName.umap -AllowCommandletRendering
+  
+- Some important CVars, defined in `WorldPartitionSubsystem.cpp`:
+
+  | Console Variable                         | Description                                                  | Default Value |
+  | ---------------------------------------- | ------------------------------------------------------------ | ------------- |
+  | wp.Runtime.ToggleDrawRuntimeHash2D       | Toggles 2D debug display of world partition runtime hash     | 0             |
+  | wp.Runtime.ToggleDrawStreamingSources    | Toggles debug display of world partition streaming sources   | 0             |
+  | wp.Runtime.ToggleDrawStreamingPerfs      | Toggles debug display of world partition streaming perfs     | 0             |
+  | wp.Runtime.ToggleDrawRuntimeCellsDetails | Toggles debug display of world partition runtime streaming cells | 0             |
+  | wp.Runtime.ToggleDrawDataLayers          | Toggles debug display of active data layers                  | 0             |
+  | wp.Runtime.ToggleDrawDataLayersLoadTime  | Toggles debug display of active data layers load time        | 0             |
+  | wp.DumpstreamingSources                  | Dumps active streaming sources to the log                    |               |
+  | wp.Runtime.UpdateStreamingStateTimeLimit | Maximum amount of time to spend doing World Partition UpdateStreamingState (ms per frame) | 0.f           |
+
+  
 
 ## Landscape
 

@@ -14,3 +14,6 @@
 - Lighting:
   - Lumen:
     - [Lumen Explained - IMPORTANT Tips for UE5 - YouTube](https://www.youtube.com/watch?v=1e6oOiKh91U)
+- landscape:
+  - grass:
+    - [GDi4K/unreal-openland-grass: GameReady Grass System for Unreal Engine (github.com)](https://github.com/GDi4K/unreal-openland-grass)
