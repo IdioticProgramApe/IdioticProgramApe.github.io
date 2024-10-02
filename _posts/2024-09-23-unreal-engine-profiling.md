@@ -74,19 +74,19 @@ tags: [ue, ue-editor, tools]
 
 List of launch parameters to reduce profiling noises:
 
-| Parameter                     | Description                                                  |
-| ----------------------------- | ------------------------------------------------------------ |
-| `-novsync`                    | disable vsync at launch, same as `r.VSync 0`                 |
-| `-noverifygc`                 | disable gc assumption about "Disregard For GC" objects and clusters, same as `gc.VerifyAssumptions 0`, on dev builds |
-| `-nosound`                    | disable Wwise SoundEngine, will be no sound                  |
-| `-noailogging`                | disable AI logging                                           |
-| `-benchmark`                  | set app to benchmark mode                                    |
-| `-deterministic`              | set `-usefixedtimestep` and `-fixedseed` (ref: `FEngineLoop::PreInitPreStartupScreen`, random number generator init section) |
-| `-fps=60`                     | set fps tp 60, which means the time step will be 16.67ms     |
-| `-benchmarkseconds=180`       | set the duration for benchmark                               |
-| `-corelimit=8`                | limit the available cores for the game                       |
-| -ExecCmds="<cmd1>,<cmd2>,..." | execute cmds at launch                                       |
-| `D3D12.StablePowerState 1`    | enable stable power state. This increases GPU timing measurement accuracy but may decrease overall GPU clock rate, only works in developer mode, ref: [ID3D12Device::SetStablePowerState](https://learn.microsoft.com/en-us/windows/win32/api/d3d12/nf-d3d12-id3d12device-setstablepowerstate#remarks) |
+| Parameter                       | Description                                                  |
+| ------------------------------- | ------------------------------------------------------------ |
+| `-novsync`                      | disable vsync at launch, same as `r.VSync 0`                 |
+| `-noverifygc`                   | disable gc assumption about "Disregard For GC" objects and clusters, same as `gc.VerifyAssumptions 0`, on dev builds |
+| `-nosound`                      | disable Wwise SoundEngine, will be no sound                  |
+| `-noailogging`                  | disable AI logging                                           |
+| `-benchmark`                    | set app to benchmark mode                                    |
+| `-deterministic`                | set `-usefixedtimestep` and `-fixedseed` (ref: `FEngineLoop::PreInitPreStartupScreen`, random number generator init section) |
+| `-fps=60`                       | set fps tp 60, which means the time step will be 16.67ms     |
+| `-benchmarkseconds=180`         | set the duration for benchmark                               |
+| `-corelimit=8`                  | limit the available cores for the game                       |
+| `-ExecCmds="<cmd1>,<cmd2>,..."` | execute cmds at launch                                       |
+| `D3D12.StablePowerState 1`      | enable stable power state. This increases GPU timing measurement accuracy but may decrease overall GPU clock rate, only works in developer mode, ref: [ID3D12Device::SetStablePowerState](https://learn.microsoft.com/en-us/windows/win32/api/d3d12/nf-d3d12-id3d12device-setstablepowerstate#remarks) |
 
 ## Unreal Insights
 
@@ -96,7 +96,7 @@ General game launch options for profiling purposes:
 <GameProjectName>.exe [<mapname>][?game=<GameModeName>] -trace=default,task -nosound -noverifygc -novsync, -execcmds="stat namedevents"
 ```
 
-- for the game mode part, possibly need the GameModeClassAlias, ref: [GameMode via Commandline](https://forums.unrealengine.com/t/gamemode-via-commandline/317652/2)
+- for the game mode part, possibly need the `GameModeClassAlias`, ref: [GameMode via Commandline](https://forums.unrealengine.com/t/gamemode-via-commandline/317652/2)
 - insight trace channels:
   - `default`: includes `cpu`,`gpu`,`frame`,`log`,`bookmark`,`screenshot`,`region`
   - `task`: to check the dependency between different task graphs/function calls
