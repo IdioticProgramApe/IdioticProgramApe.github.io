@@ -34,8 +34,11 @@ tags: [ue, ue-editor, tools]
   | `stat raw`          |                                                              | dev, test     |
   | `stat particleperf` |                                                              | dev, test     |
   | `stat tsr`          | same as `stat unit`, but with additional TSR settings        | dev, test     |
+  | `stat streaming`*   | displays basic statistics on streaming assets, like how much memory streaming textures are using, or how many streaming textures there are in the scene | dev, test     |
 
-  - the stat renders can be found in `RenderStat<Command>` functions, defined in Engine.h
+  - the stat renders can be found in `RenderStat<Command>` functions, defined in [Engine.h]()
+  - all the `STATGROUP` names can be used as parameters of `stat` cmd to display the sub-stat values
+    - the `STATGROUP` can be declared by `DECLARE_STATS_GROUP(...)`, ref: [Stats2.h]()
   - ref: [Stat Commands in Unreal Engine](https://dev.epicgames.com/documentation/en-us/unreal-engine/stat-commands-in-unreal-engine?application_version=5.3)
 
 - some other stat group commands:
@@ -67,6 +70,7 @@ tags: [ue, ue-editor, tools]
 
     ```ini
     [/Script/Engine.Engine]
+    ; can be overriden by: `-ini:Engine:[/Script/Engine.Engine]:bForceDisableFrameRateSmoothing=1`
     bForceDisableFrameRateSmoothing=1
     ```
 
@@ -87,6 +91,15 @@ List of launch parameters to reduce profiling noises:
 | `-corelimit=8`                  | limit the available cores for the game                       |
 | `-ExecCmds="<cmd1>,<cmd2>,..."` | execute cmds at launch                                       |
 | `D3D12.StablePowerState 1`      | enable stable power state. This increases GPU timing measurement accuracy but may decrease overall GPU clock rate, only works in developer mode, ref: [ID3D12Device::SetStablePowerState](https://learn.microsoft.com/en-us/windows/win32/api/d3d12/nf-d3d12-id3d12device-setstablepowerstate#remarks) |
+
+### Misc
+
+Here are some helpful cmds to try during the profiling and analysis:
+
+| Command                      | Description                                                  |
+| ---------------------------- | ------------------------------------------------------------ |
+| `pause`                      | To pause the level sequence and media asset, ref: `FLevelSequenceModule::Exec_Runtime` and `FMediaAssetsModule::Exec_Runtime`, inherited from `FExec::Exec_Runtime` |
+| `r.screenpercentage <value>` | To render in lower resolution and upscale for better performance (combined up with the blendable post process setting). **70** is a good value for low aliasing and performance, can be verified with `show TestImage`, negative screen percentage is determined by `r.ScreenPercentage.Default` |
 
 ## Unreal Insights
 
@@ -110,7 +123,7 @@ General game launch options for profiling purposes:
 
 - **PresentMon**: [https://github.com/GameTechDev/PresentMon](https://github.com/GameTechDev/PresentMon)
 - AMD: GPU profiler (GPU) / Ryzen Master (CPU)
-- Nvidia: NSight Graphics (GPU)
+- Nvidia: Nsight Graphics (GPU)
 - Intel: XTU (CPU)
 - MSI Afterburner (GPU)
 - PIX for windows (GPU)
