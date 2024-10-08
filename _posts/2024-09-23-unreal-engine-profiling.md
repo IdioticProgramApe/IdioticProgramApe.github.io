@@ -98,8 +98,10 @@ Here are some helpful cmds to try during the profiling and analysis:
 
 | Command                      | Description                                                  |
 | ---------------------------- | ------------------------------------------------------------ |
-| `pause`                      | To pause the level sequence and media asset, ref: `FLevelSequenceModule::Exec_Runtime` and `FMediaAssetsModule::Exec_Runtime`, inherited from `FExec::Exec_Runtime` |
+| `pause`                      | Command to try to pause the game                             |
 | `r.screenpercentage <value>` | To render in lower resolution and upscale for better performance (combined up with the blendable post process setting). **70** is a good value for low aliasing and performance, can be verified with `show TestImage`, negative screen percentage is determined by `r.ScreenPercentage.Default` |
+
+- cmds can be registered through `UFUNCTION(exec)` as `pause` defined as `APlayerController::Pause()`
 
 ## Unreal Insights
 
