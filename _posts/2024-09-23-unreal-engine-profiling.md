@@ -36,9 +36,9 @@ tags: [ue, ue-editor, tools]
   | `stat tsr`          | same as `stat unit`, but with additional TSR settings        | dev, test     |
   | `stat streaming`*   | displays basic statistics on streaming assets, like how much memory streaming textures are using, or how many streaming textures there are in the scene | dev, test     |
 
-  - the stat renders can be found in `RenderStat<Command>` functions, defined in [Engine.h]()
+  - the stat renders can be found in `RenderStat<Command>` functions, defined in <u>Engine.h</u>
   - all the `STATGROUP` names can be used as parameters of `stat` cmd to display the sub-stat values
-    - the `STATGROUP` can be declared by `DECLARE_STATS_GROUP(...)`, ref: [Stats2.h]()
+    - the `STATGROUP` can be declared by `DECLARE_STATS_GROUP(...)`, ref: <u>Stats2.h</u>
   - ref: [Stat Commands in Unreal Engine](https://dev.epicgames.com/documentation/en-us/unreal-engine/stat-commands-in-unreal-engine?application_version=5.3)
 
 - some other stat group commands:
