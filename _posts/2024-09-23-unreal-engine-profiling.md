@@ -98,17 +98,18 @@ Here are some helpful cmds to try during the profiling and analysis:
 
 | Command                      | Description                                                  |
 | ---------------------------- | ------------------------------------------------------------ |
-| `pause`                      | Command to try to pause the game                             |
+| `pause`                      | Command to try to pause the game (this is a toggle)          |
 | `r.screenpercentage <value>` | To render in lower resolution and upscale for better performance (combined up with the blendable post process setting). **70** is a good value for low aliasing and performance, can be verified with `show TestImage`, negative screen percentage is determined by `r.ScreenPercentage.Default` |
 
 - cmds can be registered through `UFUNCTION(exec)` as `pause` defined as `APlayerController::Pause()`
+  - ref: `UCheatManager` (in <u>CheatManager.h/.cpp</u>), can be accessed through the player controller
 
 ## Unreal Insights
 
 General game launch options for profiling purposes:
 
 ```cmd
-<GameProjectName>.exe [<mapname>][?game=<GameModeName>] -trace=default,task -nosound -noverifygc -novsync, -execcmds="stat namedevents"
+<GameProjectName>.exe [<mapname>][?game=<GameModeName>] -trace=default,task -nosound -noverifygc -novsync -execcmds="stat namedevents"
 ```
 
 - for the game mode part, possibly need the `GameModeClassAlias`, ref: [GameMode via Commandline](https://forums.unrealengine.com/t/gamemode-via-commandline/317652/2)
@@ -116,10 +117,33 @@ General game launch options for profiling purposes:
   - `default`: includes `cpu`,`gpu`,`frame`,`log`,`bookmark`,`screenshot`,`region`
   - `task`: to check the dependency between different task graphs/function calls
   - `loadtime`, `assetloadtime`
-  - `memory`, `MemTag`
+  - `memory`: includes `memtag`, `memalloc`, `callstack`, `module`
   - `metadata`, `assetmetadata`
   - `RDG`: for render dependencies
   - etc... (ref: [trace channels](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-insights-reference-in-unreal-engine-5#tracechannels))
+- If none channel specified, the channels defined in `ini:Engine:[Trace.ChannelPresets]:Rendering` will be used:
+  - by default: `gpu`, `cpu`, `frame`, `log`, `bookmark`
+
+
+### Trace Commands
+
+| Command                            | Description                                                  |
+| ---------------------------------- | ------------------------------------------------------------ |
+| `Trace.Status`                     | Prints Trace status to console                               |
+| `Trace.Start` / `Trace.File`       | Starts tracing to a file (the former is deprecated)          |
+| `Trace.Stop`                       | Stops tracing profiling events                               |
+| `Trace.Pause`                      | Pauses all trace channels currently sending events           |
+| `Trace.Resume`                     | Resumes tracing that was previously paused (re-enables the paused channels) |
+| `Trace.Enable [ChannelSet]`        | Enables a set of channels                                    |
+| `Trace.Disable [ChannelSet]`       | Disables a set of channels                                   |
+| `Trace.Bookmark [Name]`            | Emits a `TRACE_BOOKMARK(Name)` macro event with the given string name, `TraceBookmark` node in BP |
+| `Trace.Screenshot [Name] [ShowUI]` | Takes a screenshot and saves it in the trace, in c++ use macro `TRACE_SCREENSHOT(...)` or use `FTraceScreenshot::RequestScreenshot(...)` |
+
+### Customized Trace/Counter
+
+*Can only added through c++ code*
+
+
 
 ## External Tools
 
