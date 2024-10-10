@@ -4,6 +4,7 @@ author: ipa
 date: 2024-09-23
 categories: [Unreal Engine]
 tags: [ue, ue-editor, tools]
+img_path: /unrealengine/profiling/
 ---
 
 ## Fundamentals
@@ -106,6 +107,8 @@ Here are some helpful cmds to try during the profiling and analysis:
 
 ## Unreal Insights
 
+### Basics (Launch Options)
+
 General game launch options for profiling purposes:
 
 ```cmd
@@ -125,7 +128,7 @@ General game launch options for profiling purposes:
   - by default: `gpu`, `cpu`, `frame`, `log`, `bookmark`
 
 
-### Trace Commands
+### Trace Commands (In Game Console)
 
 | Command                            | Description                                                  |
 | ---------------------------------- | ------------------------------------------------------------ |
@@ -143,7 +146,37 @@ General game launch options for profiling purposes:
 
 *Can only added through c++ code*
 
+| Macro                                                     | Description                                                  |
+| --------------------------------------------------------- | ------------------------------------------------------------ |
+| `SCOPED_NAMED_EVENT(Name, Color)`                         |                                                              |
+| `SCOPED_NAMED_EVENT_FSTRING(Text, Color)`                 | `Text` is a FString type, `Color` will be FColor type        |
+| `DECLARE_SCOPE_CYCLE_COUNTER(CounterName, Stat, GroupId)` | no need to define `Stat` outside, but still need to define `GroupId` |
+| `QUICK_SCOPE_CYCLE_COUNTER(Stat)`                         | the `CounterName` will be set to `#Stat`, `GroupId` will be `STATGROUP_Quick` |
 
+All the macros can be found in <u>PlatformMisc.h</u> and <u>Stats2.h</u>
+
+### Remote Profiling
+
+#### Insight Connection
+
+If the game is not running on the same device where the insight is installed, we can setup some connection configuration in the Insight session browser:
+
+![connection](insight_connection_tab.png)
+
+where:
+
+- ***Trace recorder IP address***: this is the IP of the device where the Insight is found
+- ***Running instance IP address***: this is the IP of the device where the game is actually running on
+- ***Initial channels***: normally `default` is enough, check the previous section for more info on the channels
+
+#### Session Frontend
+
+This is another practical feature provided by Unreal through its another tool called: **Unreal Frontend**:
+
+![session_frontend](session_frontend_tab.png)
+
+- all local/remotely connected sessions will be displayed on the left side of the interface
+- By selecting one, we can send command and even promote some commands as shortcut using the Console sub-tab. 
 
 ## External Tools
 
