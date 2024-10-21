@@ -264,3 +264,32 @@ void UExampleGameInstance::OnAssetTypeAsyncLoadCompleteCallback(const TArray<UOb
 }
 ```
 
+### Cooking
+
+Asset Manager is the primary game interface with cooking:
+
+- override `ModifyCook` function directly
+- override `FinishInitialLoading` to load other things before cook, anything in memory will be cooked
+- set `CookRules` to stop prototype assets from cooking
+  - via `GetPackageCookRule`, `PrimaryAssetLabels` or directly in config
+
+### Chunking
+
+#### Definition
+
+Chunking is a process that assign individual assets to different pak/iostore/staged files
+
+- one chunk identifier per stage file, 0 is default (highest priority)
+- enabled with `bGenerateChunks` packaging setting
+- create hierarchy with `ChunkDependencyInfo`
+- needed for platform-specific features like language-specific downloads
+- works with `ChunkDownloader` plugin
+
+#### Chunk Assignment & Cook Rules
+
+- Chunk/CookRules apply to all "managed" secondary assets
+  - higher priority applied first: ***modding idea*** ?
+  - assign directly in `AssetRules` type config: check the asset manager settings
+  - set `CustomPrimaryAssetRules` in config: check the asset manager settings
+  - create `PrimaryAssetLabels` to recursively set
+  - override `ShouldSetManager` to change global rules, can be complicated
