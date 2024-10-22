@@ -8,3 +8,4 @@
 - [Vulkan Game Engine Series Written in C (Kohi Game Engine) - YouTube](https://www.youtube.com/playlist?list=PLv8Ddw9K0JPg1BEO-RS-0MYs423cvLVtj)
 - [New shading models and changing the GBuffer - CelShading](https://dev.epicgames.com/community/learning/tutorials/2R5x/unreal-engine-new-shading-models-and-changing-the-gbuffer)
 - [Building a Physics Engine with C++ and Simulating Machines - YouTube](https://www.youtube.com/watch?v=TtgS-b191V0&list=PLUahe1BHkKtW3ekopap0g-BxRMyk8UDU2)
+- [c++ - Fast 1/X division (reciprocal) - Stack Overflow](https://stackoverflow.com/questions/9939322/fast-1-x-division-reciprocal)
