@@ -3,6 +3,7 @@
 ### UI
 
 - [How to make an Advanced Settings Menu in Unreal Engine 5! (First Person Horror Character) (youtube.com)](https://www.youtube.com/watch?v=DPMihDc4HNs)
+- [【UE5】使用Slate进行UI开发与编辑器拓展（一）：Slate简介 - 知乎](https://zhuanlan.zhihu.com/p/601694758)
 
 ### Rendering
 
