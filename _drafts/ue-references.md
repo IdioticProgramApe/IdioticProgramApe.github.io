@@ -17,6 +17,8 @@
 - landscape:
   - grass:
     - [GDi4K/unreal-openland-grass: GameReady Grass System for Unreal Engine (github.com)](https://github.com/GDi4K/unreal-openland-grass)
-- loading:
+- loading/Streaming:
   - Asset Manager:
     - [Asset Manager Explained: Inside Unreal (youtube.com)](https://www.youtube.com/watch?v=9MGHBU5eNu0)
+  - texture
+    - [How to Improve Texture Streaming GPU performance in UE5 over 20% increase on GPU memory](https://forums.unrealengine.com/t/how-to-improve-texture-streaming-gpu-performance-in-ue5-over-20-increase-on-gpu-memory-solved/267023)
