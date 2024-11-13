@@ -14,6 +14,10 @@
 
 - [Steamworks Tutorials - YouTube](https://www.youtube.com/playlist?list=PLckFgM6dUP2jBeskIPG-7BVJR-I0vcSGJ)
 
+### Computation Structures
+
+- [MIT 6.004 Computation Structures, Spring 2017 - YouTube](https://www.youtube.com/playlist?list=PLUl4u3cNGP62WVs95MNq3dQBqY2vGOtQ2)
+
 
 
 
