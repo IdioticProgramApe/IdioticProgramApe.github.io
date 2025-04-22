@@ -81,12 +81,22 @@ It's more efficient to load with asset manager using asset bundles:
 
 - load related resources only when needed, reduce the memory usage
   - support multiple game modes: menu, in-game, client, server, etc
-- `AssetBundles` meta tag on soft reference inside `UPrimaryDataAsset`
+- `AssetBundles` meta tag on soft reference inside `UPrimaryDataAsset` (technically on `TSoftObjectPtr` or `FStringAssetReference` member of any `UObject)
 - override `UpdateAssetBundleData` for complex cases
 - update some with `ChangeBundleStateForPrimaryAssets`, will async load
 - update everything with `ChangeBundleStateForMatchingPrimaryAssets`
 
-## Loading Best Pratices
+There are 2 confusing topics here: loading a primary asset and requesting bundle changes, with the combination, we could possibly have 3 use cases:
+
+- `LoadPrimaryAsset(x)`
+- `LoadPrimaryAsset(x, {"asset_bundle_1", ...})`
+- `ChangeBundleStateForPrimaryAssets({x, ...}, {"asset_bundle_1", ...})`
+
+If any bundles provided in function `LoadPrimaryAsset` or `ChangeBundleState`, all the referred assets (through the soft pointers) will be loaded, and these functions take delegates and return streamable handles which give us the visibility to the loading progress. 
+
+The asset bundles will be managed by the asset manager, unlike we manually load a soft object ourselves, the loaded bundled assets don't need to be stashed to some loaded objects to stay alive (not be GCed).
+
+## Loading Best Practices
 
 - Only sync load during load screens or as fast response to input (bad choice in general)
 - Change bundle state and clear caches during mode switches
