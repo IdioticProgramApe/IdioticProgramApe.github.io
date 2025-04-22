@@ -115,6 +115,7 @@ stateDiagram-v2
 
 - [Translation lookaside buffer](https://en.wikipedia.org/wiki/Translation_lookaside_buffer)
 - [How is Virtual Memory Translated to Physical Memory](https://blogs.vmware.com/vsphere/2020/03/how-is-virtual-memory-translated-to-physical-memory.html)
+- [Physical and Virtual Memory in Windows 10](https://answers.microsoft.com/en-us/windows/forum/all/physical-and-virtual-memory-in-windows-10/e36fb5bc-9ac8-49af-951c-e7d39b979938)
 
 
 
