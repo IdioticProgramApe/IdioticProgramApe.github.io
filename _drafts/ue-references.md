@@ -1,7 +1,9 @@
 ### References
 
-- Reflection system:
+- Begin Play Tutorials:
+  - [BeginPlay | Epic Developer Community](https://dev.epicgames.com/community/learning/paths/0w/beginplay)
 
+- Reflection system:
   - [A Flexible Reflection System in C++: Part 1 (preshing.com)](https://preshing.com/20180116/a-primitive-reflection-system-in-cpp-part-1/)
 
   - [A Flexible Reflection System in C++: Part 2 (preshing.com)](https://preshing.com/20180124/a-flexible-reflection-system-in-cpp-part-2/)
