@@ -11,7 +11,7 @@ img_path: /unrealengine/worldpartition/
 
 - World partition is the new world streaming system in UE5: 
 
-  - [World Partition in Unreal Engine \| Unreal Engine 5.2 Documentation](https://docs.unrealengine.com/5.2/en-US/world-partition-in-unreal-engine/)
+  - [World Partition in Unreal Engine \| Unreal Engine 5.5 Documentation \| Epic Developer Community](https://dev.epicgames.com/documentation/en-us/unreal-engine/world-partition-in-unreal-engine)
   - [World Partition Series](https://www.youtube.com/playlist?list=PLtXHb7xLAWqsIBp8HNIggOAVjzDiUeqV7)
 
 - Regions of the world called `cells` are streamed in and out of view visibility based on the distance from their streaming source, usually the player.
@@ -27,14 +27,15 @@ img_path: /unrealengine/worldpartition/
 
   - converting an existing level using:
 
-    - Tools -> Convert Level... -> 
+    - `Tools` -> `Convert Level...` -> 
 
     - world partition convert commandlet:
 
       ```bat
       UnrealEditor.exe ProjetName -run=WorldPartitionConvertCommandlet MapName.umap -AllowCommandletRendering
+      ```
   
-- Some important CVars, defined in `WorldPartitionSubsystem.cpp`:
+- Some important console variables, defined in `WorldPartitionSubsystem.cpp`:
 
   | Console Variable                         | Description                                                  | Default Value |
   | ---------------------------------------- | ------------------------------------------------------------ | ------------- |
@@ -58,7 +59,7 @@ img_path: /unrealengine/worldpartition/
 
 ### Landscape Sizes
 
-- Recommended landscape sizes: https://docs.unrealengine.com/5.2/en-US/landscape-technical-guide-in-unreal-engine/#recommendedlandscapesizes
+- Recommended landscape sizes: [Landscape Technical Guide in Unreal Engine \| Unreal Engine 5.5 Documentation \| Epic Developer Community](https://dev.epicgames.com/documentation/en-us/unreal-engine/landscape-technical-guide-in-unreal-engine#recommendedlandscapesizes)
 
 - some other intermediate sizes are also working well with unreal: 
   - 1513 x 1513
@@ -169,7 +170,7 @@ img_path: /unrealengine/worldpartition/
 
 ## Hierarchical LOD (HLOD)
 
-- source: [https://docs.unrealengine.com/5.2/en-US/world-partition---hierarchical-level-of-detail-in-unreal-engine](https://docs.unrealengine.com/5.2/en-US/world-partition---hierarchical-level-of-detail-in-unreal-engine/)
+- source: [World Partition - Hierarchical Level of Detail in Unreal Engine \| Unreal Engine 5.5 Documentation \| Epic Developer Community](https://dev.epicgames.com/documentation/en-us/unreal-engine/world-partition---hierarchical-level-of-detail-in-unreal-engine)
 - Some world components, such as **Landscapes** and **Water components**, are currently **not supported** by HLOD Actors
   - no use for a test map only contains landscape
 
