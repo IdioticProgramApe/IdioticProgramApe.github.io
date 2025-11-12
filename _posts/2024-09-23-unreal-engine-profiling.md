@@ -17,30 +17,34 @@ img_path: /unrealengine/profiling/
 
 - **stat commands**: triggers registered `EngineStats` function through `UEngine::HandleStatCommand`
 
-  | Command             | Description                                                  | Configuration |
-  | ------------------- | ------------------------------------------------------------ | ------------- |
-  | `stat version`      | display build version string which includes the Changelist number | dev, test     |
-  | `stat namedevent`   |                                                              | all           |
-  | `stat fps`          | display average FPS                                          | all           |
-  | `stat summary`      | display UsedPhysical memory stat                             | all           |
-  | `stat unit`         | display frame times for Game Thread, Render Thread and GPU.  Also displays draw calls and primitive counts | all           |
-  | `stat drawcount`    | display draw call counts per render pass                     | all           |
-  | `stat hitches`      | display a scrolling hitch time when frame hitches occur      | all           |
-  | `stat ai`           | display number of APlayerControllers and the number that were rendered to screen | all           |
-  | `stat framecounter` | display the global, steadily increasing frame counter        | all           |
-  | `stat levels`       | display a list of names of all the loaded levels             | all           |
-  | `stat details`      | display detailed frame and fps timings                       | all           |
-  | `stat unitmax`      | same as `stat unit`, but with max values also displayed      | dev, test     |
-  | `stat unitgraph`    | displays a frame time stats graphed over time                | dev, test     |
-  | `stat raw`          |                                                              | dev, test     |
-  | `stat particleperf` |                                                              | dev, test     |
-  | `stat tsr`          | same as `stat unit`, but with additional TSR settings        | dev, test     |
-  | `stat streaming`*   | displays basic statistics on streaming assets, like how much memory streaming textures are using, or how many streaming textures there are in the scene | dev, test     |
+  | Command                 | Description                                                  | Configuration | Toggle Function |
+  | ----------------------- | ------------------------------------------------------------ | ------------- | --------------- |
+  | `stat version`          | display build version string which includes the Changelist number | dev, test     |                 |
+  | `stat namedevents`      |                                                              | all           |                 |
+  | `stat fps`              | display average FPS                                          | all           |                 |
+  | `stat summary`          | display UsedPhysical memory stat                             | all           |                 |
+  | `stat unit`             | display frame times for Game Thread, Render Thread and GPU.  Also displays draw calls and primitive counts | all           |                 |
+  | `stat drawcount`        | display draw call counts per render pass                     | all           |                 |
+  | `stat hitches`          | display a scrolling hitch time when frame hitches occur      | all           |                 |
+  | `stat ai`               | display number of APlayerControllers and the number that were rendered to screen | all           |                 |
+  | `stat timecode`         | display a time from a timecode provider                      | all           |                 |
+  | `stat framecounter`     | display the global, steadily increasing frame counter        | all           |                 |
+  | `stat colorlist`        | display a list of common FColors and their names             | all           |                 |
+  | `stat levels`           | display a list of names of all the loaded levels             | all           |                 |
+  | `stat detailed`         | display detailed frame and fps timings                       | all           |                 |
+  | `stat unitcriticalpath` | same as `stat unit`, but with critical path values also displayed | dev, test     |                 |
+  | `stat unitmax`          | same as `stat unit`, but with max values also displayed      | dev, test     |                 |
+  | `stat unitgraph`        | displays a frame time stats graphed over time                | dev, test     |                 |
+  | `stat unittime`         |                                                              | dev, test     |                 |
+  | `stat raw`              |                                                              | dev, test     |                 |
+  | `stat particleperf`     |                                                              | dev, test     |                 |
+  | `stat tsr`              | same as `stat unit`, but with additional TSR settings        | dev, test     |                 |
+  | `stat streaming`*       | displays basic statistics on streaming assets, like how much memory streaming textures are using, or how many streaming textures there are in the scene | dev, test     |                 |
 
   - the stat renders can be found in `RenderStat<Command>` functions, defined in <u>Engine.h</u>
   - all the `STATGROUP` names can be used as parameters of `stat` cmd to display the sub-stat values
     - the `STATGROUP` can be declared by `DECLARE_STATS_GROUP(...)`, ref: <u>Stats2.h</u>
-  - ref: [Stat Commands in Unreal Engine](https://dev.epicgames.com/documentation/en-us/unreal-engine/stat-commands-in-unreal-engine?application_version=5.3)
+  - ref: [Stat Commands in Unreal Engine](https://dev.epicgames.com/documentation/en-us/unreal-engine/stat-commands-in-unreal-engine#statcommandtable)
 
 - some other stat group commands:
 

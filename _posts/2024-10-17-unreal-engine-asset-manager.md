@@ -303,3 +303,7 @@ Chunking is a process that assign individual assets to different pak/iostore/sta
   - set `CustomPrimaryAssetRules` in config: check the asset manager settings
   - create `PrimaryAssetLabels` to recursively set
   - override `ShouldSetManager` to change global rules, can be complicated
+
+## Reference
+
+- [Asset Manager Explained](https://www.youtube.com/watch?v=9MGHBU5eNu0)
