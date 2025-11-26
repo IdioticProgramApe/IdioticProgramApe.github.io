@@ -124,7 +124,7 @@ Render thread can send the render commands in the middle of one frame multiple t
 
 Before sent out to RHI thread, the render commands are pre-recorded and saved into a render command list by render thread first, to improve the work efficiency.
 
-## Frontend
+## Frontend (RHI Command Generation)
 
 To parallelize the frontend part of the rendering, in UE, there are some structs created for tackling down the information required by the graphics API.
 
@@ -143,8 +143,8 @@ title: Single-Threaded CommandList Generation
 flowchart LR
     subgraph RT [Render Thread]
         subgraph RHICommandListImmediate
-            Draw1@{ shape: procs, label: "Draw Command List 1" }
-            Draw2@{ shape: procs, label: "Draw Command List 2" }
+            Draw1@{ shape: docs, label: "Draw Command List 1" }
+            Draw2@{ shape: docs, label: "Draw Command List 2" }
             Draw1 -.-> Draw2
         end
     end
@@ -170,36 +170,45 @@ title: Multi-Threaded CommandList Generation
 flowchart LR
     subgraph RT [Render Thread]
         subgraph RHICommandListImmediate
-            Draw1@{ shape: procs, label: "Draw Command List 1" }
-            Draw2@{ shape: procs, label: "Draw Command List 2" }
-            Draw1 -.-> Draw2
+            Draw@{ shape: docs, label: "Draw Command List" }
         end
     end
     
-    subgraph WT1 [Worker Thread 1]
-        subgraph AT1 [Async Task 1: Record in RHICommandList1]
-            BP_1["Bind Pipeline"]
-            BB_1["Bind Buffer"]
-            Draw_1["Draw"]
-            BP_1 --> BB_1 --> Draw_1
+    subgraph WT [Worker Thread]
+        subgraph AT [Async Task: Record in RHICommandList1]
+            BP["Bind Pipeline"]
+            BB["Bind Buffer"]
+            DT["Draw"]
+            BP --> BB --> DT
         end
     end
-    subgraph WT2 [Worker Thread 2]
-        subgraph AT1 [Async Task 2: Record in RHICommandList2]
-            BP_2["Bind Pipeline"]
-            BB_2["Bind Buffer"]
-            Draw_2["Draw"]
-            BP_2 --> BB_2 --> Draw_2
-        end
-    end
-    
-    Draw1 == Dispatch ==> Task1
-    Draw2 == Dispatch ==> Task2
-    
     subgraph RHI [RHI Thread]
-        Task1["RHI Execute Task 1"]
-        Task2["RHI Execute Task 2"]
-        Task1 -.-> Task2
+    	Wait@{ shape: procs, label: "Wait AsyncTask" }
+        Task@{ shape: procs, label: "RHI Execute Task" }
+        Wait --> Task
     end
+    
+    Draw -.-> BP
+    DT -.-> Wait
+    
+
 ```
+
+Since no specific hardware is required in the CommandList Generation, this part of the rendering can be considered as **agnostic** and can be used on all the platforms (including mobiles).
+
+## Backend (RHI Command Translation)
+
+UE has an interface class `IRHICommandContext` which is used to translate the RHI command to its corresponding GPU's graphics instructions:
+
+| Interface            | Notes                                                        |
+| -------------------- | ------------------------------------------------------------ |
+| `IRHIComputeContext` | - including interfaces for doing compute work. i.e. `RHIDispatchComputeShader` |
+| `IRHICommandContext` | Derives from `IRHIComputeContext`:<br />- Including extra interfaces for doing graphics work, i.e. `RHIBeginRenderPass`<br />- Main interface used in translation of `FRHICommandList`<br />- Each platform has its own derived RHICommandContext: `FD3D12CommandContext`, `FMetalRHICommandContext`, etc<br />- Responsible for caching state, validation and issue, i.e. perform a write op on a read-only buffer<br />- Platforms with an immediate context send RHI commands to GPU directly (OpenGL)<br />- Platforms with an deferred context write RHI commands to a command buffer and can be multi-threaded (D3D12, Vulkan, Metal, ...) |
+
+#### Example (Vulkan)
+
+| Concept         | Notes                                                        |
+| --------------- | ------------------------------------------------------------ |
+| `Queue`         | - `Queue` from a `Family` can accept one of the following work: **Graphics**, **Computes**, **Transfer**, etc<br />- Command buffers are submitted to a `Queue` for GPU consumption |
+| `DescriptorSet` | - Allocated from a `DescriptorPool`, can hold multiple types of `DescriptorSet`, i.e. **sampler**, **uniform buffer**, etc<br />- `DescriptorSets` from the same pool can be written to/by different threads (friendly for multi-threaded rendering, on OpenGL it needs to be in the same context which is usually bound to one thread) |
 
