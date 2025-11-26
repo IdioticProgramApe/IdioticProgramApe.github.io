@@ -143,19 +143,14 @@ title: Single-Threaded CommandList Generation
 flowchart LR
     subgraph RT [Render Thread]
         subgraph RHICommandListImmediate
-            Draw1@{ shape: docs, label: "Draw Command List 1" }
-            Draw2@{ shape: docs, label: "Draw Command List 2" }
-            Draw1 -.-> Draw2
+            Draw@{ shape: docs, label: "Draw Command List" }
         end
     end
     
-    Draw1 == Dispatch ==> Task1
-    Draw2 == Dispatch ==> Task2
+    Draw == Dispatch ==> Task
     
     subgraph RHI [RHI Thread]
-        Task1["RHI Execute Task 1"]
-        Task2["RHI Execute Task 2"]
-        Task1 -.-> Task2
+        Task["RHI Execute Task"]
     end
 ```
 
