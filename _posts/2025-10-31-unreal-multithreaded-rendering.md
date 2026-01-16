@@ -9,7 +9,7 @@ mermaid: true
 
 ## Basic Concepts
 
-If we have a lot of objects to render as the CitySample project, if the entire game has only one thread, the bottleneck will fall on CPU with no doubt, because GPU has the capaticity to process tasks in parallel, and with Nanite and TSR, GPU can be fully handle the scenario where loads of objects need processing.
+If we have a lot of objects to render as the **CitySample** project, if the entire game has only one thread, the bottleneck will fall on CPU with no doubt, because GPU has the capacity to process tasks in parallel, and with Nanite and TSR, GPU can be fully handle the scenario where loads of objects need processing.
 
 One of the most common and effective method to optimize CPU is to improve the parallelism of the rendering.
 
@@ -124,7 +124,9 @@ Render thread can send the render commands in the middle of one frame multiple t
 
 Before sent out to RHI thread, the render commands are pre-recorded and saved into a render command list by render thread first, to improve the work efficiency.
 
-## Frontend (RHI Command Generation)
+## Frontend
+
+### Concepts
 
 To parallelize the frontend part of the rendering, in UE, there are some structs created for tackling down the information required by the graphics API.
 
@@ -134,7 +136,9 @@ To parallelize the frontend part of the rendering, in UE, there are some structs
 | `FRHICommandList`          | - A container of RHI functions which can be delayed for execution<br />- Track and Save RHI commands to a linked list `CommandLink`<br />- `Bypass()` means the render commands are executed immediately instead of being recorded |
 | `FRHICommandListImmediate` | - Derived from `FRHICommandList`<br />- Including some render commands that need to be executed immediately on rendering thread and may need to flush RHI thread<br />- Singleton instance |
 
-The render task execution order in RHI thread
+### RHI Command Generation
+
+Generation is used to convert RHI commands to `RHICommandList`.
 
 ```mermaid
 ---
@@ -156,7 +160,7 @@ flowchart LR
 
 The reason for `RHICommandListImmediate` being singleton is we need to make sure that the RHI commands submitted from render thread get executed in the order that we expect. Eventually all the RHI commands will be recorded within `RHICommandListImmediate`, then sent to RHI thread to execute.
 
-Render thread can dispatch the commands multiple times within 1 frame, in order to guarantee the order of the tasks created on RHI thread unchanged, when a new tasks gets created, the previous task will be set to the new task's dependency.
+Render thread can dispatch the commands multiple times within 1 frame, in order to guarantee the order of the tasks created on RHI thread unchanged, when a new tasks gets created, the previous task will be set as the new task's dependency.
 
 ```mermaid
 ---
@@ -169,8 +173,8 @@ flowchart LR
         end
     end
     
-    subgraph WT [Worker Thread]
-        subgraph AT [Async Task: Record in RHICommandList1]
+    subgraph WT [Worker Thread: Async Task]
+        subgraph AT [RHICommandList]
             BP["Bind Pipeline"]
             BB["Bind Buffer"]
             DT["Draw"]
@@ -185,13 +189,13 @@ flowchart LR
     
     Draw -.-> BP
     DT -.-> Wait
-    
-
 ```
 
 Since no specific hardware is required in the CommandList Generation, this part of the rendering can be considered as **agnostic** and can be used on all the platforms (including mobiles).
 
-## Backend (RHI Command Translation)
+## Backend
+
+### Concepts
 
 UE has an interface class `IRHICommandContext` which is used to translate the RHI command to its corresponding GPU's graphics instructions:
 
@@ -206,4 +210,76 @@ UE has an interface class `IRHICommandContext` which is used to translate the RH
 | --------------- | ------------------------------------------------------------ |
 | `Queue`         | - `Queue` from a `Family` can accept one of the following work: **Graphics**, **Computes**, **Transfer**, etc<br />- Command buffers are submitted to a `Queue` for GPU consumption |
 | `DescriptorSet` | - Allocated from a `DescriptorPool`, can hold multiple types of `DescriptorSet`, i.e. **sampler**, **uniform buffer**, etc<br />- `DescriptorSets` from the same pool can be written to/by different threads (friendly for multi-threaded rendering, on OpenGL it needs to be in the same context which is usually bound to one thread) |
+
+The render commands will firstly be stored in a command buffer, after them being translated from RHI commands, then submitted to a `Queue`. One `Queue` can hold multiple command buffer, of which the execution order remains the same as the submission order. 
+
+#### Command Buffer
+
+| Concept                                | Notes                                                        |
+| -------------------------------------- | ------------------------------------------------------------ |
+| `CommandBuffer`                        | - also called as `PrimaryCommandBuffer`<br />- used for recording RHI commands<br />- **can't** be reused while it's used already by GPU<br />- **can** be single or multi-threaded used, the execution order is the order submitted to a queue<br />- no state is inherited across command buffers |
+| `SecondaryCommandBuffer`<br />(vulkan) | - created from a command buffer and used for recording RHI commands<br />- the parent command buffer **can't** record normal RHI commands<br />- the execution order follows the `vkCmdExecuteCommands` execution order<br />- no state is inherited **except** the `RenderPass` state |
+
+The command buffers are independent to each other even they are included in the same `Queue`, any dependency would crash the GPU. i.e. we can't put `BeginRenderPass` in one command buffer and put `EndRenderPass` in another.
+
+`PrimaryCommandBuffer` could have multiple `SecondaryCommandBuffer` to submit render command separately. The execution order will be the same as the order that they are pushed to the `PrimaryCommandBuffer`.
+
+### RHI Command Translation
+
+Translation is used to convert `RHICommandList` to Command Buffer.
+
+```mermaid
+---
+title: "Parallel CommandList Translation: Mutiple CommandBuffers"
+---
+flowchart LR
+    subgraph RHI [RHI Thread]
+        %% RHICommandList
+        RHICmds@{ shape: docs, label: "RHI Commands" }
+        
+        subgraph Queue
+            CB@{ shape: docs, label: "Command Buffers" }
+        end 
+    end
+    
+    RHICmds -.-> CB
+    CB -.-> GPU
+```
+
+If a render pass is translated to command buffer in multi-threaded way, then in each one of the command buffer, there should be `BeginRenderPass` and `EndRenderPass` inside. Each Begin/End `RenderPass` is equivalent to render target's load and store, which could be a serious performance issue, especially for mobile devices.
+
+For mobile devices, it's better to use `SecondaryCommandBuffer` to achieve parallel commandList translation:
+
+```mermaid
+---
+title: "Parallel CommandList Translation: Mutiple SecondaryCommandBuffers"
+---
+flowchart LR
+    subgraph RHI [RHI Thread]
+        %% RHICommandList
+        RHICmds@{ shape: docs, label: "RHI Commands" }
+        
+        subgraph Queue
+            subgraph CommandBuffer
+                CB@{ shape: docs, label: "Secondary Command Buffers" }
+            end
+        end 
+    end
+    
+    RHICmds -.-> CB
+    CB -.-> GPU
+```
+
+#### Parallel Translation Support
+
+| Supported RHI                                            | Unsupported RHI                                             |
+| -------------------------------------------------------- | ----------------------------------------------------------- |
+| - console RHI (PS4, PS5, ...)<br />- D3D12<br />- Vulkan | - OpenGL (`CommandListImmediate`)<br />- D3D11<br />- Metal |
+
+- Vulkan currently doesn't use `SecondaryCommandBuffer` even though it's supported, therefore it's not quite suitable for mobile devices
+- D3D11 and Metal should support parallel RHI command translation theoretically, however not implemented in UE yet
+
+## Synchronization
+
+Here are some systems or methods in UE for frontend-backend synchronization:
 
