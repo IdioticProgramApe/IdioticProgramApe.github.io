@@ -146,7 +146,7 @@ int main()
 }
 ```
 
-Now when the memory allocation fails, it will not throw an exception, instead, it will call this new handler function repeatedly. It will stop calling the handler when the memory is becoming avaiable again.
+Now when the memory allocation fails, it will not throw an exception, instead, it will call this new handler function repeatedly. It will stop calling the handler when the memory is becoming available again.
 
 ### Non-throwing new
 
