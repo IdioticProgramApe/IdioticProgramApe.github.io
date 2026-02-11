@@ -226,7 +226,7 @@ The command buffers are independent to each other even they are included in the 
 
 ### RHI Command Translation
 
-Translation is used to convert `RHICommandList` to Command Buffer.
+Translation is used to convert `RHICommandList` to Command Buffer (each Command Buffer is usually handle by one thread).
 
 ```mermaid
 ---
@@ -277,9 +277,79 @@ flowchart LR
 | - console RHI (PS4, PS5, ...)<br />- D3D12<br />- Vulkan | - OpenGL (`CommandListImmediate`)<br />- D3D11<br />- Metal |
 
 - Vulkan currently doesn't use `SecondaryCommandBuffer` even though it's supported, therefore it's not quite suitable for mobile devices
-- D3D11 and Metal should support parallel RHI command translation theoretically, however not implemented in UE yet
+- D3D11 and Metal should support parallel RHI command translation theoretically, however not implemented in UE yet (to verify)
 
 ## Synchronization
 
 Here are some systems or methods in UE for frontend-backend synchronization:
+
+| Frontend                                                     | Backend (For different scenarios)       |
+| ------------------------------------------------------------ | --------------------------------------- |
+| - Taskgraph system (upgraded in UE5)<br />  - Prerequisite tasks<br />  - Join (at the proper timing) | - Barrier<br />- Fence<br />- Semaphore |
+
+## Applications
+
+This section will be introducing the engine components which are using the parallel rendering. Here are some relevant data structures:
+
+### Concepts
+
+```mermaid
+---
+title: "Renderer"
+---
+flowchart TB
+    IV["Init Views"]
+    RMP["Render Mesh Passes"]
+    RC["Record in CommandList"]
+
+    IV ~~~|"ComputeViewVisibility<br />SetupMeshPass"| RMP
+    IV ==> RMP
+    IV ~~~|FMeshBatch| RMP
+
+    RMP ~~~|DispatchDraw| RC
+    RMP ==> RC
+    RMP ~~~|FMeshDrawCommand| RC
+
+```
+
+#### High Level Data Structures
+
+| Data Structure         | Notes                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| `FPrimitiveSceneProxy` | - The rendering thread representation for the game thread's `UPrimitiveComponent`<br />- Provides `FMeshBatch` to Renderer through `GetDynamicMeshElements()` and `DrawStaticElements()` |
+| `FMeshBatch`           | - Contains everything a pass needs to figure out final shader bindings and render state<br />- Provides `FMeshDrawCommand` used by a mesh pass through specific `FMeshPassProcessor` |
+| `FMeshDrawCommand`     | - Stores everything that the RHI needs to know about a mesh draw<br />- Allows for caching and merging the draw calls just above the RHI level |
+
+- `FMeshBatch` contains all render information about the primitive in any mesh pass, i.e. `DepthPrePass`, `BasePass` (they are all mesh passes)
+- `FMeshDrawCommand` contains all RHI information about the primitive, i.e. shader, vertex information, and texture bindings.
+- If mesh render state won't change, we can precache the mesh draw command, to avoid generating the same draw command repeatedly.
+- if multiple mesh draw commands use the same vertices and shader, and `GPUScene` is enabled as well, we can merge these commands
+
+```mermaid
+flowchart LR
+	FMeshBatch --> Passes --> FMeshDrawCommand --> Commands
+	Passes@{ shape: braces, label: "ShadowPass<br>DepthPrePass<br>BasePass<br>VelocityPass" }
+	Commands@{ shape: comment, label: "FRHICommandSetShaderUniformBuffer<br>FRHICommandSetGraphicsPipelineState<br>FRHICommandSetStreamSource<br>FRHICommandDrawIndexedPrimitive" }
+```
+
+#### InitViews
+
+```mermaid
+---
+title: "InitViews"
+---
+flowchart LR
+    T1["Create ComputeLightVisibility"]
+    T2["ParallelFor<br>PrimitiveCull"]
+    T3["ParallelFor<br>ComputeAndMarkRevevance"]
+    T4["SetupMeshPass"]
+    T5["Wait ComputeLightVisibility Task"]
+	
+    AT1["AsyncTask<br>ComputeLightVisibility"]
+    ATS@{ shape: docs, label: "FMeshDrawCommandPassSetupTask" }
+	
+    T1 ==> T2 ==> T3 ==> T4 ==> T5
+    T1 -.-> AT1 -.-> T5
+    T4 -.-> ATS
+```
 
