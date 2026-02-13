@@ -1,5 +1,5 @@
 ---
-title: (WIP) Unreal Engine Multithreaded Rendering
+title: Unreal Engine Multithreaded Rendering
 author: ipa
 date: 2025-10-31
 categories: [Unreal Engine]
@@ -289,9 +289,11 @@ Here are some systems or methods in UE for frontend-backend synchronization:
 
 ## Applications
 
-This section will be introducing the engine components which are using the parallel rendering. Here are some relevant data structures:
+This section will be introducing the engine components which are using the parallel rendering.
 
 ### Concepts
+
+Here is an overall pipeline for recording CommandList, the details for each separate node will be listed in the following sections.
 
 ```mermaid
 ---
@@ -332,24 +334,156 @@ flowchart LR
 	Commands@{ shape: comment, label: "FRHICommandSetShaderUniformBuffer<br>FRHICommandSetGraphicsPipelineState<br>FRHICommandSetStreamSource<br>FRHICommandDrawIndexedPrimitive" }
 ```
 
-#### InitViews
+#### Init Views
 
 ```mermaid
 ---
 title: "InitViews"
 ---
 flowchart LR
-    T1["Create ComputeLightVisibility"]
-    T2["ParallelFor<br>PrimitiveCull"]
-    T3["ParallelFor<br>ComputeAndMarkRevevance"]
-    T4["SetupMeshPass"]
-    T5["Wait ComputeLightVisibility Task"]
+    T1["Create **ComputeLightVisibility**"]
+    T2["ParallelFor<br>**PrimitiveCull**"]
+    T3["ParallelFor<br>**ComputeAndMarkRevevance**"]
+    T4["**SetupMeshPass**"]
+    T5["Wait **ComputeLightVisibility**"]
 	
-    AT1["AsyncTask<br>ComputeLightVisibility"]
-    ATS@{ shape: docs, label: "FMeshDrawCommandPassSetupTask" }
+    AT1["AsyncTask<br>**ComputeLightVisibility**"]
+    ATS@{ shape: docs, label: "AsyncTask<br>**FMeshDrawCommandPassSetupTask**" }
 	
     T1 ==> T2 ==> T3 ==> T4 ==> T5
     T1 -.-> AT1 -.-> T5
     T4 -.-> ATS
 ```
+
+- `FMeshDrawCommand` will be generated in these `FMeshDrawCommandPassSetupTask` async tasks, however they are not required in the `InitView` stage, no need to wait for them.
+
+#### Parallel in RenderDependencyGraph
+
+For the render passes, UE manages them via `RenderDependencyGraph` (todo), to process them in a parallel way.
+
+1. Collect all render passes, through RDG
+
+2. Setup render passes (in parallel), following these steps:
+
+   ```mermaid
+   flowchart LR
+   	Compile["Compile (SetupPassResources)"] --> CompilePassBarriers
+   	CompilePassBarriers --> SubmitBufferUploads
+   	SubmitBufferUploads --> CreateUniformBuffer
+   	CreateUniformBuffer --> CreatePassBarriers
+   ```
+
+3. Execute render passes (in parallel):
+
+   1. `SetupParallelExecute`: Collect a serial passes using `RHICommandList` to a `ParallelPassSet`
+
+      1. this is because we don't expect an result immediately from `RHICommandList`, which means if a render pass uses `RHICommandList`, then all the instructions in this pass can be parallelized.
+      2. 2 console variables which can be used to minmax the amount of `RHICommandList` merged into one `ParallelPassSet`:
+         - `r.RDG.ParallelExecute.PassMin` (default: 1)
+         - `r.RDG.ParallelExecute.PassMax` (default: 32)
+
+      | Pass | Before SetupParallelExecute | After SetupParallelExecute |
+      | ---- | --------------------------- | -------------------------- |
+      | 1    | RHICommandListImmediate     | RHICommandListImmediate    |
+      | 2    | RHICommandList|**ParallelPassSet**       |
+      | 3    | RHICommandList              | -- (merged) |
+      | 4    | RHICommandList              | -- (merged) |
+      | 5    | RHICommandListImmediate     | RHICommandListImmediate    |
+      | 6    | RHICommandList              | **ParallelPassSet**        |
+      | 7    | RHICommandList              | -- (merged) |
+      | 8    | RHICommandListImmediate     | RHICommandListImmediate    |
+      | 9    | RHICommandList              | **ParallelPassSet**        |
+
+   2. `DispatchParallelExecute`: Launch an async task for each `ParallelPassSet` to execute each pass (record render commands in a `RHICommandList`).
+
+      - The reason why we don't execute on every single one of the passes, is that in general, the render passes uses `RHICommandList` are small, no as large as mesh passes, i.e. compute pass or post process pass, so relatively they don't have too many render instructions. By grouping them together can effectively improve the work efficiency.
+      - On the other hand, mesh passes use `RHICommandListImmediate`
+
+   3. Record passes and `ParallelPassSet` in series:
+
+      | Pass | Execute Pass        | RHICommandListImmediate |
+      | ---- | ------------------- | ----------------------- |
+      | 1    | -- (no-op)          | Record Pass 1           |
+      | 2    | **ParallelPassSet** | RHICommandList          |
+      | 3    | -- (merged)         |                         |
+      | 4    | -- (merged)         |                         |
+      | 5    | -- (no-op)          | Record Pass 5           |
+      | 6    | **ParallelPassSet** | RHICommandList          |
+      | 7    | -- (merged)         |                         |
+      | 8    | -- (no-op)          | Record Pass 8           |
+      | 9    | **ParallelPassSet** | RHICommandList          |
+
+      `RHICommandListImmediate` can ensure the execution order remains the same.
+
+#### Parallel MeshDrawCommand Pass
+
+If the render pass is a mesh pass, there are some furthermore optimizations:
+
+1. Break `MeshDrawCommands` in this mesh pass up into chunks based on some criteria 
+
+2. The number of chunks will be determined by the following concepts, to help balance the work load for each worker thread:
+
+   | Concept           | Definition                                                   |
+   | ----------------- | ------------------------------------------------------------ |
+   | `NumThreads`      | Min(`NumWorkerThreads`, `r.RHICmdWidth`)                     |
+   | `NumTasks`        | Min(`NumThreads`, (MaxNumDraws / `r.RHICmdMinDrawsPerParallelCmdList`)) |
+   | `NumDrawsPerTask` | (MaxNumDraws/`NumTasks`)                                     |
+
+
+#### Parallel CommandList Generation
+
+```mermaid
+flowchart LR
+	Node1[Split **MeshDrawCommands** into chunks]
+	Node2[Create an async task with a chunk of **MeshDrawCommand**s and a **RHICommandList**]
+	Node3[Add the **RHICommandList** to the **QueuedCommandList**s]
+	Node4[Dispatch the **QueuedCommandList**s to the ***RHICommandListImmediate*** **QueueAsyncCommandListSubmit**]
+	ANode1[**FDrawVisibleMeshCommandsAnyThreadTask** Draws **MeshDrawCommand**s and records in the **RHICommandList**]
+	ANode2[**FMeshDrawCommandPassSetupTask** prepares **MeshDrawCommand**s]
+	
+	subgraph WorkerThread
+		direction LR
+		ANode1 -- Depends on --> ANode2
+	end
+	subgraph _ [**FParallelCommandListSet**]
+        Node1 ==> Node2 ==> Node3 ==> Node4
+        Node3 --> Node1
+	end
+	
+	Node2 -.-> ANode1
+```
+
+#### Parallel CommandList Translation
+
+This is usually done in `FRHICommandListImmediate::QueueAsyncCommandListSubmit`:
+
+```mermaid
+flowchart LR
+	Condition@{ shape: diamond, label: "**GRHISupportsParallelRHIExecute** && (QueuedCommandLists.Num() >= **r.RHICmdMinCmdlistForParallelSubmit**)"}
+	Node1[**ExecuteAndReset** Dispatch recorded commands to RHI thread for execution]
+	Node2[Create an async task to translate a **RHICommandList**]
+	Node3[Add the async task to a Tasks array]
+	Node4[Enqueue a command to wait the Tasks separately and submit the command buffers to Queue]
+	Node5[Enqueue a command to execute the CommandLists sequentially]
+	
+	Condition -- Yes --> Node1 --> Node2 --> Node3 --> Node4
+	Node3 --> Node2
+	Condition -- No --> Node5
+```
+
+### Summary
+
+| Steps                            | Notes                                                        |
+| -------------------------------- | ------------------------------------------------------------ |
+| Parallel Processing Resources    | - `ComputeLightVisibility`, `PrimitiveCulling`, `ComputeAndMarkRelevance`, `SetupMeshPass`, ...<br />- Parallel pass setup in RDG |
+| Parallel CommandList Generation  | - `DispatchParallelExecute`, `FParallelCommandListSet` in mesh pass |
+| Parallel CommandList Translation | - `FRHICommandListImmediate::QueueAsyncCommandListSubmit` (only for mesh pass) |
+
+## Debugging
+
+| Name                             | CVars                                                        | Launch Params                    |
+| -------------------------------- | ------------------------------------------------------------ | -------------------------------- |
+| `Bypass`                         | - `r.RHICmdBypass`                                           | `-forcerhibypass`                |
+| `GRHISupportsRHIThread`          | - `r.Metal.IOSRHIThread`<br />- `r.OpenGL.AllowRHIThread`<br />- `r.Vulkan.RHIThread` | `-rhithread`<br />`-norhithread` |
+| `GRHISupportsParallelRHIExecute` | - `r.Vulkan.RHIThread` (> 1)                                 |                                  |
 
