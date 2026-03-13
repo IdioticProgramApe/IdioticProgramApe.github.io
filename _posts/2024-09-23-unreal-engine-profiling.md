@@ -104,7 +104,7 @@ Here are some helpful cmds to try during the profiling and analysis:
 | Command                      | Description                                                  |
 | ---------------------------- | ------------------------------------------------------------ |
 | `pause`                      | Command to try to pause the game (this is a toggle)          |
-| `r.screenpercentage <value>` | To render in lower resolution and upscale for better performance (combined up with the blendable post process setting). **70** is a good value for low aliasing and performance, can be verified with `show TestImage`, negative screen percentage is determined by `r.ScreenPercentage.Default` |
+| `r.screenpercentage <value>` | To render in lower resolution and upscale for better performance (combined up with the blendable post process setting). <br />**70** is a good value for low aliasing and performance, can be verified with `show TestImage`. <br />Negative screen percentage is determined by `r.ScreenPercentage.Default` |
 
 - cmds can be registered through `UFUNCTION(exec)` as `pause` defined as `APlayerController::Pause()`
   - ref: `UCheatManager` (in <u>CheatManager.h/.cpp</u>), can be accessed through the player controller
@@ -120,6 +120,7 @@ General game launch options for profiling purposes:
 ```
 
 - for the game mode part, possibly need the `GameModeClassAlias`, ref: [GameMode via Commandline](https://forums.unrealengine.com/t/gamemode-via-commandline/317652/2)
+- `-statnamedevents` can replace the `-execcmds="..."`, check engine support.
 - insight trace channels:
   - `default`: includes `cpu`,`gpu`,`frame`,`log`,`bookmark`,`screenshot`,`region`
   - `task`: to check the dependency between different task graphs/function calls
