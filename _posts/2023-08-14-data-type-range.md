@@ -7,7 +7,7 @@ tags: [definitions]
 math: true
 ---
 
-## Standard Types
+## Standard Types ([LLP64](https://en.wikipedia.org/wiki/64-bit_computing#64-bit_data_models))
 
 | Type Name            | Bytes  | Other Names                     | Range of Values                                              | Notes                                          |
 | -------------------- | ------ | ------------------------------- | ------------------------------------------------------------ | ---------------------------------------------- |
