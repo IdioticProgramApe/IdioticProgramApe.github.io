@@ -1,1 +1,0 @@
-site: https://courses.tomlooman.com/
