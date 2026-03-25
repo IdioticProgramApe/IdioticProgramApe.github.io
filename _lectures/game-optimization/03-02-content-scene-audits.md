@@ -21,3 +21,6 @@ Available stats regarding to the current loaded level:
 | Static Mesh Lighting Info |                                                              |
 | Shader Cooker Stats       |                                                              |
 
+
+
+All the statistics column name explanations are specified in **PrimitiveStats.h**
