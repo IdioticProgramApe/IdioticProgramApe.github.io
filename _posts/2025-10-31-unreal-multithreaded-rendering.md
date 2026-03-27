@@ -484,6 +484,6 @@ flowchart LR
 | Name                             | CVars                                                        | Launch Params                    |
 | -------------------------------- | ------------------------------------------------------------ | -------------------------------- |
 | `Bypass`                         | - `r.RHICmdBypass`                                           | `-forcerhibypass`                |
-| `GRHISupportsRHIThread`          | - `r.Metal.IOSRHIThread`<br />- `r.OpenGL.AllowRHIThread`<br />- `r.Vulkan.RHIThread` | `-rhithread`<br />`-norhithread` |
+| `GRHISupportsRHIThread`          | - `r.Metal.IOSRHIThread`<br />- `r.OpenGL.AllowRHIThread`<br />- `r.Vulkan.RHIThread` (> 0) | `-rhithread`<br />`-norhithread` |
 | `GRHISupportsParallelRHIExecute` | - `r.Vulkan.RHIThread` (> 1)                                 |                                  |
 
