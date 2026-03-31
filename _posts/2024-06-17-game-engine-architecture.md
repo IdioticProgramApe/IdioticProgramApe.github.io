@@ -140,7 +140,7 @@ stateDiagram-v2
 		}
 		
 		state Core2 {
-			Parser: Parsers (XML, CSV, JSON, etc...)
+            Parser: Parsers (XML, CSV, JSON, etc...)
             Profiling
             AsyncFiles: Async File I/O
             Localization
