@@ -113,13 +113,13 @@ $$
 
 ### `0x5f3759df` ?
 
-According to Newton's Method, we will first to provide a initial value, which should be close to the real root value to reduce the number of recursion iterations. To do so, we can start with calculating the $ log_2 $ of $ \frac{1}{\sqrt{F_{10}}} $:
+According to Newton's Method, we will first to provide a initial value, which should be close to the real root value to reduce the number of recursion iterations. To do so, we can start with calculating the $ log_2 $ of $ \displaystyle\frac{1}{\sqrt{F_{10}}} $:
 
 $$
 \log_2 \frac{1}{\sqrt{F_{10}}} = -\frac{1}{2} \log_2 F_{10}
 $$
 
-if we let $ Z_{10} = \frac{1}{\sqrt{F_{10}}} $, we have:
+if we let $ Z_{10} = \displaystyle\frac{1}{\sqrt{F_{10}}} $, we have:
 
 $$
 \begin{align}
@@ -149,7 +149,7 @@ combine it with the Newton's Method equation, we have:
 $$
 \begin{equation}
 \begin{cases}
-x_{n+1} &= x_{n}(\frac{3}{2} - \frac{1}{2}Cx^2_{n})\\
+x_{n+1} &= x_{n}(\displaystyle\frac{3}{2} - \frac{1}{2}Cx^2_{n})\\
 x_0 &= Z_{10}
 \end{cases}
 \end{equation}
