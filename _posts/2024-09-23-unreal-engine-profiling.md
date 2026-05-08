@@ -85,6 +85,7 @@ List of launch parameters to reduce profiling noises:
 
 | Parameter                       | Description                                                  |
 | ------------------------------- | ------------------------------------------------------------ |
+| `-handleensurepercent=x`        | set the percentage chance of handling an ensure call, set to 0 to disable ensure, ref: `FGenericPlatformMisc::IsEnsureAllowed()` |
 | `-novsync`                      | disable vsync at launch, same as `r.VSync 0`                 |
 | `-noverifygc`                   | disable gc assumption about "Disregard For GC" objects and clusters, same as `gc.VerifyAssumptions 0`, on dev builds |
 | `-nosound`                      | disable Wwise SoundEngine, will be no sound                  |
